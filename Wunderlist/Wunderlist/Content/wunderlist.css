@@ -1,0 +1,28 @@
+﻿.logo {
+    width: 28px;
+    height: 28px;
+    position:absolute;
+    background-size: 28px;
+    left: 10px;
+    top: 10px;
+    background-image: url('images/logo.png');
+}
+
+.wordmark {
+    top: 14px;
+    left: 47px;
+    position: absolute;
+    width: 86px;
+    height: 14px;
+    font-size: 18px;
+    color: black;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.wunderlist-link {
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.wunderlist-link:hover {
+    color: blue;
+}
