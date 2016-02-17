@@ -1,21 +1,25 @@
-﻿.logo {
+﻿.intro {
+    background: #db4c3f;
+    overflow: hidden;
+    position: relative;
+    width: 1899px;
+    height: 679px;
+    background-image: url('images/pictos.svg')
+}
+
+.logo {
     width: 28px;
     height: 28px;
-    position:absolute;
     background-size: 28px;
     left: 10px;
-    top: 10px;
     background-image: url('images/logo.png');
 }
 
 .wordmark {
-    top: 14px;
-    left: 47px;
     position: absolute;
-    width: 86px;
-    height: 14px;
     font-size: 18px;
     color: black;
+    left: 45px;
     font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
