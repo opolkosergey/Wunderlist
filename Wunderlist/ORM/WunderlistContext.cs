@@ -16,8 +16,9 @@ namespace ORM
 
         }
 
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<TodoList> TodoLists { get; set; }
-        public virtual DbSet<TodoItem> TodoItems { get; set; } 
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<TodoList> TodoLists { get; set; }
+        public DbSet<TodoItem> TodoItems { get; set; }
     }
 }

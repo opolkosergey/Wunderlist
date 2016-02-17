@@ -67,9 +67,12 @@ namespace ORM
             User user1 = new User()
             {
                 Email = "First@gmail.com",
-                Name = "FirstName",
                 Password = "FirstPassword",
-                TodoLists = user1List
+                TodoLists = user1List,
+                Profile = new UserProfile()
+                {
+                    Name = "FirstName"
+                }
             };
 
             #endregion
@@ -136,9 +139,12 @@ namespace ORM
             User user2 = new User()
             {
                 Email = "Second@gmail.com",
-                Name = "SecondName",
                 Password = "SecondPassword",
-                TodoLists = user2List
+                TodoLists = user2List,
+                Profile = new UserProfile()
+                {
+                    Name = "SecondName"
+                }
             };
 
             #endregion
@@ -201,9 +207,12 @@ namespace ORM
             User user3 = new User()
             {
                 Email = "Second@gmail.com",
-                Name = "SecondName",
                 Password = "SecondPassword",
-                TodoLists = user3List
+                TodoLists = user3List,
+                Profile = new UserProfile()
+                {
+                    Name = "SecondName",
+                }
             };
 
             #endregion

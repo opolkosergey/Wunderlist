@@ -54,6 +54,7 @@
     <Compile Include="Entities\TodoItem.cs" />
     <Compile Include="Entities\TodoList.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserProfile.cs" />
     <Compile Include="WunderlistContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

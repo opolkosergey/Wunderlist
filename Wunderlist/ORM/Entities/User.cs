@@ -12,9 +12,8 @@ namespace ORM.Entities
         public int ID { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Name { get; set; }
-        public byte[] Photo { get; set; }
-
+        
+        public virtual UserProfile Profile { get; set; }
         public virtual ICollection<TodoList> TodoLists { get; set; }
     }
 }
