@@ -51,10 +51,10 @@
   <ItemGroup>
     <Compile Include="ContextInitializer.cs" />
     <Compile Include="Entities\IEntityDb.cs" />
-    <Compile Include="Entities\TodoItem.cs" />
-    <Compile Include="Entities\TodoList.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\UserProfile.cs" />
+    <Compile Include="Entities\TodoItemModel.cs" />
+    <Compile Include="Entities\TodoListModel.cs" />
+    <Compile Include="Entities\UserModel.cs" />
+    <Compile Include="Entities\UserProfileModel.cs" />
     <Compile Include="WunderlistContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
