@@ -10,21 +10,21 @@ namespace ORM
         {
             #region User1
             
-            TodoList[] user1List = new TodoList[]
+            TodoListModel[] user1List = new TodoListModel[]
             {
-                new TodoList()
+                new TodoListModel()
                 {
                     Name = "Default",
-                    TodoItems = new TodoItem[]
+                    TodoItems = new TodoItemModel[]
                     {
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "FIRST Task Default List For User1",
                             Description = "This is default first Task For User1",
                             Status = TodoStatus.New,
                             Date = null
                         },
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "SECOND Task Default List For User1",
                             Status = TodoStatus.New,
@@ -32,25 +32,25 @@ namespace ORM
                         }
                     }
                 },
-                new TodoList()
+                new TodoListModel()
                 {
                     Name = "Work",
-                    TodoItems = new TodoItem[]
+                    TodoItems = new TodoItemModel[]
                     {
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "FIRST Task Work List For User1",
                             Description = "This is work first Task For User1",
                             Status = TodoStatus.New,
                             Date = DateTime.Today
                         },
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "SECOND Task Work List For User1",
                             Status = TodoStatus.New,
                             Date = null
                         },
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "THIRD Task Work List For User1",
                             Status = TodoStatus.New,
@@ -58,18 +58,18 @@ namespace ORM
                         },
                     }
                 },
-                new TodoList()
+                new TodoListModel()
                 {
                     Name = "Shopping"
                 }
             };
 
-            User user1 = new User()
+            UserModel user1 = new UserModel()
             {
                 Email = "First@gmail.com",
                 Password = "FirstPassword",
                 TodoLists = user1List,
-                Profile = new UserProfile()
+                Profile = new UserProfileModel()
                 {
                     Name = "FirstName"
                 }
@@ -79,21 +79,21 @@ namespace ORM
 
             #region User2
 
-            TodoList[] user2List = new TodoList[]
+            TodoListModel[] user2List = new TodoListModel[]
             {
-                new TodoList()
+                new TodoListModel()
                 {
                     Name = "Default",
-                    TodoItems = new TodoItem[]
+                    TodoItems = new TodoItemModel[]
                     {
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "FIRST Task Default List For User2",
                             Description = "This List is default for all users",
                             Status = TodoStatus.New,
                             Date = null
                         },
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "SECOND Task Default List For User2",
                             Status = TodoStatus.New,
@@ -101,12 +101,12 @@ namespace ORM
                         }
                     }
                 },
-                new TodoList()
+                new TodoListModel()
                 {
                     Name = "Journey",
-                    TodoItems = new TodoItem[]
+                    TodoItems = new TodoItemModel[]
                     {
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "FIRST Task Journey List For User2",
                             Description = "This is Journey first Task For User2",
@@ -115,18 +115,18 @@ namespace ORM
                         }
                     }
                 },
-                new TodoList()
+                new TodoListModel()
                 {
                     Name = "Weekend",
-                    TodoItems = new TodoItem[]
+                    TodoItems = new TodoItemModel[]
                     {
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "FIRST Task Weekend List For User2",
                             Status = TodoStatus.New,
                             Date = null
                         },
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "SECOND Task Weekend List For User2",
                             Status = TodoStatus.New,
@@ -136,12 +136,12 @@ namespace ORM
                 }
             };
 
-            User user2 = new User()
+            UserModel user2 = new UserModel()
             {
                 Email = "Second@gmail.com",
                 Password = "SecondPassword",
                 TodoLists = user2List,
-                Profile = new UserProfile()
+                Profile = new UserProfileModel()
                 {
                     Name = "SecondName"
                 }
@@ -151,18 +151,18 @@ namespace ORM
 
             #region User3
 
-            TodoList[] user3List = new TodoList[]
+            TodoListModel[] user3List = new TodoListModel[]
             {
-                new TodoList()
+                new TodoListModel()
                 {
                     Name = "Default"
                 },
-                new TodoList()
+                new TodoListModel()
                 {
                     Name = "Journey",
-                    TodoItems = new TodoItem[]
+                    TodoItems = new TodoItemModel[]
                     {
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "FIRST Task Journey List For User3",
                             Description = "This is Journey first Task For User3",
@@ -171,30 +171,30 @@ namespace ORM
                         }
                     }
                 },
-                new TodoList()
+                new TodoListModel()
                 {
                     Name = "Weekend",
-                    TodoItems = new TodoItem[]
+                    TodoItems = new TodoItemModel[]
                     {
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "FIRST Task Weekend List For User3",
                             Status = TodoStatus.New,
                             Date = null
                         },
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "SECOND Task Weekend List For User3",
                             Status = TodoStatus.New,
                             Date = DateTime.Today
                         },
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "Third Task Weekend List For User3",
                             Status = TodoStatus.New,
                             Date = null
                         },
-                        new TodoItem()
+                        new TodoItemModel()
                         {
                             TodoTask = "FOURTH Task Weekend List For User3",
                             Status = TodoStatus.New,
@@ -204,12 +204,12 @@ namespace ORM
                 }
             };
 
-            User user3 = new User()
+            UserModel user3 = new UserModel()
             {
                 Email = "Second@gmail.com",
                 Password = "SecondPassword",
                 TodoLists = user3List,
-                Profile = new UserProfile()
+                Profile = new UserProfileModel()
                 {
                     Name = "SecondName",
                 }

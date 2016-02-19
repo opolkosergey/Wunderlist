@@ -16,9 +16,9 @@ namespace ORM
 
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserProfile> UserProfiles { get; set; }
-        public DbSet<TodoList> TodoLists { get; set; }
-        public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<UserModel> Users { get; set; }
+        public DbSet<UserProfileModel> UserProfiles { get; set; }
+        public DbSet<TodoListModel> TodoLists { get; set; }
+        public DbSet<TodoItemModel> TodoItems { get; set; }
     }
 }
