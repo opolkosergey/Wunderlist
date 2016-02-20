@@ -16,16 +16,30 @@
 <body>
     <div class="ui standard test modal transition hidden" style="margin-top: -234px;">
         <div class="header">
-            Select a Photo
+            Free account
         </div>
         <div class="image content">
-            <div class="ui medium image">
-                <img src="/images/avatar2/large/rachel.png">
+            <div class="ui medium image" >
+                <img style="border-radius: 150px;" src="~/Content/images/Homer-Simpson.jpg" />
             </div>
             <div class="description">
-                <div class="ui header">Default Profile Image</div>
-                <p>We've found the following <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your e-mail address.</p>
-                <p>Is it okay to use this photo?</p>
+                <div class="ui header">Profile</div>
+                <br/>
+                <div class="ui input large">
+                    <label>Name</label>
+                    <input type="text" style="width: 380px; margin-left: 30px;" placeholder="name">
+                </div>
+                <br/><br/>
+                <div class="ui input large">
+                    <label>Email</label>
+                    <input type="text" placeholder="email" style="margin-left: 33px;">
+                    <button style="margin-left: 50px;" class="ui black basic button">Change Email</button>
+                </div>
+                <br/><br/>
+                <div class="ui input large">
+                    <label>Password</label>
+                    <button style="width: 205px;margin-left: 5px;" class="ui black basic button">Change Password</button>
+                </div>
             </div>
         </div>
         <div class="actions">
