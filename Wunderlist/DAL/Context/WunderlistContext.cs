@@ -11,7 +11,7 @@ namespace DAL.Context
             Database.SetInitializer(new ContextInitializer());
         }
 
-        public WunderlistContext() : base("name=WunderlistDB") {}
+        public WunderlistContext(string connect) : base(connect) {}
 
         public DbSet<UserModel> Users { get; set; }
         public DbSet<UserProfileModel> UserProfiles { get; set; }
