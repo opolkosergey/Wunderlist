@@ -15,20 +15,20 @@
 </head>
 <body>
     <div class="ui grid">
-        <div class="three wide column">
-            <div style="height: 45px; background-color: darkcyan; display: flex;">
+        <div class="three wide column" style="position:inherit">
+            <div style="height: 45px; background-color: #5b7a59; display: flex;">
                 <div>
                     <svg class="list-toggle" width="20px" height="20px" style="margin-left: 10px; margin-top: 10px;" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
-                        <g>
-                            <path d="M0.5,3.5l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
-                            <path d="M0.5,9.53l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
-                            <path d="M0.5,15.5l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
+                    <g>
+                    <path d="M0.5,3.5l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
+                    <path d="M0.5,9.53l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
+                    <path d="M0.5,15.5l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
                         </g>
                     </svg>
                 </div>
-                <div class="ui search"style="margin-left: 10px; margin-top: 3px;">
+                <div class="ui search" style="margin-left: 10px; margin-top: 3px;">
                     <div class="ui icon input">
-                        <input class="prompt" style="background-color: darkcyan; border: none; width: 290px;" type="text" placeholder="">
+                        <input class="prompt" style="background-color: #5b7a59; border: none; width: 290px;" type="text" placeholder="">
                         <i class="search icon"></i>
                     </div>
                     <div class="results"></div>
@@ -61,36 +61,45 @@
                     </div>
                 }
             </div>
-            <div style="margin-bottom: 0px;">
-                <button class="ui blue basic button" style="width: 100%"><i class="plus icon"></i>Создать список</button>
+            <div style="position: absolute;bottom: 0;">
+                <button class="ui blue basic button" style="width: 337px;"><i class="plus icon"></i>Создать список</button>
             </div>
         </div>
-        <div class="thirteen wide column">
-            <div class="ui secondary vertical menu">
-                <a class="item">
-                    Account
-                </a>
-                <a class="item">
-                    Settings
-                </a>
-                <div class="ui dropdown item">
-                    <i class="dropdown icon"></i>
-                    Display Options
-                    <div class="menu">
-                        <div class="header">Text Size</div>
-                        <a class="item">Small</a>
-                        <a class="item">Medium</a>
-                        <a class="item">Large</a>
-                    </div>
+        <div class="thirteen wide column" style="margin-left: -28px;">
+            <div style="height: 45px; background-color: #668964; display: flex; width: 1583px;">
+                <h3 style="margin-top: 10px; margin-left: 10px; color: white">Входящие</h3>
+
+                <div style="margin-left: 1400px; margin-top: 10px;">
+                    <i class="add user icon"></i>
+                    <i class="sort alphabet ascending icon"></i>
+                    <i class="ellipsis vertical icon"></i>
                 </div>
             </div>
+            @*<div class="ui secondary vertical menu">
+                    <a class="item">
+                        Account
+                    </a>
+                    <a class="item">
+                        Settings
+                    </a>
+                    <div class="ui dropdown item">
+                        <i class="dropdown icon"></i>
+                        Display Options
+                        <div class="menu">
+                            <div class="header">Text Size</div>
+                            <a class="item">Small</a>
+                            <a class="item">Medium</a>
+                            <a class="item">Large</a>
+                        </div>
+                    </div>
+                </div>*@
         </div>
     </div>
 </body>
 </html>
 
 <script>
-    
+
     var content = [
   { title: 'Andorra' },
   { title: 'United Arab Emirates' },
@@ -123,5 +132,5 @@
             .search({
                 source: content
             })
-        ;
+    ;
 </script>
