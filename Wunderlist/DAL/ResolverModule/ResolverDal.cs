@@ -6,7 +6,7 @@ using DAL.Repositories;
 
 namespace DAL.ResolverModule
 {
-    class Resolver : Module
+    public class ResolverDal : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

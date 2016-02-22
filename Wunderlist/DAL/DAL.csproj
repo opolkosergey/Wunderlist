@@ -69,7 +69,7 @@
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Repositories\UserProfileRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="ResolverModule\Resolver.cs" />
+    <Compile Include="ResolverModule\ResolverDal.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

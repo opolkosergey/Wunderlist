@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ResolverModule\Resolver.cs" />
+    <Compile Include="ResolverModule\ResolverBll.cs" />
     <Compile Include="Interfaces\ITodoItemsService.cs" />
     <Compile Include="Interfaces\ITodoListsService.cs" />
     <Compile Include="Interfaces\IPhotoService.cs" />
