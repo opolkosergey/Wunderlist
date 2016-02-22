@@ -17,5 +17,6 @@ namespace DAL.Context
         public DbSet<UserProfileModel> UserProfiles { get; set; }
         public DbSet<TodoListModel> TodoLists { get; set; }
         public DbSet<TodoItemModel> TodoItems { get; set; }
+        public DbSet<LogEntity> Logs { get; set; }
     }
 }
