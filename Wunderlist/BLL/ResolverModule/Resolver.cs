@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using System.Reflection;
+using Autofac;
 using BLL.Interfaces;
 using BLL.Services;
 

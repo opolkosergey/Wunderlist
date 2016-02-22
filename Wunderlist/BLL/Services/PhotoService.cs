@@ -19,7 +19,7 @@ namespace BLL.Services
             _profileRepository = unitOfWork.ProfileRepository;
         }
 
-        public void ChangePhoto(int userId, byte[] photo)
+        public void AddOrUpdatePhoto(int userId, byte[] photo)
         {
             throw new NotImplementedException();
         }

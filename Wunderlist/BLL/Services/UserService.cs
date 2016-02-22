@@ -42,5 +42,10 @@ namespace BLL.Services
             _userRepository.Remove(id);
             _unitOfWork.Commit();
         }
+
+        public void Update(UserModel user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

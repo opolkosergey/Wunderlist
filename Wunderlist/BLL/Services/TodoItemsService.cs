@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using BLL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
@@ -19,6 +20,11 @@ namespace BLL.Services
             _itemsRepository = unitOfWork.ItemRepository;
         }
 
+        IQueryable<TodoItemModel> ITodoItemsService.GetAllItems(int listTodoId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Add(TodoItemModel item)
         {
             throw new NotImplementedException();
@@ -34,7 +40,7 @@ namespace BLL.Services
             throw new NotImplementedException();
         }
 
-        public TodoItemModel GetAllItems(int listTodoId)
+        public void SetTodoStatus(int id, TodoStatus status)
         {
             throw new NotImplementedException();
         }
@@ -45,6 +51,11 @@ namespace BLL.Services
         }
 
         public void RemoveComment(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MoveItem(int id, int listTodoId)
         {
             throw new NotImplementedException();
         }

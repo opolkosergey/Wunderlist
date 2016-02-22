@@ -34,7 +34,7 @@ namespace BLL.Services
             throw new NotImplementedException();
         }
 
-        public void Rename(int id)
+        public void Update(int id)
         {
             throw new NotImplementedException();
         }
