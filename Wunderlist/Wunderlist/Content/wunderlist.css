@@ -30,7 +30,11 @@
     height: 679px;
     background-image: url('images/pictos.svg');
 }
-
+.home {
+    background-image: url('images/back-image.png');
+   
+    background-size: 100% 100%;
+}
 h2 {
     font-size: 48px;
     line-height: 58px;
