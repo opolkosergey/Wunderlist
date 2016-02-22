@@ -8,7 +8,7 @@ namespace BLL.ResolverModule
     {
         protected override void Load(ContainerBuilder builder)
         {
-            // builder.RegisterModule()
+            builder.RegisterModule(new ResolverModule.Resolver())
 
             builder.RegisterType<PhotoService>().As<IPhotoService>().InstancePerRequest();
             builder.RegisterType<TodoItemsService>().As<ITodoItemsService>().InstancePerRequest();
