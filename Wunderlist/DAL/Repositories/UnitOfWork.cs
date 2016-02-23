@@ -9,30 +9,18 @@ namespace DAL.Repositories
     {
         private readonly DbContext _context;
 
-        public UnitOfWork(DbContext context, IRepository<TodoItemModel> itemRepository,
-            IRepository<TodoListModel> listRepository, IRepository<UserProfileModel> profileRepository,
-            IRepository<UserModel> userRepository)
+        public UnitOfWork(DbContext context)
         {
             if(context == null)
                 throw new ArgumentNullException(nameof(context));
-
-            if(itemRepository == null)
-                throw new ArgumentNullException(nameof(itemRepository));
-
-            if (listRepository == null)
-                throw new ArgumentNullException(nameof(listRepository));
-
-            if (profileRepository == null)
-                throw new ArgumentNullException(nameof(profileRepository));
-
-            if (userRepository == null)
-                throw new ArgumentNullException(nameof(userRepository));
-
+            
             _context = context;
-            ItemRepository = itemRepository;
-            ListRepository = listRepository;
-            ProfileRepository = profileRepository;
-            UserRepository = userRepository;
+
+            //Вопрос по внедрению зависимости!!!!!
+            ItemRepository = new TodoItemRepository(_context);
+            ListRepository = new TodoListRepository(_context);
+            ProfileRepository = new UserProfileRepository(_context);
+            UserRepository = new UserRepository(_context);
         }
 
         public IRepository<TodoItemModel> ItemRepository { get; }

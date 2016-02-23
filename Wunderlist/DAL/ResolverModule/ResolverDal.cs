@@ -6,15 +6,18 @@ using DAL.Repositories;
 
 namespace DAL.ResolverModule
 {
-    class Resolver : Module
+    public class ResolverDal : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>()
+                .InstancePerRequest();
+
             builder.RegisterType<WunderlistContext>().As<DbContext>()
                 .WithParameter("connect", "WunderlistDB")
                 .InstancePerRequest();
-            builder.RegisterAssemblyTypes(typeof (UserRepository).Assembly)
+
+            builder.RegisterAssemblyTypes(typeof(UserRepository).Assembly)
                 .Where(type => type.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces()
                 .InstancePerRequest();
