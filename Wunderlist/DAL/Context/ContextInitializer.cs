@@ -10,12 +10,11 @@ namespace DAL.Context
         {
             #region User1
 
-            TodoListModel[] user1List = new TodoListModel[]
-            {
+            TodoListModel[] user1List = {
                 new TodoListModel()
                 {
                     Name = "Default",
-                    TodoItems = new TodoItemModel[]
+                    TodoItems = new[]
                     {
                         new TodoItemModel()
                         {
@@ -35,7 +34,7 @@ namespace DAL.Context
                 new TodoListModel()
                 {
                     Name = "Work",
-                    TodoItems = new TodoItemModel[]
+                    TodoItems = new[]
                     {
                         new TodoItemModel()
                         {
@@ -84,7 +83,7 @@ namespace DAL.Context
                 new TodoListModel()
                 {
                     Name = "Default",
-                    TodoItems = new TodoItemModel[]
+                    TodoItems = new[]
                     {
                         new TodoItemModel()
                         {
@@ -104,7 +103,7 @@ namespace DAL.Context
                 new TodoListModel()
                 {
                     Name = "Journey",
-                    TodoItems = new TodoItemModel[]
+                    TodoItems = new[]
                     {
                         new TodoItemModel()
                         {
@@ -118,7 +117,7 @@ namespace DAL.Context
                 new TodoListModel()
                 {
                     Name = "Weekend",
-                    TodoItems = new TodoItemModel[]
+                    TodoItems = new[]
                     {
                         new TodoItemModel()
                         {
@@ -160,7 +159,7 @@ namespace DAL.Context
                 new TodoListModel()
                 {
                     Name = "Journey",
-                    TodoItems = new TodoItemModel[]
+                    TodoItems = new[]
                     {
                         new TodoItemModel()
                         {
@@ -174,7 +173,7 @@ namespace DAL.Context
                 new TodoListModel()
                 {
                     Name = "Weekend",
-                    TodoItems = new TodoItemModel[]
+                    TodoItems = new[]
                     {
                         new TodoItemModel()
                         {
