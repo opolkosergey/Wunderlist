@@ -8,7 +8,7 @@ namespace BLL.Interfaces
     public interface ITodoItemsService
     {
         IQueryable<TodoItemModel> GetAllItems(int listTodoId);
-        void Add(TodoItemModel item);
+        void Add(TodoItemModel item, int listId);
         void Rename(int id);
         void Remove(int id);
         void SetTodoStatus(int id, TodoStatus status);

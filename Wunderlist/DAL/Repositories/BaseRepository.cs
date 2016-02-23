@@ -21,7 +21,7 @@ namespace DAL.Repositories
             _dbSet = context.Set<TEntity>();
         }
 
-        public virtual void Add(TEntity entity)
+        public virtual void Add(TEntity entity, IEntity owner)
         {
             _dbSet.Add(entity);
         }
