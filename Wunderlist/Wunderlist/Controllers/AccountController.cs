@@ -13,16 +13,16 @@ namespace Wunderlist.Controllers
     {
         private readonly WunderlistIdentityUserManager _userManager;
         private readonly IAuthenticationManager _authentication;
-
+        
         public AccountController(WunderlistIdentityUserManager userManager)
         {
             if(userManager == null)
                 throw new ArgumentNullException(nameof(userManager));
-
+        
             _userManager = userManager;
             _authentication = HttpContext.GetOwinContext().Authentication;
         }
-
+        
         private async Task SignInAsync(WunderlistIdentityUser user, bool isPersistent)
         {
             _authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
