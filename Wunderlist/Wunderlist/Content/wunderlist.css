@@ -1,28 +1,85 @@
-﻿.logo {
+﻿.button.outlined-white:hover {
+    background: #fff;
+    color: #db4c3f;
+}
+
+.button.outlined-white {
+    background: none;
+    position: relative;
+    -webkit-box-shadow: inset 0 0 0 2px #fff;
+    box-shadow: inset 0 0 0 2px #fff;
+    color: #fff;
+}
+
+.button.white {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: #fff;
+    color: #db4c3f;
+}
+
+    .button.white:hover {
+        color: #ffffff;
+    }
+
+.intro {
+    background: #db4c3f;
+    overflow: hidden;
+    position: relative;
+    width: 2046px;
+    height: 679px;
+    background-image: url('images/pictos.svg');
+}
+.home {
+    background-image: url('images/back-image.png');
+   
+    background-size: 100% 100%;
+}
+h2 {
+    font-size: 48px;
+    line-height: 58px;
+    font-weight: 200;
+    letter-spacing: -1px;
+    margin-top: 100px;
+    margin-bottom: 15px;
+}
+
+.headertext {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 300;
+    color: rgb(102, 102, 102);
+    margin: 18px auto 0px;
+}
+
+.logo {
     width: 28px;
     height: 28px;
-    position:absolute;
     background-size: 28px;
     left: 10px;
-    top: 10px;
     background-image: url('images/logo.png');
 }
 
+.subline {
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 50px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
 .wordmark {
-    top: 14px;
-    left: 47px;
     position: absolute;
-    width: 86px;
-    height: 14px;
     font-size: 18px;
     color: black;
-    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    left: 45px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .wunderlist-link {
-    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.wunderlist-link:hover {
-    color: blue;
-}
+    .wunderlist-link:hover {
+        color: blue;
+    }
