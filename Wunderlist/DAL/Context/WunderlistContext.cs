@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using DAL.Entities;
-using DAL.EntitiesConfig;
 
 namespace DAL.Context
 {
@@ -12,21 +11,12 @@ namespace DAL.Context
             Database.SetInitializer(new ContextInitializer());
         }
 
-        public WunderlistContext(string connect) : base(connect) {}
+        public WunderlistContext() : base("name=WunderlistDB") {}
 
         public DbSet<UserModel> Users { get; set; }
         public DbSet<UserProfileModel> UserProfiles { get; set; }
         public DbSet<TodoListModel> TodoLists { get; set; }
         public DbSet<TodoItemModel> TodoItems { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Configurations.Add(new UserModelConfig());
-            modelBuilder.Configurations.Add(new UserProfileModelConfig());
-            modelBuilder.Configurations.Add(new TodoItemModelConfig());
-            modelBuilder.Configurations.Add(new TodoListModelConfig());
-
-            base.OnModelCreating(modelBuilder);
-        }
+        public DbSet<LogEntity> Logs { get; set; }
     }
 }

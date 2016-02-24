@@ -1,15 +1,15 @@
-﻿using Autofac;
+﻿using System.Reflection;
+using Autofac;
 using BLL.Interfaces;
 using BLL.Services;
-using DAL.ResolverModule;
 
 namespace BLL.ResolverModule
 {
-    public class ResolverBll : Module
+    public class Resolver : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterModule(new ResolverDal());
+            builder.RegisterModule(new ResolverModule.Resolver());
 
             builder.RegisterType<PhotoService>().As<IPhotoService>().InstancePerRequest();
             builder.RegisterType<TodoItemsService>().As<ITodoItemsService>().InstancePerRequest();

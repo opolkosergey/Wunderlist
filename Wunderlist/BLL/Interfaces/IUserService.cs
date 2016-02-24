@@ -1,4 +1,5 @@
-﻿using DAL.Entities;
+﻿using System;
+using DAL.Entities;
 
 namespace BLL.Interfaces
 {
@@ -7,5 +8,6 @@ namespace BLL.Interfaces
         void Add(UserModel user);
         UserModel GetUser(int id);
         void Remove(int id);
+        void Update(UserModel user); // PUT (думаю внутри должен вызываться метод IUserProfile.ChangeName)
     }
 }
