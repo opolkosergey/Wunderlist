@@ -5,16 +5,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wunderlist", "Wunderlist\Wunderlist.csproj", "{77518DC6-4A0E-4AA4-9D9D-29D5DE6F9E5F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebUI", "WebUI", "{B2F15CDF-36DC-4881-A7D1-F06572896AE3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Access Layer", "Data Access Layer", "{7762F1E2-EB19-4F38-8906-0E837035AAD8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{69B99DC1-F360-493E-AD39-D4447453539B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business Logic Layer", "Business Logic Layer", "{D02A6C70-F542-4CF3-A3F4-61BC21DF42F9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{2F958B09-3146-4907-873F-90478B69A599}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,21 +15,8 @@ Global
 		{77518DC6-4A0E-4AA4-9D9D-29D5DE6F9E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77518DC6-4A0E-4AA4-9D9D-29D5DE6F9E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77518DC6-4A0E-4AA4-9D9D-29D5DE6F9E5F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{69B99DC1-F360-493E-AD39-D4447453539B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{69B99DC1-F360-493E-AD39-D4447453539B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{69B99DC1-F360-493E-AD39-D4447453539B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{69B99DC1-F360-493E-AD39-D4447453539B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F958B09-3146-4907-873F-90478B69A599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F958B09-3146-4907-873F-90478B69A599}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F958B09-3146-4907-873F-90478B69A599}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F958B09-3146-4907-873F-90478B69A599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{77518DC6-4A0E-4AA4-9D9D-29D5DE6F9E5F} = {B2F15CDF-36DC-4881-A7D1-F06572896AE3}
-		{69B99DC1-F360-493E-AD39-D4447453539B} = {7762F1E2-EB19-4F38-8906-0E837035AAD8}
-		{2F958B09-3146-4907-873F-90478B69A599} = {D02A6C70-F542-4CF3-A3F4-61BC21DF42F9}
 	EndGlobalSection
 EndGlobal
