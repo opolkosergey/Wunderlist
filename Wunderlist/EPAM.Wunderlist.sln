@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.Wunderlist.DataAccess.API", "EPAM.Wunderlist.DataAccess.API\EPAM.Wunderlist.DataAccess.API.csproj", "{696C32D2-A09C-4477-B79B-B8862D86B706}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.Wunderlist.DataAccess.MSSQLProvider", "EPAM.Wunderlist.DataAccess.MSSQLProvider\EPAM.Wunderlist.DataAccess.MSSQLProvider.csproj", "{B76CAFF3-F09F-48ED-9B6F-7A03A9E61A2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.Wunderlist.Services", "EPAM.Wunderlist.Services\EPAM.Wunderlist.Services.csproj", "{341A4F4C-FEB1-46F6-AACB-F681E26DEAA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.Wunderlist.ResolverModule", "EPAM.Wunderlist.ResolverModule\EPAM.Wunderlist.ResolverModule.csproj", "{780A3A0B-5F91-4A39-81C3-E52B6311853D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPAM.Wunderlist.WebUI", "EPAM.Wunderlist.WebUI\EPAM.Wunderlist.WebUI.csproj", "{5A0C4D78-497F-4130-A0AA-2060BF3FEE76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{696C32D2-A09C-4477-B79B-B8862D86B706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{696C32D2-A09C-4477-B79B-B8862D86B706}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{696C32D2-A09C-4477-B79B-B8862D86B706}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{696C32D2-A09C-4477-B79B-B8862D86B706}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B76CAFF3-F09F-48ED-9B6F-7A03A9E61A2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B76CAFF3-F09F-48ED-9B6F-7A03A9E61A2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B76CAFF3-F09F-48ED-9B6F-7A03A9E61A2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B76CAFF3-F09F-48ED-9B6F-7A03A9E61A2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{341A4F4C-FEB1-46F6-AACB-F681E26DEAA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{341A4F4C-FEB1-46F6-AACB-F681E26DEAA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{341A4F4C-FEB1-46F6-AACB-F681E26DEAA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{341A4F4C-FEB1-46F6-AACB-F681E26DEAA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{780A3A0B-5F91-4A39-81C3-E52B6311853D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{780A3A0B-5F91-4A39-81C3-E52B6311853D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{780A3A0B-5F91-4A39-81C3-E52B6311853D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{780A3A0B-5F91-4A39-81C3-E52B6311853D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A0C4D78-497F-4130-A0AA-2060BF3FEE76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A0C4D78-497F-4130-A0AA-2060BF3FEE76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A0C4D78-497F-4130-A0AA-2060BF3FEE76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A0C4D78-497F-4130-A0AA-2060BF3FEE76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

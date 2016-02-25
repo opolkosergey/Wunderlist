@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="ui secondary menu">
+    <a class="item">
+        <div class="logo"></div>
+        <b style="margin-left: 5px;">Wunderlist</b>
+    </a>
+    <a class="item">Pro</a>
+    <a class="item">Бизнес</a>
+    <a class="item">Скачать</a>
+    <a class="item">Поддержка</a>
+    <a class="item">Блог</a>
+    <div class="right menu">
+        <div class="item">
+            <a href="@Url.Action("Login","Account")" class="ui right floated grey basic button">Вход</a>
+        </div>
+        <div class="item">
+            <a href="@Url.Action("Register","Account")" class="ui right floated blue button">Создать бесплатную учетную запись</a>
+        </div>
+    </div>
+</div>
+<div class="intro">
+    <div class="ui two column centered grid">
+        <div class="four column centered row">
+            <div class="column">
+                <br />
+                <h2 style="color: white">Синхронизируйте свою жизнь</h2>
+                <br /><br />
+                <p class="subline">Wunderlist – простейший способ организации чего угодно. Планируете ли вы отпуск, хотите ли поделиться списком покупок с партнёром или работаете с несколькими проектами, – вам поможет Wunderlist, в котором вы можете отметить все свои личные и профессиональные задачи.</p>
+                <button class="ui white button">Создайте бесплатную учетную запись</button>
+                <br /><br />
+                <button class="ui outlined-white button">Загрузить Wunderlist</button>
+            </div>
+            <div class="column">
+                <img style="margin-top: 190px;" height="527" src="//dr0wv9n0kx6h5.cloudfront.net/4f8fe5befb0b95eda676c05faea99bfed39c0b42/content/twodevices@2x.png" />
+            </div>
+        </div>
+    </div>
+</div>
