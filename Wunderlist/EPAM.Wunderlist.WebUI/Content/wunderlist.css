@@ -21,7 +21,11 @@
     .button.white:hover {
         color: #ffffff;
     }
-
+.inboxpage {
+    background-image: url('images/back-image.png');
+    height: auto;
+    width: auto;
+}
 .intro {
     background: #db4c3f;
     overflow: hidden;
@@ -39,6 +43,7 @@ h2 {
     margin-top: 100px;
     margin-bottom: 15px;
 }
+
 
 .headertext {
     text-align: center;
