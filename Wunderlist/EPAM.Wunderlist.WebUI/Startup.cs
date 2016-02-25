@@ -1,8 +1,7 @@
-﻿using EPAM.Wunderlist.WebUI;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(Startup))]
+[assembly: OwinStartup(typeof(EPAM.Wunderlist.WebUI.Startup))]
 
 namespace EPAM.Wunderlist.WebUI
 {
