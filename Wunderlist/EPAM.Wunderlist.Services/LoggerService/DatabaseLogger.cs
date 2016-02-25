@@ -18,32 +18,32 @@ namespace EPAM.Wunderlist.Services.LoggerService
 
         public void Debug(string message)
         {
-            _logRepository.Add(new LogModel {Log = $"Debug : {message}"});
+            _logRepository.Add(new LogModel {Log = $"Debug : {message}", Time = DateTime.Now });
         }
 
         public void Trace(string message)
         {
-            _logRepository.Add(new LogModel { Log = $"Trace : {message}" });
+            _logRepository.Add(new LogModel { Log = $"Trace : {message}", Time = DateTime.Now });
         }
 
         public void Info(string message)
         {
-            _logRepository.Add(new LogModel { Log = $"Info : {message}" });
+            _logRepository.Add(new LogModel { Log = $"Info : {message}", Time = DateTime.Now });
         }
 
         public void Warn(string message)
         {
-            _logRepository.Add(new LogModel { Log = $"Warn : {message}" });
+            _logRepository.Add(new LogModel { Log = $"Warn : {message}", Time = DateTime.Now });
         }
 
         public void Fatal(string message)
         {
-            _logRepository.Add(new LogModel { Log = $"Fatal : {message}" });
+            _logRepository.Add(new LogModel { Log = $"Fatal : {message}", Time = DateTime.Now });
         }
 
         public void Error(string message)
         {
-            _logRepository.Add(new LogModel { Log = $"Error : {message}" });
+            _logRepository.Add(new LogModel { Log = $"Error : {message}", Time = DateTime.Now });
         }
     }
 }
