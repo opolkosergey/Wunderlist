@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 using System.Linq;
 using EPAM.Wunderlist.DataAccess.API;
 using EPAM.Wunderlist.DataAccess.API.Entities;
@@ -30,39 +31,25 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
                     throw new ArgumentException(nameof(listTodoId));
                 return _itemsRepository.GetAll().Where(i => i.TodoListId == listTodoId);
             }
-            catch (ArgumentNullException e)
-            {
-                _logger.Info(e.Message);
-            }
-            catch (ArgumentException e)
-            {
-                _logger.Info(e.Message);
-            }
             catch (Exception e)
             {
                 _logger.Error(e.Message);
             }
-
             return Enumerable.Empty<TodoItemModel>().AsQueryable(); ;
         }
 
-        public void Add(TodoItemModel item, int listId)
+        public void Add(TodoItemModel item)
         {
             try
             {
-                if (listId < 0)
-                    throw new ArgumentException(nameof(listId));
-                var owner = _unitOfWork.ListRepository.GetById(listId);
+                if(item.TodoListId < 0)
+                    throw new ArgumentException(nameof(item.TodoListId));
                 _itemsRepository.Add(item);
                 _unitOfWork.Commit();
             }
             catch (ArgumentException e)
             {
-                _logger.Info(e.Message);
-            }
-            catch (NotSupportedException e)
-            {
-                _logger.Error(e.Message);
+                _logger.Warn(e.Message);
             }
             catch (Exception e)
             {
@@ -70,9 +57,23 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
             }
         }
 
-        public void Rename(int id)
+        public void Rename(int id, string newTitle)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (id < 0)
+                    throw new ArgumentException(nameof(id));
+                if (string.IsNullOrEmpty(newTitle))
+                    throw new ArgumentException(nameof(newTitle));
+                var entity = _itemsRepository.GetById(id);
+                entity.TodoTask = newTitle;
+                _itemsRepository.Update(entity);
+                _unitOfWork.Commit();
+            }
+            catch (Exception e)
+            {
+                _logger.Error(e.Message);
+            }
         }
 
         public void Remove(int id)
@@ -83,14 +84,6 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
                     throw new ArgumentException(nameof(id));
                 _itemsRepository.Remove(id);
                 _unitOfWork.Commit();
-            }
-            catch (ArgumentException e)
-            {
-                _logger.Info(e.Message);
-            }
-            catch (NotSupportedException e)
-            {
-                _logger.Error(e.Message);
             }
             catch (Exception e)
             {
@@ -109,10 +102,6 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
                 _itemsRepository.Update(entity);
                 _unitOfWork.Commit();
             }
-            catch (ArgumentException e)
-            {
-                _logger.Info(e.Message);
-            }
             catch (Exception e)
             {
                 _logger.Error(e.Message);
@@ -121,44 +110,61 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
 
         public void AddComment(int id, string description)
         {
-            var item = _itemsRepository.GetById(id);
-            item.Description = description;
-            _itemsRepository.Update(item);
-            _unitOfWork.Commit();
+            try
+            {
+                if (id < 0)
+                    throw new ArgumentException(nameof(id));
+                var item = _itemsRepository.GetById(id);
+                item.Description = description;
+                _itemsRepository.Update(item);
+                _unitOfWork.Commit();
+            }
+            catch (Exception e)
+            {
+                _logger.Error(e.Message);
+            }
         }
 
-        public void RemoveComment(int id)
-        {
-            AddComment(id,String.Empty);
-        }
+        public void RemoveComment(int id) => AddComment(id,String.Empty);
 
         public void MoveItem(int id, int listTodoId)
         {
-            var item = _itemsRepository.GetById(id);
-            item.TodoListId = listTodoId;
-            _itemsRepository.Update(item);
-            _unitOfWork.Commit();
+            try
+            {
+                if (id < 0)
+                    throw new ArgumentException(nameof(id));
+                var item = _itemsRepository.GetById(id);
+                item.TodoListId = listTodoId;
+                _itemsRepository.Update(item);
+                _unitOfWork.Commit();
+            }
+            catch (Exception e)
+            {
+                _logger.Error(e.Message);
+            }
         }
 
         public void SetDueDate(int id, DateTime date)
         {
-            var item = _itemsRepository.GetById(id);
-            item.Date = date;
-            _itemsRepository.Update(item);
-            _unitOfWork.Commit();
+            try
+            {
+                var item = _itemsRepository.GetById(id);
+                item.Date = date;
+                _itemsRepository.Update(item);
+                _unitOfWork.Commit();
+            }
+            catch (Exception e)
+            {
+                _logger.Error(e.Message);
+            }
         }
 
-        public void RemoveDueDate(int id)
+        public void RemoveDueDate(int id)//???
         {
             var item = _itemsRepository.GetById(id);
             item.Date = null;
             _itemsRepository.Update(item);
             _unitOfWork.Commit();
-        }
-
-        public void MoveItems(int id, int listTodoId)
-        {
-            throw new NotImplementedException();
         }
     }
 }
