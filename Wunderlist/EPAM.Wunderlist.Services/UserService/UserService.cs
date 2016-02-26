@@ -8,7 +8,7 @@ namespace EPAM.Wunderlist.Services.UserService
     public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IRepository<UserModel> _userRepository;
+        private readonly IRepository<UserDbModel> _userRepository;
         
         public UserService(IUnitOfWork unitOfWork)
         {
@@ -24,11 +24,11 @@ namespace EPAM.Wunderlist.Services.UserService
             if(user == null)
                 throw new ArgumentNullException(nameof(user));
 
-            UserModel userToAdd = new UserModel
+            UserDbModel userToAdd = new UserDbModel
             {
                 Email = user.Email,
                 Password = user.Password,
-                Profile = new UserProfileModel
+                Profile = new UserProfileDbModel
                 {
                     Name = user.UserName
                 }

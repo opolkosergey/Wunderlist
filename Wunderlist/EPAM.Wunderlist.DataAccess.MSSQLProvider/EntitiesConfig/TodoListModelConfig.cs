@@ -3,7 +3,7 @@ using EPAM.Wunderlist.DataAccess.API.Entities;
 
 namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.EntitiesConfig
 {
-    class TodoListModelConfig : EntityTypeConfiguration<TodoListModel>
+    class TodoListModelConfig : EntityTypeConfiguration<TodoListDbModel>
     {
         public TodoListModelConfig()
         {

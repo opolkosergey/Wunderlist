@@ -6,11 +6,11 @@ using EPAM.Wunderlist.DataAccess.MSSQLProvider.Repositories;
 
 namespace EPAM.Wunderlist.DataAccess.MSSQLProvider
 {
-    public class UnitOfWork : IUnitOfWork
+    public class MssqlWorker : IUnitOfWork
     {
         private readonly DbContext _context;
 
-        public UnitOfWork(DbContext context)
+        public MssqlWorker(DbContext context)
         {
             if(context == null)
                 throw new ArgumentNullException(nameof(context));
@@ -23,15 +23,15 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider
             LogRepository = new LoggerRepository(context);
         }
 
-        public IRepository<TodoItemModel> ItemRepository { get; }
+        public IRepository<TodoItemDbModel> ItemRepository { get; }
 
-        public IRepository<TodoListModel> ListRepository { get; }
+        public IRepository<TodoListDbModel> ListRepository { get; }
 
-        public IRepository<UserProfileModel> ProfileRepository { get; }
+        public IRepository<UserProfileDbModel> ProfileRepository { get; }
 
-        public IRepository<UserModel> UserRepository { get; }
+        public IRepository<UserDbModel> UserRepository { get; }
 
-        public IRepository<LogModel> LogRepository { get; } 
+        public IRepository<LogDbModel> LogRepository { get; } 
 
         public void Commit()
         {

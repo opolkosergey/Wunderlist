@@ -60,7 +60,7 @@
     <Compile Include="Repositories\LoggerRepository.cs" />
     <Compile Include="Repositories\TodoItemRepository.cs" />
     <Compile Include="Repositories\TodoListRepository.cs" />
-    <Compile Include="UnitOfWork.cs" />
+    <Compile Include="MssqlWorker.cs" />
     <Compile Include="Repositories\UserProfileRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
