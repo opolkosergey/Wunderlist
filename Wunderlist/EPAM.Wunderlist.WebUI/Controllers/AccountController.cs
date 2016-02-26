@@ -16,7 +16,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers
         
         public AccountController(ManagerIdentityUser userManager)
         {
-            if (userManager == null)
+                if (userManager == null)
                 throw new ArgumentNullException(nameof(userManager));
         
             _userManager = userManager;
