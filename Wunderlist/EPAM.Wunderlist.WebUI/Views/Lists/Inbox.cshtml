@@ -13,9 +13,10 @@
     $(document).ready(function () {
         $("body").on("click", ".ui.ignored.positive.icon.message", function () {
             $('.ui.sidebar').sidebar('toggle');
-        })});
+        })
+    });
 
-        function showComplete() {
+    function showComplete() {
         var completed = document.getElementById("completed");
         if (completed.style.display === "none") {
             completed.style.display = "inherit";
@@ -30,196 +31,195 @@
     <title>Inbox</title>
 </head>
 <body>
-<div class="ui simple sidebar vertical menu right">
-    <div>
-        <h3 style="text-align: center">name</h3>
-    </div>
-    <div class="ui left icon input field" style="width: 258px;">
-        <input name="email" type="text" placeholder="Задать дату выполнения">
-        <i class="calendar icon"></i>
-    </div>
-
-    <div class="ui left icon input field" style="width: 258px;">
-        <input name="email" type="text" placeholder="Напомнить">
-        <i class="clock icon"></i>
-    </div>
-
-    <div class="ui left icon input field" style="width: 258px;">
-        <input name="email" type="text" placeholder="Добавить подзадачу">
-        <i class="plus icon"></i>
-    </div>
-
-    <div class="ui left icon input field" style="width: 258px;">
-        <input name="email" type="text" placeholder="Добавить заметку">
-        <i class="pencil icon"></i>
-    </div>
-
-    <div class="ui left icon input field" style="width: 258px;">
-        <input name="email" type="text" placeholder="Добавить файл">
-        <i class="attach icon"></i>
-    </div>
-
-    <div class="ui left icon input field" style="width: 258px; position: fixed;bottom: 0">
-        <input name="email" type="text" placeholder="Добавить комментарий">
-        <i class="comment icon"></i>
-    </div>
-</div>
-<div class="ui standard test modal transition hidden" style="margin-top: -234px;">
-    <div class="header">
-        Free account
-    </div>
-    <div class="image content">
-        <div class="ui medium image">
-            <img style="border-radius: 150px;" src="~/Content/images/Homer-Simpson.jpg"/>
+    <div class="ui simple sidebar vertical menu right">
+        <div>
+            <h3 style="text-align: center">name</h3>
         </div>
-        <div class="description">
-            <div class="ui header">Profile</div>
-            <br/>
-            <div class="ui input large">
-                <label>Name</label>
-                <input type="text" style="width: 380px; margin-left: 30px;" placeholder="name">
-            </div>
-            <br/><br/>
-            <div class="ui input large">
-                <label>Email</label>
-                <input type="text" placeholder="email" style="margin-left: 33px;">
-                <button style="margin-left: 50px;" class="ui black basic button">Change Email</button>
-            </div>
-            <br/><br/>
-            <div class="ui input large">
-                <label>Password</label>
-                <button style="width: 205px; margin-left: 5px;" class="ui black basic button">Change Password</button>
-            </div>
+        <div class="ui left icon input field" style="width: 258px;">
+            <input name="email" type="text" placeholder="Задать дату выполнения">
+            <i class="calendar icon"></i>
+        </div>
+
+        <div class="ui left icon input field" style="width: 258px;">
+            <input name="email" type="text" placeholder="Напомнить">
+            <i class="clock icon"></i>
+        </div>
+
+        <div class="ui left icon input field" style="width: 258px;">
+            <input name="email" type="text" placeholder="Добавить подзадачу">
+            <i class="plus icon"></i>
+        </div>
+
+        <div class="ui left icon input field" style="width: 258px;">
+            <input name="email" type="text" placeholder="Добавить заметку">
+            <i class="pencil icon"></i>
+        </div>
+
+        <div class="ui left icon input field" style="width: 258px;">
+            <input name="email" type="text" placeholder="Добавить файл">
+            <i class="attach icon"></i>
+        </div>
+
+        <div class="ui left icon input field" style="width: 258px; position: fixed;bottom: 0">
+            <input name="email" type="text" placeholder="Добавить комментарий">
+            <i class="comment icon"></i>
         </div>
     </div>
-    <div class="actions">
-        <div class="ui black deny button">
-            Nope
+    <div class="ui standard test modal transition hidden">
+        <div class="header">
+            Free account
         </div>
-        <div class="ui positive right labeled icon button">
-            Yep, that's me
-            <i class="checkmark icon"></i>
-        </div>
-    </div>
-</div>
-<div class="ui grid">
-    <div class="three wide column" style="position: inherit">
-        <div style="height: 45px; background-color: #5b7a59; display: flex;">
-            <div>
-                <svg class="list-toggle" width="20px" height="20px" style="margin-left: 10px; margin-top: 10px;" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
-                    <g>
-                        <path d="M0.5,3.5l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
-                        <path d="M0.5,9.53l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
-                        <path d="M0.5,15.5l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
-                    </g>
-                </svg>
+        <div class="image content">
+            <div class="ui medium image">
+                <img style="border-radius: 150px;" src="~/Content/images/Homer-Simpson.jpg" />
             </div>
-            <div class="ui search" style="margin-left: 10px; margin-top: 3px;">
-                <div class="ui icon input">
-                    <input class="prompt" style="background-color: #5b7a59; border: none; width: 290px;" type="text" placeholder="">
-                    <i class="search icon"></i>
+            <div class="description">
+                <div class="ui header">Profile</div>
+                <br />
+                <div class="ui input large">
+                    <label>Name</label>
+                    <input type="text" style="width: 380px; margin-left: 30px;" placeholder="name">
                 </div>
-                <div class="results"></div>
-            </div>
-        </div>
-        <div class="ui divided items">
-            <div class="item">
-                <div class="ui tiny image">
-                    <img src="">
+                <br /><br />
+                <div class="ui input large">
+                    <label>Email</label>
+                    <input type="text" placeholder="email" style="margin-left: 33px;">
+                    <button style="margin-left: 50px;" class="ui black basic button">Change Email</button>
                 </div>
-                <div class="left aligned content" id="username">
-                    <a>Username</a>
-                </div>
-                <i class="alarm outline icon" style="margin-right: 40px;"></i>
-                <i class="comment outline icon" style="margin-right: 10px;"></i>
-            </div>
-            <div class="item">
-                <i class="mail outline icon"></i>
-                <div class="center aligned content">
-                    Входящие
+                <br /><br />
+                <div class="ui input large">
+                    <label>Password</label>
+                    <button style="width: 205px; margin-left: 5px;" class="ui black basic button">Change Password</button>
                 </div>
             </div>
-            @for (int i = 0; i < 5; i++)
-            {
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                Nope
+            </div>
+            <div class="ui positive right labeled icon button">
+                Yep, that's me
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="ui stackable grid">
+        <div class="three wide column" style="height: 100%;">
+            <div class="ui segment"style="background-color: ghostwhite">
+                <div class="ui search">
+                    <div class="ui fluid icon input">
+                        <input type="text" class="prompt" placeholder="Search your task...">
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+                <div class="ui divided items">
+                        <div class="item" id="username">
+                            <a>Username</a>
+                        </div>
+                        @*<i class="alarm outline icon"></i>
+                            <i class="comment outline icon"></i>*@
+                   
+                    <div class="item">
+                        <i class="mail outline icon"></i>
+                        <div class="center aligned content">
+                            Входящие
+                        </div>
+                    </div>
+                    @for (int i = 0; i < 5; i++)
+                {
                 <div class="item">
                     <i class="list layout icon"></i>
                     <div class="middle aligned content">
                         Список @i
                     </div>
                 </div>
-            }
-        </div>
-        <div style="position: fixed; bottom: 0;">
-            <button class="ui blue basic button" style="width: 337px;"><i class="plus icon"></i>Создать список</button>
-        </div>
-    </div>
-    <div class="thirteen wide column home inboxpage" style="margin-left: -15px; height: 961px;">
-        <div style="height: 45px; background-color: #668964; display: flex; width: 1583px; margin-left: -14px;">
-            <h3 style="margin-top: 10px; margin-left: 10px; color: white">Входящие</h3>
-            <div style="margin-left: 1400px; margin-top: 10px;">
-                <i class="add user icon"></i>
-                <i class="sort alphabet ascending icon"></i>
-                <i class="ellipsis vertical icon"></i>
-            </div>
-        </div>
-        <br/>
-        <div class="ui input" style="background-color: #668964; border-radius: 5px; height: 45px; width: 1400px; position: inherit">
-            <i class="add plus icon" style="margin-left: 10px; margin-top: 14px;"></i>
-            <input type="text" style="background-color: #668964; width: 380px; margin-left: 10px; border: none" placeholder="Добавить задачу..." id="todoTitle">
-        </div>
-        <button class="ui inverted green button" style="float: right; margin-top: 4px;" id="addNewItem">Добавить</button>
-        <br/><br/>
-
-        <div id="todos">
-            <div class='ui ignored positive icon message' id='0'>
-                <button class='completeit' style='height: 16px;'></button>
-                <div class='content' style='margin-left: 20px;'>
-                    <h3 class='header'>asaaa<i class="trash icon" style="float: right"></i></h3>
+                }
+                    <div>
+                        <button class="ui blue basic button" style="width: 100%;"><i class="plus icon"></i>Создать список</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <br/>
-        <div style="">
-            <button class="ui green basic button" onclick="showComplete()">Показать завершенные задачи</button>
-        </div>
-        <br/>
+        <div class="thirteen wide column inboxpage">
+            <div class="ui segment" style="opacity: 0.85;">
+                <div>
+                    <h3 style="margin-top: 10px; margin-left: 10px; color: #668964">Входящие</h3>
+                    @*<div style="float: right; margin-top: 10px;">
+                            <i class="add user icon"></i>
+                            <i class="sort alphabet ascending icon"></i>
+                            <i class="ellipsis vertical icon"></i>
+                        </div>*@
+                </div>
 
-        <div class="" style="display: none" id="completed">
-            <div class='ui ignored positive icon message' id='0' >
+                <br />
 
-                <button class='completeit' style='height: 16px;'></button>
-                <div class='content' style='margin-left: 20px;'>
+                <div class="ui grid">
+                    <div class="thirteen wide column">
+                        <div class="ui segment">
+                            <div class="ui input" style="border-radius: 5px; height: 45px; position: inherit;width: 100%">
+                                <i class="add plus icon" style="margin-left: 10px; margin-top: 14px;"></i>
+                                <input type="text" style="border: none;" placeholder="Добавить задачу..." id="todoTitle">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="one wide column">
+                       <button class="ui inverted green button" id="addNewItem">Добавить</button>
+                       </div>
+                </div>
+                <br /><br />
 
-                    <h3 class='header'>bbbbbbbbbbbb</h3>
+                <div id="todos">
+                    <div class='ui ignored positive icon message' id='0'>
+                        <button class='completeit' style='height: 16px;'></button>
+                        <div class='content' style='margin-left: 20px;'>
+                            <h3 class='header'>asaaa<i class="trash icon" style="float: right"></i></h3>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div style="">
+                    <button class="ui green basic button" onclick="showComplete()">Показать завершенные задачи</button>
+                </div>
+                <br />
+
+                <div class="" style="display: none" id="completed">
+                    <div class='ui ignored positive icon message' id='0'>
+
+                        <button class='completeit' style='height: 16px;'></button>
+                        <div class='content' style='margin-left: 20px;'>
+
+                            <h3 class='header'>bbbbbbbbbbbb</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+        </div>
 </body>
 </html>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#username").click(function () {
             $('.ui.modal').modal('show');
         });
     });
 
-    $(document).ready(function() {
-        $(".ui.ignored.positive.icon.message").click(function() {
+    $(document).ready(function () {
+        $(".ui.ignored.positive.icon.message").click(function () {
             $('.ui.sidebar').sidebar('toggle');
         });
     });
-    
 
-    $(document).ready(function() {
+
+    $(document).ready(function () {
         $("#addNewItem").click(function () {
             var title = $("#todoTitle").val();
             var todo = "<div class='ui ignored positive icon message' id='0'>" +
                 "<button class='completeit' style='height: 16px;'></button>" +
                 "<div class='content' style='margin-left: 20px;'>" +
-                    "<h3 class='header'>"+ title +"<i class='trash icon' style='float: right'></i></h3>" +
+                    "<h3 class='header'>" + title + "<i class='trash icon' style='float: right'></i></h3>" +
                 "</div></div>";
 
             //var todo = "<div class='ui ignored positive icon message' id='0'>" +
@@ -266,5 +266,5 @@
             .search({
                 source: content
             })
-        ;
+    ;
 </script>
