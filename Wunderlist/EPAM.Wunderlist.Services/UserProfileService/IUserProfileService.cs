@@ -5,6 +5,6 @@ namespace EPAM.Wunderlist.Services.UserProfileService
     public interface IUserProfileService
     {
         UserProfileModel GetProfile(int userId);
-        void ChangeName(int id);
+        void ChangeName(int id, string name);
     }
 }

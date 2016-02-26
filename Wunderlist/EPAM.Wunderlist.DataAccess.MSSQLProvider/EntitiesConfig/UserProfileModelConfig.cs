@@ -9,6 +9,9 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.EntitiesConfig
         {
             HasKey(p => p.ID);
 
+            HasRequired(p => p.UserModel)
+                .WithOptional(p => p.Profile);
+
             Property(p => p.Name)
                 .IsRequired()
                 .HasMaxLength(30);

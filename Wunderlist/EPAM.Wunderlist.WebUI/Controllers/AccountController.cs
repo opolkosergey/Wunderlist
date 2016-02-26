@@ -4,17 +4,19 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using EPAM.Wunderlist.WebUI.IdentityCore;
+using EPAM.Wunderlist.WebUI.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
 namespace EPAM.Wunderlist.WebUI.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
-        private readonly ManagerIdentityUser _userManager;
+        private readonly UserManager<UserIdentity, int> _userManager;
         private readonly IAuthenticationManager _authentication;
         
-        public AccountController(ManagerIdentityUser userManager)
+        public AccountController(UserManager<UserIdentity, int> userManager)
         {
             if (userManager == null)
                 throw new ArgumentNullException(nameof(userManager));
@@ -30,14 +32,38 @@ namespace EPAM.Wunderlist.WebUI.Controllers
             _authentication.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
         }
 
-        public ActionResult Register()
+        [AllowAnonymous]
+        public ActionResult Register(string redirectUrl)
+        {
+            ViewBag.RedirectUrl = redirectUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Register(RegisterViewModel model, string redirectUrl)
         {
             return View();
         }
 
-        public ActionResult Login()
+        [AllowAnonymous]
+        public ActionResult Login(string redirectUrl)
+        {
+            ViewBag.RedirectUrl = redirectUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Login(LogOnViewModel model, string redirectUrl)
         {
             return View();
+        }
+
+        public ActionResult LogOff()
+        {
+            _authentication.SignOut();
+            return RedirectToAction("Login");
         }
     }
 }

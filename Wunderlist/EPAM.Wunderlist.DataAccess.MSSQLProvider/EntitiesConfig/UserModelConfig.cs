@@ -8,7 +8,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.EntitiesConfig
         public UserModelConfig()
         {
             HasKey(p => p.ID);
-
+            
             Property(p => p.Email)
                 .IsRequired()
                 .HasMaxLength(30);

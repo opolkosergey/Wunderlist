@@ -6,6 +6,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.RedirectUrl = "/webapp";
             return View();
         }
 

@@ -1,12 +1,12 @@
-﻿using EPAM.Wunderlist.DataAccess.API.Entities;
+﻿using EPAM.Wunderlist.Services.ServiceObjects;
 
 namespace EPAM.Wunderlist.Services.UserService
 {
     public interface IUserService
     {
-        void Add(UserModel user);
-        UserModel GetUser(int id);
+        void Add(UserServiceObject user);
+        UserServiceObject GetUser(int id);
         void Remove(int id);
-        void Update(UserModel user); // PUT (думаю внутри должен вызываться метод IUserProfile.ChangeName)
+        void Update(UserServiceObject user); // PUT (думаю внутри должен вызываться метод IUserProfile.ChangeName)
     }
 }

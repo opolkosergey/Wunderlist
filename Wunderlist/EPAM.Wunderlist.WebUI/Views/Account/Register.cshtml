@@ -25,7 +25,7 @@
             <div class="column">
                 <form class="ui form">
                     <div class="ui left icon input field">
-                        <input name="nickname" type="text" placeholder="Имя">
+                        <input name="name" type="text" placeholder="Имя">
                         <i class="user icon"></i>
                     </div>
                     <div class="ui left icon input field">
@@ -129,7 +129,7 @@
       on: 'blur',
       fields: {
           text: {
-              identifier: 'nickname',
+              identifier: 'name',
               rules: [
                   {
                       type: 'length[' + 5 + ']',
