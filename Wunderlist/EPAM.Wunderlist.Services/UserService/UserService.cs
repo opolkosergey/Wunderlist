@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EPAM.Wunderlist.DataAccess.API;
 using EPAM.Wunderlist.DataAccess.API.Entities;
 using EPAM.Wunderlist.Services.ServiceObjects;
@@ -38,7 +39,7 @@ namespace EPAM.Wunderlist.Services.UserService
             _unitOfWork.Commit();
         }
 
-        public UserServiceObject GetUser(int id)
+        public UserServiceObject GetUserById(int id)
         {
             if (id < 0)
                 return null;
@@ -56,6 +57,32 @@ namespace EPAM.Wunderlist.Services.UserService
             };
 
             return getUser;
+        }
+
+        public UserServiceObject GetUserByName(string name)
+        {
+            if (name == null)
+                return null;
+
+            var userModel = _userRepository.GetAll()
+                .FirstOrDefault(p => p.Profile.Name == name);
+
+            if (userModel == null)
+                return null;
+
+            var getUser = new UserServiceObject(userModel.ID)
+            {
+                Password = userModel.Password,
+                Email = userModel.Email,
+                UserName = userModel.Profile.Name
+            };
+
+            return getUser;
+        }
+
+        public UserServiceObject GetUserByEmail(string email)
+        {
+            throw new NotImplementedException();
         }
 
         public void Remove(int id)

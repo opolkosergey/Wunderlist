@@ -14,24 +14,25 @@ namespace EPAM.Wunderlist.WebUI.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<UserIdentity, int> _userManager;
-        private readonly IAuthenticationManager _authentication;
-        
+
+        private IAuthenticationManager SignInManager => 
+            HttpContext.GetOwinContext().Authentication;
+
+        private async Task SignInAsync(UserIdentity user, bool isPersistent)
+        {
+            SignInManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            ClaimsIdentity identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            SignInManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, identity);
+        }
+
         public AccountController(UserManager<UserIdentity, int> userManager)
         {
             if (userManager == null)
                 throw new ArgumentNullException(nameof(userManager));
-        
-            _userManager = userManager;
-            _authentication = HttpContext.GetOwinContext().Authentication;
-        }
-        
-        private async Task SignInAsync(UserIdentity user, bool isPersistent)
-        {
-            _authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            ClaimsIdentity identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            _authentication.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
-        }
 
+            _userManager = userManager;
+        }
+        
         [AllowAnonymous]
         public ActionResult Register(string redirectUrl)
         {
@@ -41,9 +42,26 @@ namespace EPAM.Wunderlist.WebUI.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Register(RegisterViewModel model, string redirectUrl)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register(RegisterViewModel model, string redirectUrl)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var user = new UserIdentity {UserName = model.Name, Email = model.Email};
+                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+                if (result == IdentityResult.Success)
+                {
+                    await SignInAsync(user, true);
+                    return RedirectToAction("Index", "Home");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error);
+                }
+            }
+
+            return View(model);
         }
 
         [AllowAnonymous]
@@ -55,14 +73,33 @@ namespace EPAM.Wunderlist.WebUI.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Login(LogOnViewModel model, string redirectUrl)
+        public async Task<ActionResult> Login(LogOnViewModel model, string returnUrl)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                UserIdentity user = await _userManager.FindAsync(model.Email, model.Password);
+                if (user == null)
+                {
+                    ModelState.AddModelError("", "Incorrect login or password.");
+                }
+                else
+                {
+                    await SignInAsync(user, true);
+
+                    if (string.IsNullOrEmpty(returnUrl))
+                        return RedirectToAction("Index", "Home");
+
+                    return Redirect(returnUrl);
+                }
+            }
+
+            ViewBag.returnUrl = returnUrl;
+            return View(model);
         }
 
         public ActionResult LogOff()
         {
-            _authentication.SignOut();
+            SignInManager.SignOut();
             return RedirectToAction("Login");
         }
     }
