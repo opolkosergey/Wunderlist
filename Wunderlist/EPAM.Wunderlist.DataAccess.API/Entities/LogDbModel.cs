@@ -2,7 +2,7 @@
 
 namespace EPAM.Wunderlist.DataAccess.API.Entities
 {
-    public class LogModel : IEntity
+    public class LogDbModel : IEntityDb
     {
         public int ID { get; }
         public string Log { get; set; }

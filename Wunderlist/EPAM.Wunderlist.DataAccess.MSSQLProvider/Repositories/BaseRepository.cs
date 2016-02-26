@@ -8,7 +8,7 @@ using EPAM.Wunderlist.DataAccess.API;
 namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Repositories
 {
     public abstract class BaseRepository<TEntity> : IRepository<TEntity> 
-        where TEntity : class, IEntity
+        where TEntity : class, IEntityDb
     {
         private readonly IDbSet<TEntity> _dbSet;
 

@@ -2,19 +2,19 @@
 
 namespace EPAM.Wunderlist.DataAccess.API.Entities
 {
-    public class UserModel : IEntity
+    public class UserDbModel : IEntityDb
     {
-        public UserModel(int id = 0)
+        public UserDbModel(int id = 0)
         {
             ID = id;
-            TodoLists = new List<TodoListModel>();
+            TodoLists = new List<TodoListDbModel>();
         }
 
         public int ID { get; }
         public string Email { get; set; }
         public string Password { get; set; }
         
-        public virtual UserProfileModel Profile { get; set; }
-        public virtual ICollection<TodoListModel> TodoLists { get; set; }
+        public virtual UserProfileDbModel Profile { get; set; }
+        public virtual ICollection<TodoListDbModel> TodoLists { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using EPAM.Wunderlist.DataAccess.API.Entities;
 
 namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.EntitiesConfig
 {
-    internal class UserProfileModelConfig : EntityTypeConfiguration<UserProfileModel>
+    internal class UserProfileModelConfig : EntityTypeConfiguration<UserProfileDbModel>
     {
         public UserProfileModelConfig()
         {

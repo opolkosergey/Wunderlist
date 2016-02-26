@@ -9,7 +9,7 @@ namespace EPAM.Wunderlist.Services.TodoListsService
     public class TodoListsService : ITodoListsService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IRepository<TodoListModel> _listRepository;
+        private readonly IRepository<TodoListDbModel> _listRepository;
         private readonly ILogger _logger;
 
         public TodoListsService(IUnitOfWork unitOfWork, ILogger logger)
@@ -22,7 +22,7 @@ namespace EPAM.Wunderlist.Services.TodoListsService
             _logger = logger;
         }
 
-        public IQueryable<TodoListModel> GetAllTodoLists(int userId)
+        public IQueryable<TodoListDbModel> GetAllTodoLists(int userId)
         {
             try
             {
@@ -34,10 +34,10 @@ namespace EPAM.Wunderlist.Services.TodoListsService
             {
                 _logger.Error(e.Message);
             }
-            return Enumerable.Empty<TodoListModel>().AsQueryable();
+            return Enumerable.Empty<TodoListDbModel>().AsQueryable();
         }
 
-        public void Add(TodoListModel list)
+        public void Add(TodoListDbModel list)
         {
             try
             {

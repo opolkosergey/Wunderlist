@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace EPAM.Wunderlist.DataAccess.API
 {
-    public interface IRepository<TEntity> where TEntity : IEntity
+    public interface IRepository<TEntity> where TEntity : IEntityDb
     {
         IQueryable<TEntity> GetAll();
         TEntity GetById(int id);

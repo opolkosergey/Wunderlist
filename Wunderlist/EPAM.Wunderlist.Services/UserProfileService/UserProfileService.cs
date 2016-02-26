@@ -7,7 +7,7 @@ namespace EPAM.Wunderlist.Services.UserProfileService
     public class UserProfileService : IUserProfileService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IRepository<UserProfileModel> _profileRepository;
+        private readonly IRepository<UserProfileDbModel> _profileRepository;
 
         public UserProfileService(IUnitOfWork unitOfWork)
         {
@@ -36,7 +36,7 @@ namespace EPAM.Wunderlist.Services.UserProfileService
             }
         }
 
-        public UserProfileModel GetProfile(int userId)
+        public UserProfileDbModel GetProfile(int userId)
         {
             if (userId < 0)
                 throw new ArgumentException("The ID parameter is less than zero");
