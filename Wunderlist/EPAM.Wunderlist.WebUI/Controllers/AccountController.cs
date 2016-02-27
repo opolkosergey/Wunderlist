@@ -14,22 +14,23 @@ namespace EPAM.Wunderlist.WebUI.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<UserIdentity, int> _userManager;
-        private readonly IAuthenticationManager _authentication;
-        
+
+        private IAuthenticationManager AuthenticationManager =>
+            HttpContext.GetOwinContext().Authentication;
+
         public AccountController(UserManager<UserIdentity, int> userManager)
         {
             if (userManager == null)
                 throw new ArgumentNullException(nameof(userManager));
         
             _userManager = userManager;
-            _authentication = HttpContext.GetOwinContext().Authentication;
         }
         
         private async Task SignInAsync(UserIdentity user, bool isPersistent)
         {
-            _authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             ClaimsIdentity identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            _authentication.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
         }
 
         [AllowAnonymous]
@@ -62,7 +63,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers
 
         public ActionResult LogOff()
         {
-            _authentication.SignOut();
+            AuthenticationManager.SignOut();
             return RedirectToAction("Login");
         }
     }
