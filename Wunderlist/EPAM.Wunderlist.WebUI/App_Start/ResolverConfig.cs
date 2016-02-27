@@ -18,7 +18,7 @@ namespace EPAM.Wunderlist.WebUI
             builder.RegisterModule(new Resolver());
 
             builder.RegisterType<StoreIdentityUser>().As<IUserStore<UserIdentity, int>>().InstancePerRequest();
-            builder.RegisterType<ManagerIdentityUser>().InstancePerRequest();
+            builder.RegisterType<ManagerIdentityUser>().As<UserManager<UserIdentity, int>>().InstancePerRequest();
 
             var container = new AutofacDependencyResolver(builder.Build());
             DependencyResolver.SetResolver(container);

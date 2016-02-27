@@ -10,20 +10,20 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
         {
             #region User1
 
-            TodoListModel[] user1List = {
-                new TodoListModel
+            TodoListDbModel[] user1List = {
+                new TodoListDbModel
                 {
                     Name = "Default",
                     TodoItems = new[]
                     {
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "FIRST Task Default List For User1",
                             Description = "This is default first Task For User1",
                             Status = TodoStatus.New,
                             Date = null
                         },
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "SECOND Task Default List For User1",
                             Status = TodoStatus.New,
@@ -31,25 +31,25 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                         }
                     }
                 },
-                new TodoListModel
+                new TodoListDbModel
                 {
                     Name = "Work",
                     TodoItems = new[]
                     {
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "FIRST Task Work List For User1",
                             Description = "This is work first Task For User1",
                             Status = TodoStatus.New,
                             Date = DateTime.Today
                         },
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "SECOND Task Work List For User1",
                             Status = TodoStatus.New,
                             Date = null
                         },
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "THIRD Task Work List For User1",
                             Status = TodoStatus.New,
@@ -57,18 +57,18 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                         }
                     }
                 },
-                new TodoListModel
+                new TodoListDbModel
                 {
                     Name = "Shopping"
                 }
             };
 
-            UserModel user1 = new UserModel
+            UserDbModel user1 = new UserDbModel
             {
                 Email = "First@gmail.com",
                 Password = "FirstPassword",
                 TodoLists = user1List,
-                Profile = new UserProfileModel
+                Profile = new UserProfileDbModel
                 {
                     Name = "FirstName"
                 }
@@ -78,20 +78,20 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
 
             #region User2
 
-            TodoListModel[] user2List = {
-                new TodoListModel
+            TodoListDbModel[] user2List = {
+                new TodoListDbModel
                 {
                     Name = "Default",
                     TodoItems = new[]
                     {
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "FIRST Task Default List For User2",
                             Description = "This List is default for all users",
                             Status = TodoStatus.New,
                             Date = null
                         },
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "SECOND Task Default List For User2",
                             Status = TodoStatus.New,
@@ -99,12 +99,12 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                         }
                     }
                 },
-                new TodoListModel
+                new TodoListDbModel
                 {
                     Name = "Journey",
                     TodoItems = new[]
                     {
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "FIRST Task Journey List For User2",
                             Description = "This is Journey first Task For User2",
@@ -113,18 +113,18 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                         }
                     }
                 },
-                new TodoListModel
+                new TodoListDbModel
                 {
                     Name = "Weekend",
                     TodoItems = new[]
                     {
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "FIRST Task Weekend List For User2",
                             Status = TodoStatus.New,
                             Date = null
                         },
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "SECOND Task Weekend List For User2",
                             Status = TodoStatus.New,
@@ -134,12 +134,12 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                 }
             };
 
-            UserModel user2 = new UserModel
+            UserDbModel user2 = new UserDbModel
             {
                 Email = "Second@gmail.com",
                 Password = "SecondPassword",
                 TodoLists = user2List,
-                Profile = new UserProfileModel
+                Profile = new UserProfileDbModel
                 {
                     Name = "SecondName"
                 }
@@ -149,17 +149,17 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
 
             #region User3
 
-            TodoListModel[] user3List = {
-                new TodoListModel
+            TodoListDbModel[] user3List = {
+                new TodoListDbModel
                 {
                     Name = "Default"
                 },
-                new TodoListModel
+                new TodoListDbModel
                 {
                     Name = "Journey",
                     TodoItems = new[]
                     {
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "FIRST Task Journey List For User3",
                             Description = "This is Journey first Task For User3",
@@ -168,30 +168,30 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                         }
                     }
                 },
-                new TodoListModel
+                new TodoListDbModel
                 {
                     Name = "Weekend",
                     TodoItems = new[]
                     {
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "FIRST Task Weekend List For User3",
                             Status = TodoStatus.New,
                             Date = null
                         },
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "SECOND Task Weekend List For User3",
                             Status = TodoStatus.New,
                             Date = DateTime.Today
                         },
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "Third Task Weekend List For User3",
                             Status = TodoStatus.New,
                             Date = null
                         },
-                        new TodoItemModel
+                        new TodoItemDbModel
                         {
                             TodoTask = "FOURTH Task Weekend List For User3",
                             Status = TodoStatus.New,
@@ -201,12 +201,12 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                 }
             };
 
-            UserModel user3 = new UserModel
+            UserDbModel user3 = new UserDbModel
             {
                 Email = "Second@gmail.com",
                 Password = "SecondPassword",
                 TodoLists = user3List,
-                Profile = new UserProfileModel
+                Profile = new UserProfileDbModel
                 {
                     Name = "SecondName"
                 }

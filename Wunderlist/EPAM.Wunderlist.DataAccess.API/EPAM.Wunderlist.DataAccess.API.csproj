@@ -40,12 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\LogModel.cs" />
-    <Compile Include="Entities\TodoItemModel.cs" />
-    <Compile Include="Entities\TodoListModel.cs" />
-    <Compile Include="Entities\UserModel.cs" />
-    <Compile Include="Entities\UserProfileModel.cs" />
-    <Compile Include="IEntity.cs" />
+    <Compile Include="Entities\LogDbModel.cs" />
+    <Compile Include="Entities\TodoItemDbModel.cs" />
+    <Compile Include="Entities\TodoListDbModel.cs" />
+    <Compile Include="Entities\UserDbModel.cs" />
+    <Compile Include="Entities\UserProfileDbModel.cs" />
+    <Compile Include="IEntityDb.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

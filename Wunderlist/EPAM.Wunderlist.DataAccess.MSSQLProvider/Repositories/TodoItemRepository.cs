@@ -3,7 +3,7 @@ using EPAM.Wunderlist.DataAccess.API.Entities;
 
 namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Repositories
 {
-    public class TodoItemRepository : BaseRepository<TodoItemModel>
+    public class TodoItemRepository : BaseRepository<TodoItemDbModel>
     {
         public TodoItemRepository(DbContext context) : base(context) {}
     }

@@ -5,8 +5,8 @@ namespace EPAM.Wunderlist.Services.TodoListsService
 {
     public interface ITodoListsService
     {
-        IQueryable<TodoListModel> GetAllTodoLists(int userId);
-        void Add(TodoListModel list);
+        IQueryable<TodoListDbModel> GetAllTodoLists(int userId);
+        void Add(TodoListDbModel list);
         void Remove(int id);
         void Rename(int id, string newName);
     }

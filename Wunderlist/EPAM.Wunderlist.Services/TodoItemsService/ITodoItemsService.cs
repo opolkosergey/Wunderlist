@@ -6,8 +6,8 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
 {
     public interface ITodoItemsService
     {
-        IQueryable<TodoItemModel> GetAllItems(int listTodoId);
-        void Add(TodoItemModel item);
+        IQueryable<TodoItemDbModel> GetAllItems(int listTodoId);
+        void Add(TodoItemDbModel item);
         void Rename(int id, string newTitle);
         void Remove(int id);
         void SetTodoStatus(int id, TodoStatus status);

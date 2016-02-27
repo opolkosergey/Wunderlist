@@ -7,7 +7,7 @@ namespace EPAM.Wunderlist.Services.PhotoService
     public class PhotoService : IPhotoService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IRepository<UserProfileModel> _profileRepository;
+        private readonly IRepository<UserProfileDbModel> _profileRepository;
 
         public PhotoService(IUnitOfWork unitOfWork)
         {

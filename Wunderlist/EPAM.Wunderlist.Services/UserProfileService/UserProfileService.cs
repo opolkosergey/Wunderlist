@@ -7,7 +7,7 @@ namespace EPAM.Wunderlist.Services.UserProfileService
     public class UserProfileService : IUserProfileService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IRepository<UserProfileModel> _profileRepository;
+        private readonly IRepository<UserProfileDbModel> _profileRepository;
 
         public UserProfileService(IUnitOfWork unitOfWork)
         {
@@ -18,14 +18,30 @@ namespace EPAM.Wunderlist.Services.UserProfileService
             _profileRepository = unitOfWork.ProfileRepository;
         }
 
-        public void ChangeName(int id)
+        public void ChangeName(int id, string name)
         {
-            throw new NotImplementedException();
+            if(id < 0)
+                throw new ArgumentException("The ID parameter is less than zero");
+
+            if(name == null)
+                throw new ArgumentNullException(nameof(name));
+
+            var profile = _profileRepository.GetById(id);
+            
+            if (profile != null)
+            { 
+                profile.Name = name;
+                _profileRepository.Update(profile);
+                _unitOfWork.Commit();
+            }
         }
 
-        public UserProfileModel GetProfile(int userId)
+        public UserProfileDbModel GetProfile(int userId)
         {
-            throw new NotImplementedException();
+            if (userId < 0)
+                throw new ArgumentException("The ID parameter is less than zero");
+
+            return _profileRepository.GetById(userId);
         }
     }
 }

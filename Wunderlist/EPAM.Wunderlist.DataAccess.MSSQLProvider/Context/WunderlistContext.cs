@@ -14,11 +14,11 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
 
         public WunderlistContext(string connect) : base(connect) {}
 
-        public DbSet<UserModel> Users { get; set; }
-        public DbSet<UserProfileModel> UserProfiles { get; set; }
-        public DbSet<TodoListModel> TodoLists { get; set; }
-        public DbSet<TodoItemModel> TodoItems { get; set; }
-        public DbSet<LogModel> Logs { get; set; }
+        public DbSet<UserDbModel> Users { get; set; }
+        public DbSet<UserProfileDbModel> UserProfiles { get; set; }
+        public DbSet<TodoListDbModel> TodoLists { get; set; }
+        public DbSet<TodoItemDbModel> TodoItems { get; set; }
+        public DbSet<LogDbModel> Logs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

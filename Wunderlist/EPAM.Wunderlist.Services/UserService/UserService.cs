@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Linq;
 using EPAM.Wunderlist.DataAccess.API;
 using EPAM.Wunderlist.DataAccess.API.Entities;
+using EPAM.Wunderlist.Services.ServiceObjects;
 
 namespace EPAM.Wunderlist.Services.UserService
 {
     public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IRepository<UserModel> _userRepository;
+        private readonly IRepository<UserDbModel> _userRepository;
         
         public UserService(IUnitOfWork unitOfWork)
         {
@@ -18,22 +20,69 @@ namespace EPAM.Wunderlist.Services.UserService
             _userRepository = unitOfWork.UserRepository;
         }
 
-        public void Add(UserModel user)
+        public void Add(UserServiceObject user)
         {
             if(user == null)
                 throw new ArgumentNullException(nameof(user));
 
-            user.Profile = new UserProfileModel();
-            _userRepository.Add(user);
+            UserDbModel userToAdd = new UserDbModel
+            {
+                Email = user.Email,
+                Password = user.Password,
+                Profile = new UserProfileDbModel
+                {
+                    Name = user.UserName
+                }
+            };
+            
+            _userRepository.Add(userToAdd);
             _unitOfWork.Commit();
         }
 
-        public UserModel GetUser(int id)
+        public UserServiceObject GetUserById(int id)
         {
             if (id < 0)
                 return null;
 
-            return _userRepository.GetById(id);
+            var userModel = _userRepository.GetById(id);
+
+            if (userModel == null)
+                return null;
+
+            var getUser = new UserServiceObject(userModel.ID)
+            {
+                Password = userModel.Password,
+                Email = userModel.Email,
+                UserName = userModel.Profile.Name
+            };
+
+            return getUser;
+        }
+
+        public UserServiceObject GetUserByName(string name)
+        {
+            if (name == null)
+                return null;
+
+            var userModel = _userRepository.GetAll()
+                .FirstOrDefault(p => p.Profile.Name == name);
+
+            if (userModel == null)
+                return null;
+
+            var getUser = new UserServiceObject(userModel.ID)
+            {
+                Password = userModel.Password,
+                Email = userModel.Email,
+                UserName = userModel.Profile.Name
+            };
+
+            return getUser;
+        }
+
+        public UserServiceObject GetUserByEmail(string email)
+        {
+            throw new NotImplementedException();
         }
 
         public void Remove(int id)
@@ -42,9 +91,21 @@ namespace EPAM.Wunderlist.Services.UserService
             _unitOfWork.Commit();
         }
 
-        public void Update(UserModel user)
+        public void Update(UserServiceObject user)
         {
-            throw new NotImplementedException();
+            if(user == null)
+                throw new ArgumentNullException(nameof(user));
+
+            var userToUpdate = _userRepository.GetById(user.Id);
+
+            if (userToUpdate != null)
+            {
+                userToUpdate.Email = user.Email;
+                userToUpdate.Password = user.Password;
+
+                _userRepository.Update(userToUpdate);
+                _unitOfWork.Commit();
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace EPAM.Wunderlist.ResolverModule
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>()
+            builder.RegisterType<MssqlWorker>().As<IUnitOfWork>()
               .InstancePerRequest();
 
             builder.RegisterType<WunderlistContext>().As<DbContext>()                 
