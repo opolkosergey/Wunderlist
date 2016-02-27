@@ -14,7 +14,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<UserIdentity, int> _userManager;
-
+        
         private IAuthenticationManager SignInManager => 
             HttpContext.GetOwinContext().Authentication;
 
@@ -29,7 +29,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers
         {
             if (userManager == null)
                 throw new ArgumentNullException(nameof(userManager));
-
+        
             _userManager = userManager;
         }
         
@@ -56,7 +56,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers
                 }
 
                 foreach (var error in result.Errors)
-                {
+        {
                     ModelState.AddModelError("", error);
                 }
             }
@@ -83,7 +83,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers
                     ModelState.AddModelError("", "Incorrect login or password.");
                 }
                 else
-                {
+        {
                     await SignInAsync(user, true);
 
                     if (string.IsNullOrEmpty(returnUrl))
