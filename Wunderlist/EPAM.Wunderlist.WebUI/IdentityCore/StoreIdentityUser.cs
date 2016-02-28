@@ -84,7 +84,7 @@ namespace EPAM.Wunderlist.WebUI.IdentityCore
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }
