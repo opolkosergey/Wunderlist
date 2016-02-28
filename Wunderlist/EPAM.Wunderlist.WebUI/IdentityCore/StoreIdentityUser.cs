@@ -122,7 +122,7 @@ namespace EPAM.Wunderlist.WebUI.IdentityCore
         {
             throw new NotImplementedException();
         }
-        
+
         public Task SetEmailAsync(UserIdentity user, string email)
         {
             return Task.Factory.StartNew(() =>
@@ -140,7 +140,7 @@ namespace EPAM.Wunderlist.WebUI.IdentityCore
         //Здесь находиться заглушка
         public void Dispose()
         {
-            return;
+            //throw new NotImplementedException();
         }
     }
 }
