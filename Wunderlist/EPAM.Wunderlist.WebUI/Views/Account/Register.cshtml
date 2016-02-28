@@ -9,6 +9,15 @@
 <link href="~/Content/semantic.css" rel="stylesheet" />
 <script src="~/Scripts/semantic.js"></script>
 
+<script>
+    $(document).ready(function() {
+        $("#createButton").click(function(event) {
+            event.preventDefault();
+            $("#registerForm").submit();
+        });
+    });
+</script>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -23,7 +32,7 @@
     <div class="ui two column centered stackable grid">
         <div class="five column centered row">
             <div class="column">
-                <form class="ui form">
+                <form class="ui form" action="/Account/Register" method="POST" id="registerForm">
                     <div class="ui left icon input field">
                         <input name="name" type="text" placeholder="Имя">
                         <i class="user icon"></i>
@@ -37,7 +46,7 @@
                         <i class="lock icon"></i>
                     </div>
                     <div class="ui error message"></div>
-                    <div class="ui submit primary button" style="width: 100%;">Создать бесплатную учетную запись</div>
+                    <div class="ui submit primary button" style="width: 100%;" id="createButton">Создать бесплатную учетную запись</div>
                 </form>
                 <br />
                 <div class="three column ui grid container">
@@ -168,7 +177,7 @@
               identifier: 'password',
               rules: [
                 {
-                    type: 'regExp[/^[a-zA-Z]\w{3,14}$/]',
+                    type: 'regExp[/[0-9a-z]{6}/]',
                     prompt: 'Please enter a strongish password'
                 }
               ]
