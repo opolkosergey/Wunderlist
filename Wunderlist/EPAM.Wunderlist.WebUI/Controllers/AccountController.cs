@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using EPAM.Wunderlist.Services.UserService;
 using EPAM.Wunderlist.WebUI.IdentityCore;
 using EPAM.Wunderlist.WebUI.Models;
 using Microsoft.AspNet.Identity;
@@ -14,7 +15,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<UserIdentity, int> _userManager;
-        
+        private readonly IUserService _userService;
         private IAuthenticationManager SignInManager => 
             HttpContext.GetOwinContext().Authentication;
 
@@ -25,18 +26,22 @@ namespace EPAM.Wunderlist.WebUI.Controllers
             SignInManager.SignIn(new AuthenticationProperties { IsPersistent = isPersistent }, identity);
         }
 
-        public AccountController(UserManager<UserIdentity, int> userManager)
+        public AccountController(UserManager<UserIdentity, int> userManager, IUserService service)
         {
             if (userManager == null)
                 throw new ArgumentNullException(nameof(userManager));
-        
+
+            if(service == null)
+                throw new ArgumentNullException(nameof(service));
+
             _userManager = userManager;
+            _userService = service;
         }
         
         [AllowAnonymous]
-        public ActionResult Register(string redirectUrl)
+        public ActionResult Register()
         {
-            ViewBag.RedirectUrl = redirectUrl;
+            ViewBag.RedirectUrl = "/webapp";
             return View();
         }
 
@@ -47,27 +52,33 @@ namespace EPAM.Wunderlist.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new UserIdentity {UserName = model.Name, Email = model.Email};
+                if (_userService.CheckEmail(model.Email))
+                {
+                    ModelState.AddModelError("", "This Email is already occupied. Please enter another Email!");
+                }
+                else
+                {
+                    var user = new UserIdentity { UserName = model.Name, Email = model.Email };
                 IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                 if (result == IdentityResult.Success)
                 {
                     await SignInAsync(user, true);
-                    return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Inbox", "Lists");
                 }
-
                 foreach (var error in result.Errors)
-        {
+                {
                     ModelState.AddModelError("", error);
                 }
+            }
             }
 
             return View(model);
         }
 
         [AllowAnonymous]
-        public ActionResult Login(string redirectUrl)
+        public ActionResult Login()
         {
-            ViewBag.RedirectUrl = redirectUrl;
+            ViewBag.RedirectUrl = "/webapp";
             return View();
         }
 
@@ -83,13 +94,9 @@ namespace EPAM.Wunderlist.WebUI.Controllers
                     ModelState.AddModelError("", "Incorrect login or password.");
                 }
                 else
-        {
+                {
                     await SignInAsync(user, true);
-
-                    if (string.IsNullOrEmpty(returnUrl))
-                        return RedirectToAction("Index", "Home");
-
-                    return Redirect(returnUrl);
+                    return RedirectToAction("Inbox", "Lists");
                 }
             }
 

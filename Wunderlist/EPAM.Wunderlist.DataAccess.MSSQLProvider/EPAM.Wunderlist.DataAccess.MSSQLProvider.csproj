@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Context\ContextInitializer.cs" />
     <Compile Include="Context\WunderlistContext.cs" />
+    <Compile Include="EntitiesConfig\LogModelConfig.cs" />
     <Compile Include="EntitiesConfig\TodoItemModelConfig.cs" />
     <Compile Include="EntitiesConfig\TodoListModelConfig.cs" />
     <Compile Include="EntitiesConfig\UserModelConfig.cs" />

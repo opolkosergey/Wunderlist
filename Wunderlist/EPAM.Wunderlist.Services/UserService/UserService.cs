@@ -10,6 +10,7 @@ namespace EPAM.Wunderlist.Services.UserService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<UserDbModel> _userRepository;
+        private readonly IRepository<UserProfileDbModel> _profileRepository; 
         
         public UserService(IUnitOfWork unitOfWork)
         {
@@ -18,6 +19,7 @@ namespace EPAM.Wunderlist.Services.UserService
 
             _unitOfWork = unitOfWork;
             _userRepository = unitOfWork.UserRepository;
+            _profileRepository = unitOfWork.ProfileRepository;
         }
 
         public void Add(UserServiceObject user)
@@ -82,12 +84,29 @@ namespace EPAM.Wunderlist.Services.UserService
 
         public UserServiceObject GetUserByEmail(string email)
         {
-            throw new NotImplementedException();
+            if (email == null)
+                return null;
+
+            var userModel = _userRepository.GetAll()
+                .FirstOrDefault(p => p.Email == email);
+
+            if (userModel == null)
+                return null;
+
+            var getUser = new UserServiceObject(userModel.ID)
+            {
+                Password = userModel.Password,
+                Email = userModel.Email,
+                UserName = userModel.Profile.Name
+            };
+
+            return getUser;
         }
 
         public void Remove(int id)
         {
             _userRepository.Remove(id);
+            _profileRepository.Remove(id);
             _unitOfWork.Commit();
         }
 
@@ -106,6 +125,11 @@ namespace EPAM.Wunderlist.Services.UserService
                 _userRepository.Update(userToUpdate);
                 _unitOfWork.Commit();
             }
+        }
+
+        public bool CheckEmail(string email)
+        {
+            return GetUserByEmail(email) != null;
         }
     }
 }

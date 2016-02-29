@@ -11,7 +11,7 @@ namespace EPAM.Wunderlist.WebUI
             UserValidator = new UserValidator<UserIdentity, int>(this)
             {
                 AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
+                //RequireUniqueEmail = true
             };
         }
     }
