@@ -7,6 +7,8 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.EntitiesConfig
     {
         public TodoItemModelConfig()
         {
+            ToTable("TodoItem");
+
             HasKey(p => p.ID);
 
             Property(p => p.Description)
