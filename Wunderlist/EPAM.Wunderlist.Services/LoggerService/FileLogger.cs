@@ -3,11 +3,11 @@ using NLog;
 
 namespace EPAM.Wunderlist.Services.LoggerService
 {
-    public class FileLoggerService : ILoggerService
+    public class FileLogger : ILogger
     {
         private readonly Logger _logger;
 
-        public FileLoggerService()
+        public FileLogger()
         {
             _logger = LogManager.GetCurrentClassLogger();
         }

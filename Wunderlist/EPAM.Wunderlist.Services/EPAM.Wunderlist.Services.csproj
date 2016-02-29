@@ -53,9 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoggerService\DatabaseLoggerService.cs" />
-    <Compile Include="LoggerService\FileLoggerService.cs" />
-    <Compile Include="LoggerService\ILoggerService.cs" />
+    <Compile Include="LoggerService\DatabaseLogger.cs" />
+    <Compile Include="LoggerService\FileLogger.cs" />
+    <Compile Include="LoggerService\ILogger.cs" />
     <Compile Include="PhotoService\IPhotoService.cs" />
     <Compile Include="PhotoService\PhotoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
