@@ -15,6 +15,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<UserIdentity, int> _userManager;
+<<<<<<< HEAD
         private readonly IUserService _userService;
         private IAuthenticationManager SignInManager => 
             HttpContext.GetOwinContext().Authentication;
@@ -27,6 +28,13 @@ namespace EPAM.Wunderlist.WebUI.Controllers
         }
 
         public AccountController(UserManager<UserIdentity, int> userManager, IUserService service)
+=======
+
+        private IAuthenticationManager AuthenticationManager =>
+            HttpContext.GetOwinContext().Authentication;
+
+        public AccountController(UserManager<UserIdentity, int> userManager)
+>>>>>>> refs/remotes/origin/master
         {
             if (userManager == null)
                 throw new ArgumentNullException(nameof(userManager));
@@ -35,9 +43,21 @@ namespace EPAM.Wunderlist.WebUI.Controllers
                 throw new ArgumentNullException(nameof(service));
 
             _userManager = userManager;
+<<<<<<< HEAD
             _userService = service;
         }
         
+=======
+        }
+        
+        private async Task SignInAsync(UserIdentity user, bool isPersistent)
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            ClaimsIdentity identity = await _userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
+        }
+
+>>>>>>> refs/remotes/origin/master
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -106,7 +126,11 @@ namespace EPAM.Wunderlist.WebUI.Controllers
 
         public ActionResult LogOff()
         {
+<<<<<<< HEAD
             SignInManager.SignOut();
+=======
+            AuthenticationManager.SignOut();
+>>>>>>> refs/remotes/origin/master
             return RedirectToAction("Login");
         }
     }

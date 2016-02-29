@@ -100,7 +100,36 @@ namespace EPAM.Wunderlist.WebUI.IdentityCore
 
         public Task<bool> HasPasswordAsync(UserIdentity user)
         {
+<<<<<<< HEAD
             return Task.Factory.StartNew(() => user?.Password != null);
+=======
+            throw new NotImplementedException();
+        }
+
+        public Task<string> GetEmailAsync(UserIdentity user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> GetEmailConfirmedAsync(UserIdentity user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetEmailAsync(UserIdentity user, string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetEmailConfirmedAsync(UserIdentity user, bool confirmed)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            //throw new NotImplementedException();
+>>>>>>> refs/remotes/origin/master
         }
         
         public void Dispose() {}

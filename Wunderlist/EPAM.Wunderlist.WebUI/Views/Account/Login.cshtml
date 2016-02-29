@@ -8,12 +8,22 @@
 <link href="~/Content/wunderlist.css" rel="stylesheet" />
 <link href="~/Content/semantic.css" rel="stylesheet" />
 <script src="~/Scripts/semantic.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#sendForm").click(function(event) {
+            event.preventDefault();
+            $("#loginForm").submit();
+        });
+    });
+</script>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
 </head>
 <body>
+<<<<<<< HEAD
     <div align="center" style="margin-top: 50px;">
         <img width="75" height="75" src="~/Content/images/logo.png" />
     </div>
@@ -35,6 +45,37 @@
                 <div class="ui left icon input field">
                     @Html.EditorFor(m => m.Password, new {htmlAttributes = new {placeholder = "Пароль"}})
                     <i class="lock icon"></i>
+=======
+    <div class="ui centered stackable grid" style="margin-top: 50px;">
+        <img width="100" height="75" src="~/Content/images/logo.png" />
+        <div class="six column centered row">
+            <div class="column">
+                <form class="ui form" action="/Account/Login" method="POST" id="loginForm">
+                    <div class="ui left icon input field">
+                        <input name="email" type="text" placeholder="Электронная почта">
+                        <i class="mail icon"></i>
+                    </div>
+                    <div class="ui left icon input field">
+                        <input name="password" type="text" placeholder="Пароль">
+                        <i class="lock icon"></i>
+                    </div>
+                    <div class="ui error message"></div>
+                    <div class="ui submit primary button" style="width: 100%;" id="sendForm">Войти</div>
+                    <br /><br />
+                    <div align="center">@Html.ActionLink("Забыли пароль?", "")</div>
+                </form>
+                <br />
+                <div class="three column ui grid container">
+                    <div class="column">
+                        <button class="ui mini inverted blue button"><i class="facebook square icon"></i></button>
+                    </div>
+                    <div class="column">
+                        <button class="ui mini inverted red button"><i class="google square icon"></i></button>
+                    </div>
+                    <div class="column">
+                        <button class="ui mini white button"><i class="windows icon"></i></button>
+                    </div>
+>>>>>>> refs/remotes/origin/master
                 </div>
                 
                 <input type="submit" value="Вход" class="ui submit primary button" style="width: 100%;"/>
@@ -58,3 +99,33 @@
 </body>
 </html>
 
+<<<<<<< HEAD
+=======
+<script>
+    $('.ui.form')
+  .form({
+      on: 'blur',
+      fields: {
+          email: {
+              identifier: 'email',
+              rules: [
+                {
+                    type: 'email',
+                    prompt: 'Please enter a valid e-mail'
+                }
+              ]
+          },
+          password: {
+              identifier: 'password',
+              rules: [
+                {
+                    type: 'length[' + 1 + ']',
+                    prompt: 'Please enter more than 1 characters'
+                }
+              ]
+          }
+      }
+  })
+    ;
+</script>
+>>>>>>> refs/remotes/origin/master
