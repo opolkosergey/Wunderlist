@@ -105,7 +105,7 @@
     </div>
     <div class="ui stackable grid">
         <div class="three wide column">
-            <div class="ui segment" style="background-color: ghostwhite; height: 100vh;">
+            <div class="ui segment"style="background-color: ghostwhite; height: 100vh;">
                 <div class="ui search">
                     <div class="ui fluid icon input">
                         <input type="text" class="prompt" placeholder="Search your task...">
@@ -114,8 +114,8 @@
                     <div class="results"></div>
                 </div>
                 <div class="ui divided items">
-                    <div class="item" id="username">
-                        <a>@User.Identity.Name</a>
+                        <div class="item" id="username">
+                            <a>Username</a>
                         </div>
                         @*<i class="alarm outline icon"></i>
                             <i class="comment outline icon"></i>*@
@@ -149,7 +149,9 @@
                             <i class="ellipsis vertical icon"></i>
                         </div>*@
                 </div>
+
                 <br />
+
                 <div class="ui grid">
                     <div class="thirteen wide column">
                         <div class="ui segment">
@@ -164,6 +166,7 @@
                        </div>
                 </div>
                 <br /><br />
+
                 <div id="todos">
                     <div class='ui ignored positive icon message' id='0'>
                         <button class='completeit' style='height: 16px;'></button>
@@ -177,10 +180,13 @@
                     <button class="ui green basic button" onclick="showComplete()">Показать завершенные задачи</button>
                 </div>
                 <br />
+
                 <div class="" style="display: none" id="completed">
                     <div class='ui ignored positive icon message' id='0'>
+
                         <button class='completeit' style='height: 16px;'></button>
                         <div class='content' style='margin-left: 20px;'>
+
                             <h3 class='header'>bbbbbbbbbbbb</h3>
                         </div>
                     </div>
@@ -190,17 +196,21 @@
         </div>
 </body>
 </html>
+
 <script>
     $(document).ready(function () {
         $("#username").click(function () {
             $('.ui.modal').modal('show');
         });
     });
+
     $(document).ready(function () {
         $(".ui.ignored.positive.icon.message").click(function () {
             $('.ui.sidebar').sidebar('toggle');
         });
     });
+
+
     $(document).ready(function () {
         $("#addNewItem").click(function () {
             var title = $("#todoTitle").val();
@@ -209,6 +219,7 @@
                 "<div class='content' style='margin-left: 20px;'>" +
                     "<h3 class='header'>" + title + "<i class='trash icon' style='float: right'></i></h3>" +
                 "</div></div>";
+
             //var todo = "<div class='ui ignored positive icon message' id='0'>" +
             //    "<button class='completeit' style='height: 16px;' onclick='completeit(this)'></button>" +
             //    "<div class='content' style='margin-left: 20px;'>" +
@@ -218,7 +229,9 @@
         });
     });
 </script>
+
 <script>
+
     var content = [
         { title: 'Andorra' },
         { title: 'United Arab Emirates' },
@@ -246,6 +259,7 @@
         { title: 'Burundi' }
         // etc
     ];
+
     $('.ui.search')
             .search({
                 source: content
