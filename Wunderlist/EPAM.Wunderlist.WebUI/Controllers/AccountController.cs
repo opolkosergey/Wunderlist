@@ -16,6 +16,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers
     {
         private readonly UserManager<UserIdentity, int> _userManager;
         private readonly IUserService _userService;
+
         private IAuthenticationManager SignInManager => 
             HttpContext.GetOwinContext().Authentication;
 
@@ -59,17 +60,17 @@ namespace EPAM.Wunderlist.WebUI.Controllers
                 else
                 {
                     var user = new UserIdentity { UserName = model.Name, Email = model.Email };
-                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-                if (result == IdentityResult.Success)
-                {
-                    await SignInAsync(user, true);
+                    IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+                    if (result == IdentityResult.Success)
+                    {
+                        await SignInAsync(user, true);
                         return RedirectToAction("Inbox", "Lists");
+                    }
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error);
+                    }
                 }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error);
-                }
-            }
             }
 
             return View(model);
