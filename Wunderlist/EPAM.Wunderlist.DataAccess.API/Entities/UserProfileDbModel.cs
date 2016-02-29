@@ -2,7 +2,12 @@
 {
     public  class UserProfileDbModel : IEntityDb
     {
-        public int ID { get; protected set; }
+        public UserProfileDbModel(int id = 0)
+        {
+            ID = id;
+        }
+        
+        public int ID { get; set; }
         public string Name { get; set; }
         public byte[] Photo { get; set; }
 

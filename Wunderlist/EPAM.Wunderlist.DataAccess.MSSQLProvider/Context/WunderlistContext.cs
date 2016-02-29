@@ -26,7 +26,6 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
             modelBuilder.Configurations.Add(new UserProfileModelConfig());
             modelBuilder.Configurations.Add(new TodoItemModelConfig());
             modelBuilder.Configurations.Add(new TodoListModelConfig());
-            modelBuilder.Configurations.Add(new LogModelConfig());
 
             base.OnModelCreating(modelBuilder);
         }

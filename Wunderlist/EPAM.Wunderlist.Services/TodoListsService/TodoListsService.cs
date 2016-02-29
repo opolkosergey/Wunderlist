@@ -10,9 +10,9 @@ namespace EPAM.Wunderlist.Services.TodoListsService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<TodoListDbModel> _listRepository;
-        private readonly ILoggerService _logger;
+        private readonly ILogger _logger;
 
-        public TodoListsService(IUnitOfWork unitOfWork, ILoggerService logger)
+        public TodoListsService(IUnitOfWork unitOfWork, ILogger logger)
         {
             if (unitOfWork == null)
                 throw new ArgumentNullException(nameof(unitOfWork));

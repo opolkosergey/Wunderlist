@@ -7,8 +7,6 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.EntitiesConfig
     {
         public UserModelConfig()
         {
-            ToTable("User");
-
             HasKey(p => p.ID);
             
             Property(p => p.Email)

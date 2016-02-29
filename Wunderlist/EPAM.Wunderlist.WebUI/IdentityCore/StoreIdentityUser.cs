@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EPAM.Wunderlist.Services.ServiceObjects;
 using EPAM.Wunderlist.Services.UserService;
 using Microsoft.AspNet.Identity;
-using static EPAM.Wunderlist.WebUI.Mapper.HelperConvert;
 
 namespace EPAM.Wunderlist.WebUI.IdentityCore
 {
-    public class StoreIdentityUser : IUserPasswordStore<UserIdentity, int>
+    public class StoreIdentityUser : IUserPasswordStore<UserIdentity, int>, IUserEmailStore<UserIdentity, int>
     {
         private readonly IUserService _userService;
 
@@ -21,88 +19,46 @@ namespace EPAM.Wunderlist.WebUI.IdentityCore
 
         public Task CreateAsync(UserIdentity user)
         {
-            if (user != null)
-            {
-                return Task.Factory.StartNew(() =>
-                {
-                    UserServiceObject userToAdd = new UserServiceObject
-                    {
-                        Email = user.Email,
-                        Password = user.Password,
-                        UserName = user.UserName
-                    };
-
-                    _userService.Add(userToAdd);
-                });
-            }
-
-            return null;
+            throw new NotImplementedException();
         }
 
         public Task<UserIdentity> FindByIdAsync(int userId)
         {
-            return Task<UserIdentity>.Factory.StartNew(() =>
-            {
-                var userModel = _userService.GetUserById(userId);
-                return EntityConvert<UserServiceObject, UserIdentity>(userModel);
-            });
+            throw new NotImplementedException();
         }
 
         public Task<UserIdentity> FindByNameAsync(string userName)
         {
-            return Task<UserIdentity>.Factory.StartNew(() =>
-            {
-                var userServiceObject = _userService.GetUserByEmail(userName);
-                var userIdentity = EntityConvert<UserServiceObject, UserIdentity>(userServiceObject);
-                return userIdentity;
-            });
+            throw new NotImplementedException();
+        }
+
+        public Task<UserIdentity> FindByEmailAsync(string email)
+        {
+            throw new NotImplementedException();
         }
 
         public Task UpdateAsync(UserIdentity user)
         {
-            return Task.Factory.StartNew(() =>
-            {
-                if (user != null)
-                {
-                    var userToUpdate = new UserServiceObject(user.Id)
-                    {
-                        Email = user.Email,
-                        Password = user.Password
-                    };
-
-                    _userService.Update(userToUpdate);
-                }
-            });
+            throw new NotImplementedException();
         }
 
         public Task DeleteAsync(UserIdentity user)
         {
-            return Task.Factory.StartNew(() =>
-            {
-                if (user != null)
-                    _userService.Remove(user.Id);
-            });
+            throw new NotImplementedException();
         }
 
         public Task<string> GetPasswordHashAsync(UserIdentity user)
         {
-            return Task.Factory.StartNew(() => user?.Password);
+            throw new NotImplementedException();
         }
 
         public Task SetPasswordHashAsync(UserIdentity user, string passwordHash)
         {
-            return Task.Factory.StartNew(() =>
-            {
-                if (user != null)
-                    user.Password = passwordHash;
-            });
+            throw new NotImplementedException();
         }
 
         public Task<bool> HasPasswordAsync(UserIdentity user)
         {
-<<<<<<< HEAD
-            return Task.Factory.StartNew(() => user?.Password != null);
-=======
             throw new NotImplementedException();
         }
 
@@ -129,9 +85,6 @@ namespace EPAM.Wunderlist.WebUI.IdentityCore
         public void Dispose()
         {
             //throw new NotImplementedException();
->>>>>>> refs/remotes/origin/master
         }
-        
-        public void Dispose() {}
     }
 }

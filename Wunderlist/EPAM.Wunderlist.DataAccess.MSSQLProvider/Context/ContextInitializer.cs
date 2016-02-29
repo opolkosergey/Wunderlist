@@ -66,7 +66,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
             UserDbModel user1 = new UserDbModel
             {
                 Email = "First@gmail.com",
-                Password = "AH3KUibfw1+uZNzUkYrQ5sbCXKs1QloGYGmxmEjfurc6kahgZNcq3KuZ2Wn9R+32bw==",  //FirstPassword
+                Password = "FirstPassword",
                 TodoLists = user1List,
                 Profile = new UserProfileDbModel
                 {
@@ -137,7 +137,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
             UserDbModel user2 = new UserDbModel
             {
                 Email = "Second@gmail.com",
-                Password = "AF/m6pDyg8jb3H15CnzY1XTZTRkISUadw2bSFYsV+fAZiCqOMxwRY2l3gVnyM2ni+A==",   //SecondPassword
+                Password = "SecondPassword",
                 TodoLists = user2List,
                 Profile = new UserProfileDbModel
                 {
@@ -203,12 +203,12 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
 
             UserDbModel user3 = new UserDbModel
             {
-                Email = "Third@gmail.com",
-                Password = "AGt4RQ47x3U9VQRJtys593311Cw/DytsAL6/XcechPUFgK+tkM2HhqqVHP8LO+yoPw==",  //ThirdPassword
+                Email = "Second@gmail.com",
+                Password = "SecondPassword",
                 TodoLists = user3List,
                 Profile = new UserProfileDbModel
                 {
-                    Name = "ThirdName"
+                    Name = "SecondName"
                 }
             };
 

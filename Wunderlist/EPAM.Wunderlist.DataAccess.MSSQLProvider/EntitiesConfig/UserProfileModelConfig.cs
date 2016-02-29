@@ -7,8 +7,6 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.EntitiesConfig
     {
         public UserProfileModelConfig()
         {
-            ToTable("UserProfile");
-
             HasKey(p => p.ID);
 
             HasRequired(p => p.UserModel)
