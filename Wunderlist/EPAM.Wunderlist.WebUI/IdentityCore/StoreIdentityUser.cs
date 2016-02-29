@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EPAM.Wunderlist.Services.ServiceObjects;
 using EPAM.Wunderlist.Services.UserService;
 using Microsoft.AspNet.Identity;
-using static EPAM.Wunderlist.WebUI.Mapper.HelperConvert;
 
 namespace EPAM.Wunderlist.WebUI.IdentityCore
 {
@@ -21,126 +19,72 @@ namespace EPAM.Wunderlist.WebUI.IdentityCore
 
         public Task CreateAsync(UserIdentity user)
         {
-            if (user != null)
-            {
-                return Task.Factory.StartNew(() =>
-                {
-                    UserServiceObject userToAdd = new UserServiceObject
-                    {
-                        Email = user.Email,
-                        Password = user.Password,
-                        UserName = user.UserName
-                    };
-
-                    _userService.Add(userToAdd);
-                });
-            }
-
-            return null;
+            throw new NotImplementedException();
         }
 
         public Task<UserIdentity> FindByIdAsync(int userId)
         {
-            return Task<UserIdentity>.Factory.StartNew(() =>
-            {
-                var userModel = _userService.GetUserById(userId);
-                return EntityConvert<UserServiceObject, UserIdentity>(userModel);
-            });
+            throw new NotImplementedException();
         }
 
         public Task<UserIdentity> FindByNameAsync(string userName)
         {
-            return Task<UserIdentity>.Factory.StartNew(() =>
-            {
-                var userModel = _userService.GetUserByName(userName);
-                return EntityConvert<UserServiceObject, UserIdentity>(userModel);
-            });
+            throw new NotImplementedException();
         }
 
         public Task<UserIdentity> FindByEmailAsync(string email)
         {
-            return Task<UserIdentity>.Factory.StartNew(() =>
-            {
-                var userModel = _userService.GetUserByEmail(email);
-                var getUser = EntityConvert<UserServiceObject, UserIdentity>(userModel);
-                return getUser;
-            });
+            throw new NotImplementedException();
         }
 
         public Task UpdateAsync(UserIdentity user)
         {
-            return Task.Factory.StartNew(() =>
-            {
-                if (user != null)
-                {
-                    var userToUpdate = new UserServiceObject(user.Id)
-                    {
-                        Email = user.Email,
-                        Password = user.Password
-                    };
-
-                    _userService.Update(userToUpdate);
-                }
-            });
+            throw new NotImplementedException();
         }
 
         public Task DeleteAsync(UserIdentity user)
         {
-            return Task.Factory.StartNew(() =>
-            {
-                if (user != null)
-                    _userService.Remove(user.Id);
-            });
+            throw new NotImplementedException();
         }
 
         public Task<string> GetPasswordHashAsync(UserIdentity user)
         {
-            return Task.Factory.StartNew(() => user?.Password);
+            throw new NotImplementedException();
         }
 
         public Task SetPasswordHashAsync(UserIdentity user, string passwordHash)
         {
-            return Task.Factory.StartNew(() =>
-            {
-                if (user != null)
-                    user.Password = passwordHash;
-            });
+            throw new NotImplementedException();
         }
 
         public Task<bool> HasPasswordAsync(UserIdentity user)
         {
-            return Task.Factory.StartNew(() => user?.Password != null);
+            throw new NotImplementedException();
         }
 
         public Task<string> GetEmailAsync(UserIdentity user)
         {
-            return Task<string>.Factory.StartNew(() => user?.Email);
+            throw new NotImplementedException();
         }
 
-        //Здесь находиться заглушка
         public Task<bool> GetEmailConfirmedAsync(UserIdentity user)
         {
             throw new NotImplementedException();
         }
-        
+
         public Task SetEmailAsync(UserIdentity user, string email)
         {
-            return Task.Factory.StartNew(() =>
-            {
-                user.Email = email;
-            });
+            throw new NotImplementedException();
         }
 
-        //Здесь находиться заглушка
         public Task SetEmailConfirmedAsync(UserIdentity user, bool confirmed)
         {
             throw new NotImplementedException();
         }
 
-        //Здесь находиться заглушка
         public void Dispose()
         {
-            return;
+            //throw new NotImplementedException();
         }
     }
 }
