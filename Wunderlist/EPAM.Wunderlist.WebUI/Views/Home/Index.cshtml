@@ -1,6 +1,25 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<<<<<<< HEAD
+
+<div class="ui secondary menu">
+    <a class="item">
+        <div class="logo"></div>
+        <b style="margin-left: 5px;">Wunderlist</b>
+    </a>
+    <a class="item">Pro</a>
+    <a class="item">Бизнес</a>
+    <a class="item">Скачать</a>
+    <a class="item">Поддержка</a>
+    <a class="item">Блог</a>
+    <div class="right menu">
+        <div class="item">
+            @Html.ActionLink("Вход", "Login", "Account", null, new { @class = "ui right floated grey basic button" })
+        </div>
+        <div class="item">
+            @Html.ActionLink("Создать бесплатную учетную запись", "Register", "Account", null, new { @class = "ui right floated blue button" })
+=======
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +50,7 @@
             <div class="item">
                 <a href="@Url.Action("Register", "Account")" class="ui right floated blue button">Создать бесплатную учетную запись</a>
             </div>
+>>>>>>> refs/remotes/origin/master
         </div>
     </div>
     <div class="intro">

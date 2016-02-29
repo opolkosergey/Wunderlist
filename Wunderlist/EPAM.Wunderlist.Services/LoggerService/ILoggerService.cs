@@ -1,6 +1,6 @@
 ﻿namespace EPAM.Wunderlist.Services.LoggerService
 {
-    public interface ILogger
+    public interface ILoggerService
     {
         void Debug(string message);
         void Trace(string message);

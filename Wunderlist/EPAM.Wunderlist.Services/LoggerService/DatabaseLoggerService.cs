@@ -4,11 +4,11 @@ using EPAM.Wunderlist.DataAccess.API.Entities;
 
 namespace EPAM.Wunderlist.Services.LoggerService
 {
-    public class DatabaseLogger : ILogger
+    public class DatabaseLoggerService : ILoggerService
     {
         private readonly IRepository<LogDbModel> _logRepository;
 
-        public DatabaseLogger(IUnitOfWork unitOfWork)
+        public DatabaseLoggerService(IUnitOfWork unitOfWork)
         {
             if(unitOfWork == null)
                 throw new ArgumentNullException(nameof(unitOfWork));
