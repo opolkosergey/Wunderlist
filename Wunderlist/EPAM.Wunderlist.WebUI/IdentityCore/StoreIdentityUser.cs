@@ -7,7 +7,7 @@ using static EPAM.Wunderlist.WebUI.Mapper.HelperConvert;
 
 namespace EPAM.Wunderlist.WebUI.IdentityCore
 {
-    public class StoreIdentityUser : IUserPasswordStore<UserIdentity, int>, IUserEmailStore<UserIdentity, int>
+    public class StoreIdentityUser : IUserPasswordStore<UserIdentity, int>
     {
         private readonly IUserService _userService;
 
@@ -52,18 +52,9 @@ namespace EPAM.Wunderlist.WebUI.IdentityCore
         {
             return Task<UserIdentity>.Factory.StartNew(() =>
             {
-                var userModel = _userService.GetUserByName(userName);
-                return EntityConvert<UserServiceObject, UserIdentity>(userModel);
-            });
-        }
-
-        public Task<UserIdentity> FindByEmailAsync(string email)
-        {
-            return Task<UserIdentity>.Factory.StartNew(() =>
-            {
-                var userModel = _userService.GetUserByEmail(email);
-                var getUser = EntityConvert<UserServiceObject, UserIdentity>(userModel);
-                return getUser;
+                var userServiceObject = _userService.GetUserByEmail(userName);
+                var userIdentity = EntityConvert<UserServiceObject, UserIdentity>(userServiceObject);
+                return userIdentity;
             });
         }
 
@@ -111,36 +102,7 @@ namespace EPAM.Wunderlist.WebUI.IdentityCore
         {
             return Task.Factory.StartNew(() => user?.Password != null);
         }
-
-        public Task<string> GetEmailAsync(UserIdentity user)
-        {
-            return Task<string>.Factory.StartNew(() => user?.Email);
-        }
-
-        //Здесь находиться заглушка
-        public Task<bool> GetEmailConfirmedAsync(UserIdentity user)
-        {
-            throw new NotImplementedException();
-        }
         
-        public Task SetEmailAsync(UserIdentity user, string email)
-        {
-            return Task.Factory.StartNew(() =>
-            {
-                user.Email = email;
-            });
-        }
-
-        //Здесь находиться заглушка
-        public Task SetEmailConfirmedAsync(UserIdentity user, bool confirmed)
-        {
-            throw new NotImplementedException();
-        }
-
-        //Здесь находиться заглушка
-        public void Dispose()
-        {
-            return;
-        }
+        public void Dispose() {}
     }
 }
