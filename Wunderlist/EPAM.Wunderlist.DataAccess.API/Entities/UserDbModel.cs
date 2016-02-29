@@ -4,13 +4,12 @@ namespace EPAM.Wunderlist.DataAccess.API.Entities
 {
     public class UserDbModel : IEntityDb
     {
-        public UserDbModel(int id = 0)
+        public UserDbModel()
         {
-            ID = id;
             TodoLists = new List<TodoListDbModel>();
         }
 
-        public int ID { get; }
+        public int ID { get; protected set; }
         public string Email { get; set; }
         public string Password { get; set; }
         

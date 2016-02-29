@@ -11,12 +11,7 @@ namespace EPAM.Wunderlist.DataAccess.API.Entities
 
     public class TodoItemDbModel : IEntityDb
     {
-        public TodoItemDbModel(int id = 0)
-        {
-            ID = id;
-        }
-
-        public int ID { get; }
+        public int ID { get; protected set; }
         public int TodoListId { get; set; }
         public string TodoTask { get; set; }
         public DateTime? Date { get; set; }
