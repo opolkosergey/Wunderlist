@@ -95,20 +95,27 @@
         </div>
         <div class="actions">
             <div class="ui black deny button">
-                Nope
+                Отмена
             </div>
             <div class="ui positive right labeled icon button">
-                Yep, that's me
+                Изменить
                 <i class="checkmark icon"></i>
             </div>
         </div>
     </div>
-    <div class="ui modal" id="createListWindow">
+    <div class="ui modal" style="width: 33%; margin-left: -15%;" id="createListWindow">
         <div class="header" style="text-align: center">Создать список</div>
-        <div class="content">
-            <div class="ui left icon large input field" align="center">
-                <input name="email" type="text" placeholder="Имя списка...">
-                <i class="list layout icon"></i>
+        <div class="content" align="center">
+            <div class="ui two column stackable grid">
+                <div class="ten wide column">
+                    <div class="ui left icon large input field">
+                        <input name="email" type="text" placeholder="Имя списка...">
+                        <i class="list layout icon"></i>
+                    </div>
+                </div>
+                <div class="six wide column">
+                    <button class="ui green basic button">Создать</button>
+                </div>
             </div>
             <h4 class="ui horizontal divider header">
                 <i class="tag icon"></i>
