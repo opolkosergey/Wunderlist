@@ -59,6 +59,8 @@
     <Compile Include="PhotoService\IPhotoService.cs" />
     <Compile Include="PhotoService\PhotoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceObjects\TodoItemServiceObject.cs" />
+    <Compile Include="ServiceObjects\TodoListServiceObject.cs" />
     <Compile Include="ServiceObjects\UserServiceObject.cs" />
     <Compile Include="TodoItemsService\ITodoItemsService.cs" />
     <Compile Include="TodoItemsService\TodoItemsService.cs" />

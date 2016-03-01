@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<EPAM.Wunderlist.Services.ServiceObjects.TodoListServiceObject>
 @{
     Layout = null;
 }
@@ -13,7 +13,7 @@
     $(document).ready(function () {
         $("body").on("click", ".ui.ignored.positive.icon.message", function () {
             $('.ui.sidebar').sidebar('toggle');
-        })
+        });
     });
 
     function showComplete() {
@@ -65,7 +65,7 @@
             <i class="comment icon"></i>
         </div>
     </div>
-    <div class="ui standard test modal transition hidden">
+    <div class="ui standard test modal transition hidden" id="profileWindow">
         <div class="header">
             Free account
         </div>
@@ -103,6 +103,28 @@
             </div>
         </div>
     </div>
+    <div class="ui modal" id="createListWindow">
+        <div class="header" style="text-align: center">Создать список</div>
+        <div class="content">
+            <div class="ui left icon large input field" align="center">
+                <input name="email" type="text" placeholder="Имя списка...">
+                <i class="list layout icon"></i>
+            </div>
+            <h4 class="ui horizontal divider header">
+                <i class="tag icon"></i>
+                Описание
+            </h4>
+            <div class="ui horizontal list">
+                <div class="item">
+                    <img class="ui mini circular image" src="/images/avatar2/small/molly.png">
+                    <div class="content">
+                        <div class="ui sub header">@User.Identity.Name</div>
+                        E-mail
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="ui stackable grid">
         <div class="three wide column">
             <div class="ui segment" style="background-color: ghostwhite; height: 100vh;">
@@ -116,10 +138,7 @@
                 <div class="ui divided items">
                     <div class="item" id="username">
                         <a>@User.Identity.Name</a>
-                        </div>
-                        @*<i class="alarm outline icon"></i>
-                            <i class="comment outline icon"></i>*@
-                   
+                    </div>
                     <div class="item">
                         <i class="mail outline icon"></i>
                         <div class="center aligned content">
@@ -127,15 +146,18 @@
                         </div>
                     </div>
                     @for (int i = 0; i < 5; i++)
-                {
-                <div class="item">
-                    <i class="list layout icon"></i>
-                    <div class="middle aligned content">
-                        Список @i
-                    </div>
-                </div>
-                }      
-                        <button class="ui blue basic button" style="position: fixed; bottom: 0;width: 16%"><i class="plus icon"></i>Создать список</button>
+                    {
+                        <div class="item">
+                            <i class="list layout icon"></i>
+                            <div class="middle aligned content">
+                                Список @i
+                            </div>
+                        </div>
+                    }
+                    <button class="ui blue basic button" style="position: fixed; bottom: 0; width: 16%" id="createListButton">
+                        <i class="plus icon"></i>
+                        Создать список
+                    </button>
                 </div>
             </div>
         </div>
@@ -160,8 +182,8 @@
                         </div>
                     </div>
                     <div class="one wide column">
-                       <button class="ui inverted green button" id="addNewItem">Добавить</button>
-                       </div>
+                        <button class="ui inverted green button" id="addNewItem">Добавить</button>
+                    </div>
                 </div>
                 <br /><br />
                 <div id="todos">
@@ -187,15 +209,22 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 </body>
 </html>
 <script>
     $(document).ready(function () {
         $("#username").click(function () {
-            $('.ui.modal').modal('show');
+            $('#profileWindow').modal('show');
         });
     });
+
+    $(document).ready(function () {
+        $("#createListButton").click(function () {
+            $('#createListWindow').modal('show');
+        });
+    });
+
     $(document).ready(function () {
         $(".ui.ignored.positive.icon.message").click(function () {
             $('.ui.sidebar').sidebar('toggle');
