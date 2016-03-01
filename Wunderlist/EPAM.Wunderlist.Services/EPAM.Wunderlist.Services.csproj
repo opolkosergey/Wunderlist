@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -53,15 +57,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\Mapper\HelperConvert.cs" />
     <Compile Include="LoggerService\DatabaseLoggerService.cs" />
     <Compile Include="LoggerService\FileLoggerService.cs" />
     <Compile Include="LoggerService\ILoggerService.cs" />
     <Compile Include="PhotoService\IPhotoService.cs" />
     <Compile Include="PhotoService\PhotoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceObjects\TodoItemServiceObject.cs" />
-    <Compile Include="ServiceObjects\TodoListServiceObject.cs" />
-    <Compile Include="ServiceObjects\UserServiceObject.cs" />
+    <Compile Include="Infrastructure\ServiceObjects\TodoItemServiceObject.cs" />
+    <Compile Include="Infrastructure\ServiceObjects\TodoListServiceObject.cs" />
+    <Compile Include="Infrastructure\ServiceObjects\UserServiceObject.cs" />
     <Compile Include="TodoItemsService\ITodoItemsService.cs" />
     <Compile Include="TodoItemsService\TodoItemsService.cs" />
     <Compile Include="TodoListsService\ITodoListsService.cs" />

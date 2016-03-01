@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EPAM.Wunderlist.DataAccess.API;
 using EPAM.Wunderlist.DataAccess.API.Entities;
+using EPAM.Wunderlist.Services.Infrastructure.ServiceObjects;
 using EPAM.Wunderlist.Services.LoggerService;
+using static EPAM.Wunderlist.Services.Infrastructure.Mapper.HelperConvert;
 
 namespace EPAM.Wunderlist.Services.TodoListsService
 {
@@ -15,37 +18,42 @@ namespace EPAM.Wunderlist.Services.TodoListsService
         public TodoListsService(IUnitOfWork unitOfWork, ILoggerService logger)
         {
             if (unitOfWork == null)
-                throw new ArgumentNullException(nameof(unitOfWork));
+              throw new ArgumentNullException(nameof(unitOfWork));
 
             _unitOfWork = unitOfWork;
             _listRepository = unitOfWork.ListRepository;
             _logger = logger;
         }
 
-        public IQueryable<TodoListDbModel> GetAllTodoLists(int userId)
+        public IEnumerable<TodoListServiceObject> GetAllTodoLists(int userId)
         {
             try
             {
-                if(userId < 0)
+                if (userId < 0)
                     throw new ArgumentException(nameof(userId));
-                return _listRepository.FindBy(l => l.UserID == userId);
+
+                var allUserLists = _listRepository.FindBy(l => l.UserModelID == userId);
+                return EntityConvert<TodoListDbModel, TodoListServiceObject>(allUserLists);
             }
             catch (Exception e)
             {
                 _logger.Error(e.Message);
             }
-            return Enumerable.Empty<TodoListDbModel>().AsQueryable();
+            return Enumerable.Empty<TodoListServiceObject>().AsQueryable();
         }
 
-        public void Add(TodoListDbModel list)
+        public void Add(TodoListServiceObject list)
         {
             try
             {
                 if(list == null)
                     throw new ArgumentNullException(nameof(list));
+
                 if(string.IsNullOrEmpty(list.Name))
                     throw new ArgumentException(nameof(list));
-                _listRepository.Add(list);
+
+                var listToAdd = EntityConvert<TodoListServiceObject, TodoListDbModel>(list);
+                _listRepository.Add(listToAdd);
                 _unitOfWork.Commit();
             }
             catch (Exception e)

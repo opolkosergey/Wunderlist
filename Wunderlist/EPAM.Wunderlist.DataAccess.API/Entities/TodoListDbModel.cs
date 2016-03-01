@@ -10,7 +10,7 @@ namespace EPAM.Wunderlist.DataAccess.API.Entities
         }
 
         public int ID { get; protected set; }
-        public int UserID { get; set; }
+        public int UserModelID { get; set; }
         public string Name { get; set; }
         public virtual UserDbModel UserModel { get; set; }
         public virtual ICollection<TodoItemDbModel> TodoItems { get; set; }

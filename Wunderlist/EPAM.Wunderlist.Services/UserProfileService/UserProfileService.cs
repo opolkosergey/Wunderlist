@@ -21,7 +21,7 @@ namespace EPAM.Wunderlist.Services.UserProfileService
         public void ChangeName(int id, string name)
         {
             if(id < 0)
-                throw new ArgumentException("The ID parameter is less than zero");
+                throw new ArgumentException("ID parameter is less than zero");
 
             if(name == null)
                 throw new ArgumentNullException(nameof(name));
@@ -39,7 +39,7 @@ namespace EPAM.Wunderlist.Services.UserProfileService
         public UserProfileDbModel GetProfile(int userId)
         {
             if (userId < 0)
-                throw new ArgumentException("The ID parameter is less than zero");
+                throw new ArgumentException("ID parameter is less than zero");
 
             return _profileRepository.GetById(userId);
         }

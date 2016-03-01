@@ -1,9 +1,11 @@
 ﻿using System;
-using System.Data.Common;
+using System.Collections.Generic;
 using System.Linq;
 using EPAM.Wunderlist.DataAccess.API;
 using EPAM.Wunderlist.DataAccess.API.Entities;
+using EPAM.Wunderlist.Services.Infrastructure.ServiceObjects;
 using EPAM.Wunderlist.Services.LoggerService;
+using static EPAM.Wunderlist.Services.Infrastructure.Mapper.HelperConvert;
 
 namespace EPAM.Wunderlist.Services.TodoItemsService
 {
@@ -23,28 +25,35 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
             _logger = logger;
         }
 
-        IQueryable<TodoItemDbModel> ITodoItemsService.GetAllItems(int listTodoId)
+        public IEnumerable<TodoItemServiceObject> GetAllItems(int listTodoId)
         {
             try
             {
                 if (listTodoId < 0)
                     throw new ArgumentException(nameof(listTodoId));
-                return _itemsRepository.GetAll().Where(i => i.TodoListId == listTodoId);
+
+                var allUserItems = _itemsRepository.GetAll()
+                    .Where(i => i.TodoListId == listTodoId);
+                
+                return EntityConvert<TodoItemDbModel, TodoItemServiceObject>(allUserItems);
             }
             catch (Exception e)
             {
                 _logger.Error(e.Message);
             }
-            return Enumerable.Empty<TodoItemDbModel>().AsQueryable(); ;
+
+            return Enumerable.Empty<TodoItemServiceObject>().AsQueryable();
         }
 
-        public void Add(TodoItemDbModel item)
+        public void Add(TodoItemServiceObject item)
         {
             try
             {
                 if(item.TodoListId < 0)
                     throw new ArgumentException(nameof(item.TodoListId));
-                _itemsRepository.Add(item);
+
+                var itemToAdd = EntityConvert<TodoItemServiceObject, TodoItemDbModel>(item);
+                _itemsRepository.Add(itemToAdd);
                 _unitOfWork.Commit();
             }
             catch (ArgumentException e)
@@ -65,6 +74,7 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
                     throw new ArgumentException(nameof(id));
                 if (string.IsNullOrEmpty(newTitle))
                     throw new ArgumentException(nameof(newTitle));
+
                 var entity = _itemsRepository.GetById(id);
                 entity.TodoTask = newTitle;
                 _itemsRepository.Update(entity);
@@ -82,6 +92,7 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
             {
                 if(id < 0)
                     throw new ArgumentException(nameof(id));
+
                 _itemsRepository.Remove(id);
                 _unitOfWork.Commit();
             }
@@ -97,6 +108,7 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
             {
                 if (id < 0)
                     throw new ArgumentException(nameof(id));
+
                 var entity = _itemsRepository.GetById(id);
                 entity.Status = status;
                 _itemsRepository.Update(entity);
@@ -114,6 +126,7 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
             {
                 if (id < 0)
                     throw new ArgumentException(nameof(id));
+
                 var item = _itemsRepository.GetById(id);
                 item.Description = description;
                 _itemsRepository.Update(item);
@@ -125,7 +138,7 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
             }
         }
 
-        public void RemoveComment(int id) => AddComment(id,String.Empty);
+        public void RemoveComment(int id) => AddComment(id, string.Empty);
 
         public void MoveItem(int id, int listTodoId)
         {
@@ -133,6 +146,7 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
             {
                 if (id < 0)
                     throw new ArgumentException(nameof(id));
+
                 var item = _itemsRepository.GetById(id);
                 item.TodoListId = listTodoId;
                 _itemsRepository.Update(item);
@@ -159,7 +173,7 @@ namespace EPAM.Wunderlist.Services.TodoItemsService
             }
         }
 
-        public void RemoveDueDate(int id)//???
+        public void RemoveDueDate(int id)
         {
             var item = _itemsRepository.GetById(id);
             item.Date = null;

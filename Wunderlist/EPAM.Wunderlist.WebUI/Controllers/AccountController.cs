@@ -11,7 +11,7 @@ using Microsoft.Owin.Security;
 
 namespace EPAM.Wunderlist.WebUI.Controllers
 {
-    [Authorize]
+    
     public class AccountController : Controller
     {
         private readonly UserManager<UserIdentity, int> _userManager;
@@ -39,7 +39,6 @@ namespace EPAM.Wunderlist.WebUI.Controllers
             _userService = service;
         }
         
-        [AllowAnonymous]
         public ActionResult Register()
         {
             ViewBag.RedirectUrl = "/webapp";
@@ -47,36 +46,31 @@ namespace EPAM.Wunderlist.WebUI.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model, string redirectUrl)
         {
             if (ModelState.IsValid)
-            {
+            { 
                 if (_userService.CheckEmail(model.Email))
                 {
                     ModelState.AddModelError("", "This Email is already occupied. Please enter another Email!");
                 }
                 else
                 {
-                    var user = new UserIdentity { UserName = model.Name, Email = model.Email };
-                    IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+                    var user = new UserIdentity {UserName = model.Name, Email = model.Email};
+                    var result = await _userManager.CreateAsync(user, model.Password);
                     if (result == IdentityResult.Success)
                     {
+                        user = await _userManager.FindByNameAsync(model.Email);
                         await SignInAsync(user, true);
                         return RedirectToAction("Inbox", "Lists");
-                    }
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error);
                     }
                 }
             }
 
             return View(model);
         }
-
-        [AllowAnonymous]
+        
         public ActionResult Login()
         {
             ViewBag.RedirectUrl = "/webapp";
@@ -84,7 +78,6 @@ namespace EPAM.Wunderlist.WebUI.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public async Task<ActionResult> Login(LogOnViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
@@ -105,6 +98,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers
             return View(model);
         }
 
+        [Authorize]
         public ActionResult LogOff()
         {
             SignInManager.SignOut();

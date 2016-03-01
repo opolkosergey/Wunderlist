@@ -13,7 +13,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
             TodoListDbModel[] user1List = {
                 new TodoListDbModel
                 {
-                    Name = "Default",
+                    Name = "Inbox",
                     TodoItems = new[]
                     {
                         new TodoItemDbModel
@@ -81,7 +81,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
             TodoListDbModel[] user2List = {
                 new TodoListDbModel
                 {
-                    Name = "Default",
+                    Name = "Inbox",
                     TodoItems = new[]
                     {
                         new TodoItemDbModel
@@ -152,7 +152,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
             TodoListDbModel[] user3List = {
                 new TodoListDbModel
                 {
-                    Name = "Default"
+                    Name = "Inbox"
                 },
                 new TodoListDbModel
                 {

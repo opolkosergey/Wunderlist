@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EPAM.Wunderlist.Services.ServiceObjects;
+using EPAM.Wunderlist.Services.Infrastructure.ServiceObjects;
 using EPAM.Wunderlist.Services.UserService;
 using Microsoft.AspNet.Identity;
 using static EPAM.Wunderlist.WebUI.Mapper.HelperConvert;
@@ -18,7 +18,7 @@ namespace EPAM.Wunderlist.WebUI.IdentityCore
 
             _userService = userService;
         }
-
+        
         public Task CreateAsync(UserIdentity user)
         {
             if (user != null)
@@ -83,7 +83,7 @@ namespace EPAM.Wunderlist.WebUI.IdentityCore
                     _userService.Remove(user.Id);
             });
         }
-
+        
         public Task<string> GetPasswordHashAsync(UserIdentity user)
         {
             return Task.Factory.StartNew(() => user?.Password);
