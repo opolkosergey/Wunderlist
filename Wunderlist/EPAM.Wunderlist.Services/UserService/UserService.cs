@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EPAM.Wunderlist.DataAccess.API;
 using EPAM.Wunderlist.DataAccess.API.Entities;
-using EPAM.Wunderlist.Services.ServiceObjects;
+using EPAM.Wunderlist.Services.Infrastructure.ServiceObjects;
 
 namespace EPAM.Wunderlist.Services.UserService
 {
@@ -34,6 +35,13 @@ namespace EPAM.Wunderlist.Services.UserService
                 Profile = new UserProfileDbModel
                 {
                     Name = user.UserName
+                },
+                TodoLists = new List<TodoListDbModel>
+                {
+                    new TodoListDbModel()
+                    {
+                        Name = "Inbox"
+                    }
                 }
             };
             

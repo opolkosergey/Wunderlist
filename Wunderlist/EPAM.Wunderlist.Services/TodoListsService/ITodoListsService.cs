@@ -1,12 +1,12 @@
-﻿using System.Linq;
-using EPAM.Wunderlist.DataAccess.API.Entities;
+﻿using System.Collections.Generic;
+using EPAM.Wunderlist.Services.Infrastructure.ServiceObjects;
 
 namespace EPAM.Wunderlist.Services.TodoListsService
 {
     public interface ITodoListsService
     {
-        IQueryable<TodoListDbModel> GetAllTodoLists(int userId);
-        void Add(TodoListDbModel list);
+        IEnumerable<TodoListServiceObject> GetAllTodoLists(int userId);
+        void Add(TodoListServiceObject list);
         void Remove(int id);
         void Rename(int id, string newName);
     }
