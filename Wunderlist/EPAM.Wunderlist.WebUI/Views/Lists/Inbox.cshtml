@@ -8,6 +8,7 @@
 <link href="~/Content/wunderlist.css" rel="stylesheet" />
 <link href="~/Content/semantic.css" rel="stylesheet" />
 <script src="~/Scripts/semantic.js"></script>
+
 <script>
 
     $(document).ready(function () {
@@ -24,6 +25,14 @@
             completed.style.display = "none";
         }
     };
+
+    $(document).ready(function() {
+        $('div a').click(function (e) {
+            var id = e.target.id;
+            $('div a').removeClass('active');
+            $('#' + id).addClass('active');
+        });
+    });
 </script>
 <html>
 <head>
@@ -134,7 +143,7 @@
     </div>
     <div class="ui stackable grid">
         <div class="three wide column">
-            <div class="ui segment" style="background-color: ghostwhite; height: 100vh;">
+            <div class="ui segment" style="height: 100vh;">
                 <div class="ui search">
                     <div class="ui fluid icon input">
                         <input type="text" class="prompt" placeholder="Search your task...">
@@ -146,76 +155,77 @@
                     <div class="item" id="username">
                         <a>@User.Identity.Name</a>
                     </div>
-                    <div class="item">
-                        <i class="mail outline icon"></i>
-                        <div class="center aligned content">
+                    <div class="ui secondary vertical pointing menu" style="width: 100%;">
+                        <a class="active item" id="4">
                             Входящие
-                        </div>
+                        </a>
+                        <a class="item" id="1">
+                            Messages
+                        </a>
+                        <a class="item" id="2">
+                            Friends
+                        </a>
                     </div>
-                    @for (int i = 0; i < 5; i++)
+                
+                @if (Model != null)
+                {
+                    foreach (var list in Model)
                     {
-                        <div class="item">
-                            <i class="list layout icon"></i>
-                            <div class="middle aligned content">
-                                Список @i
-                            </div>
-                        </div>
+                        <a class="item" id="list_@list.ID">
+                                @list.Name
+                        </a>
                     }
-                    <button class="ui blue basic button" style="position: fixed; bottom: 0; width: 16%" id="createListButton">
-                        <i class="plus icon"></i>
-                        Создать список
-                    </button>
-                </div>
+                }
+                <button class="ui blue basic button" style="position: fixed; bottom: 0; width: 16%" id="createListButton">
+                    <i class="plus icon"></i>
+                    Создать список
+                </button>
             </div>
         </div>
-        <div class="thirteen wide column inboxpage" style="margin-left: -15px;">
-            <div class="ui segment" style="opacity: 0.85;">
-                <div>
-                    <h3 style="margin-top: 10px; margin-left: 10px; color: #668964">Входящие</h3>
-                    @*<div style="float: right; margin-top: 10px;">
-                            <i class="add user icon"></i>
-                            <i class="sort alphabet ascending icon"></i>
-                            <i class="ellipsis vertical icon"></i>
-                        </div>*@
-                </div>
-                <br />
-                <div class="ui grid">
-                    <div class="thirteen wide column">
-                        <div class="ui segment">
-                            <div class="ui input" style="border-radius: 5px; height: 45px; position: inherit;width: 100%">
-                                <i class="add plus icon" style="margin-left: 10px; margin-top: 14px;"></i>
-                                <input type="text" style="border: none;" placeholder="Добавить задачу..." id="todoTitle">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="one wide column">
-                        <button class="ui inverted green button" id="addNewItem">Добавить</button>
-                    </div>
-                </div>
-                <br /><br />
-                <div id="todos">
-                    <div class='ui ignored positive icon message' id='0'>
-                        <button class='completeit' style='height: 16px;'></button>
-                        <div class='content' style='margin-left: 20px;'>
-                            <h3 class='header'>asaaa<i class="trash icon" style="float: right"></i></h3>
+    </div>
+    <div class="thirteen wide column inboxpage" style="margin-left: -15px;">
+        <div class="ui segment" style="opacity: 0.85;">
+            <div>
+                <h3 style="margin-top: 10px; margin-left: 10px; color: #668964">Входящие</h3>
+            </div>
+            <br />
+            <div class="ui grid">
+                <div class="thirteen wide column">
+                    <div class="ui segment">
+                        <div class="ui input" style="border-radius: 5px; height: 45px; position: inherit;width: 100%">
+                            <i class="add plus icon" style="margin-left: 10px; margin-top: 14px;"></i>
+                            <input type="text" style="border: none;" placeholder="Добавить задачу..." id="todoTitle">
                         </div>
                     </div>
                 </div>
-                <br />
-                <div style="">
-                    <button class="ui green basic button" onclick="showComplete()">Показать завершенные задачи</button>
+                <div class="one wide column">
+                    <button class="ui inverted green button" id="addNewItem">Добавить</button>
                 </div>
-                <br />
-                <div class="" style="display: none" id="completed">
-                    <div class='ui ignored positive icon message' id='0'>
-                        <button class='completeit' style='height: 16px;'></button>
-                        <div class='content' style='margin-left: 20px;'>
-                            <h3 class='header'>bbbbbbbbbbbb</h3>
-                        </div>
+            </div>
+            <br /><br />
+            <div id="todos">
+                <div class='ui ignored positive icon message' id='0'>
+                    <button class='completeit' style='height: 16px;'></button>
+                    <div class='content' style='margin-left: 20px;'>
+                        <h3 class='header'>asaaa<i class="trash icon" style="float: right"></i></h3>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div>
+                <button class="ui green basic button" onclick="showComplete()">Показать завершенные задачи</button>
+            </div>
+            <br />
+            <div class="" style="display: none" id="completed">
+                <div class='ui ignored positive icon message' id='0'>
+                    <button class='completeit' style='height: 16px;'></button>
+                    <div class='content' style='margin-left: 20px;'>
+                        <h3 class='header'>bbbbbbbbbbbb</h3>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 </html>
