@@ -153,15 +153,22 @@
             </div>
             <br/><br/>
             <div id="todos">
-                <div class='ui ignored positive icon message' id='0'>
+                <div class='ui ignored positive icon message' ng-repeat="todoitem in todoitems">
                     <button class='completeit' style='height: 16px;'></button>
                     <div class='content' style='margin-left: 20px;'>
-                        <h3 class='header'>
-                            asaaa<i class="trash icon" style="float: right"></i>
+                        <h3 class='header' id="{{todoitem.ID}}">
+                            {{todoitem.TodoTask}}<i class="trash icon" style="float: right"></i>
                         </h3>
                     </div>
                 </div>
             </div>
+            <br/>
+            <div class="ui pagination menu" ng-repeat="button in buttons">
+                <a class="item" ng-click="getPage(0,button.no,false)" id="button_{{button.no}}">
+                    {{button.no}}
+                </a>
+            </div>
+            <br/>
             <br/>
             <div>
                 <button class="ui green basic button" onclick="showComplete()">Показать завершенные задачи</button>
