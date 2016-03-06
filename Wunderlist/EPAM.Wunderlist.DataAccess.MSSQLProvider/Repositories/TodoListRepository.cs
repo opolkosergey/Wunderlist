@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Linq;
 using EPAM.Wunderlist.DataAccess.API.Entities;
 
 namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Repositories

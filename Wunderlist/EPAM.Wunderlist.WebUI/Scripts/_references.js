@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="../angular/lists/app.js" />
 /// <reference path="../content/components/accordion.js" />
 /// <reference path="../content/components/api.js" />
 /// <reference path="../content/components/checkbox.js" />

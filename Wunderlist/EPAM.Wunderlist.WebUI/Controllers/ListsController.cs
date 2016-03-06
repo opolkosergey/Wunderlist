@@ -27,12 +27,12 @@ namespace EPAM.Wunderlist.WebUI.Controllers
 
         public ActionResult Inbox()
         {
-            var lists = _listService.GetAllTodoLists(User.Identity.GetUserId<int>());
-            var listIndoxId = lists.First(p => p.Name == "Inbox").ID;
-            var inboxItems = _itemService.GetAllItems(listIndoxId);
+            //var lists = _listService.GetAllTodoLists(User.Identity.GetUserId<int>());
+            //var listIndoxId = lists.First(p => p.Name == "Inbox").ID;
+            //var inboxItems = _itemService.GetAllItems(listIndoxId);
 
-            ViewBag.Lists = lists;
-            ViewBag.InboxItems = inboxItems;
+            //ViewBag.Lists = lists;
+            //ViewBag.InboxItems = inboxItems;
 
             return View();
         }

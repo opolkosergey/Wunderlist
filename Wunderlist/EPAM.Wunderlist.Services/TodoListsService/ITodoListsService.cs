@@ -6,7 +6,7 @@ namespace EPAM.Wunderlist.Services.TodoListsService
     public interface ITodoListsService
     {
         IEnumerable<TodoListServiceObject> GetAllTodoLists(int userId);
-        void Add(TodoListServiceObject list);
+        int Add(TodoListServiceObject list);
         void Remove(int id);
         void Rename(int id, string newName);
     }

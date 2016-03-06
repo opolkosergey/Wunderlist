@@ -1,300 +1,544 @@
-﻿@model IEnumerable<EPAM.Wunderlist.Services.Infrastructure.ServiceObjects.TodoListServiceObject>
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-<script src="~/Scripts/jquery-2.2.0.js"></script>
+﻿<!DOCTYPE html>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <link href="~/Content/wunderlist.css" rel="stylesheet" />
 <link href="~/Content/semantic.css" rel="stylesheet" />
 <script src="~/Scripts/semantic.js"></script>
-
+<link href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' rel='stylesheet' type='text/css' media='all' />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js' type='text/javascript'></script>
+<script src="~/angular/Lists/app.js"></script>
 <script>
-
     $(document).ready(function () {
-        $("body").on("click", ".ui.ignored.positive.icon.message", function () {
-            $('.ui.sidebar').sidebar('toggle');
-        });
-    });
-
-    function showComplete() {
-        var completed = document.getElementById("completed");
-        if (completed.style.display === "none") {
-            completed.style.display = "inherit";
-        } else {
-            completed.style.display = "none";
-        }
-    };
-
-    $(document).ready(function() {
-        $('div a').click(function (e) {
-            var id = e.target.id;
-            $('div a').removeClass('active');
-            $('#' + id).addClass('active');
-        });
+        window.location = "http://localhost:54838/Lists/Inbox/?#/home";
     });
 </script>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Inbox</title>
+    <title>My Angular App!</title>
 </head>
-<body>
-    <div class="ui simple sidebar vertical menu right">
-        <div>
-            <h3 style="text-align: center">name</h3>
-        </div>
-        <div class="ui left icon input field" style="width: 258px;">
-            <input name="email" type="text" placeholder="Задать дату выполнения">
-            <i class="calendar icon"></i>
-        </div>
+<body ng-app="app">
+<ui-view>
 
-        <div class="ui left icon input field" style="width: 258px;">
-            <input name="email" type="text" placeholder="Напомнить">
-            <i class="clock icon"></i>
-        </div>
+</ui-view>
+</body>
+</html>
+@*@model IEnumerable<EPAM.Wunderlist.Services.Infrastructure.ServiceObjects.TodoListServiceObject>
+    @{
+        Layout = null;
+    }
 
-        <div class="ui left icon input field" style="width: 258px;">
-            <input name="email" type="text" placeholder="Добавить подзадачу">
-            <i class="plus icon"></i>
-        </div>
+    <!DOCTYPE html>
+    <script src="~/Scripts/jquery-2.2.0.js"></script>
+    <link href="~/Content/wunderlist.css" rel="stylesheet" />
+    <link href="~/Content/semantic.css" rel="stylesheet" />
+    <script src="~/Scripts/semantic.js"></script>
+    <script src="~/angular/Lists/app.js"></script>
+    <link href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.css' rel='stylesheet' type='text/css' media='all' />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js' type='text/javascript'></script>
+    <script>
+        $(document).ready(function () {
+            $("#createListButton").click(function () {
+                $('#createListWindow').modal('show');
+            });
+        });
+    </script>
 
-        <div class="ui left icon input field" style="width: 258px;">
-            <input name="email" type="text" placeholder="Добавить заметку">
-            <i class="pencil icon"></i>
-        </div>
-
-        <div class="ui left icon input field" style="width: 258px;">
-            <input name="email" type="text" placeholder="Добавить файл">
-            <i class="attach icon"></i>
-        </div>
-
-        <div class="ui left icon input field" style="width: 258px; position: fixed;bottom: 0">
-            <input name="email" type="text" placeholder="Добавить комментарий">
-            <i class="comment icon"></i>
-        </div>
-    </div>
-    <div class="ui standard test modal transition hidden" id="profileWindow">
-        <div class="header">
-            Free account
-        </div>
-        <div class="image content">
-            <div class="ui medium image">
-                <img style="border-radius: 150px;" src="~/Content/images/Homer-Simpson.jpg" />
-            </div>
-            <div class="description">
-                <div class="ui header">Profile</div>
-                <br />
-                <div class="ui input large">
-                    <label>Name</label>
-                    <input type="text" style="width: 380px; margin-left: 30px;" placeholder="name">
-                </div>
-                <br /><br />
-                <div class="ui input large">
-                    <label>Email</label>
-                    <input type="text" placeholder="email" style="margin-left: 33px;">
-                    <button style="margin-left: 50px;" class="ui black basic button">Change Email</button>
-                </div>
-                <br /><br />
-                <div class="ui input large">
-                    <label>Password</label>
-                    <button style="width: 205px; margin-left: 5px;" class="ui black basic button">Change Password</button>
-                </div>
-            </div>
-        </div>
-        <div class="actions">
-            <div class="ui black deny button">
-                Отмена
-            </div>
-            <div class="ui positive right labeled icon button">
-                Изменить
-                <i class="checkmark icon"></i>
-            </div>
-        </div>
-    </div>
-    <div class="ui modal" style="width: 33%; margin-left: -15%;" id="createListWindow">
-        <div class="header" style="text-align: center">Создать список</div>
-        <div class="content" align="center">
-            <div class="ui two column stackable grid">
-                <div class="ten wide column">
-                    <div class="ui left icon large input field">
-                        <input name="email" type="text" placeholder="Имя списка...">
-                        <i class="list layout icon"></i>
-                    </div>
-                </div>
-                <div class="six wide column">
-                    <button class="ui green basic button">Создать</button>
-                </div>
-            </div>
-            <h4 class="ui horizontal divider header">
-                <i class="tag icon"></i>
-                Описание
-            </h4>
-            <div class="ui horizontal list">
-                <div class="item">
-                    <img class="ui mini circular image" src="/images/avatar2/small/molly.png">
-                    <div class="content">
-                        <div class="ui sub header">@User.Identity.Name</div>
-                        E-mail
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="ui stackable grid">
-        <div class="three wide column">
-            <div class="ui segment" style="height: 100vh;">
-                <div class="ui search">
-                    <div class="ui fluid icon input">
-                        <input type="text" class="prompt" placeholder="Search your task...">
-                        <i class="search icon"></i>
-                    </div>
-                    <div class="results"></div>
-                </div>
-                <div class="ui divided items">
-                    <div class="item" id="username">
-                        <a>@User.Identity.Name</a>
-                    </div>
-                    <div class="ui secondary vertical pointing menu" style="width: 100%;">
-                        <a class="active item" id="4">
-                            Входящие
-                        </a>
-                        <a class="item" id="1">
-                            Messages
-                        </a>
-                        <a class="item" id="2">
-                            Friends
-                        </a>
-                    </div>
-                
-                @if (Model != null)
-                {
-                    foreach (var list in Model)
-                    {
-                        <a class="item" id="list_@list.ID">
-                                @list.Name
-                        </a>
-                    }
-                }
-                <button class="ui blue basic button" style="position: fixed; bottom: 0; width: 16%" id="createListButton">
-                    <i class="plus icon"></i>
-                    Создать список
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="thirteen wide column inboxpage" style="margin-left: -15px;">
-        <div class="ui segment" style="opacity: 0.85;">
+    <html>
+    <head>
+        <title>My Angular App!</title>
+        <script src="~/angular/Lists/app.js"></script>
+    </head>
+    <body ng-app="app">
+        <div class="ui simple sidebar vertical menu right">
             <div>
-                <h3 style="margin-top: 10px; margin-left: 10px; color: #668964">Входящие</h3>
+                <h3 style="text-align: center">name</h3>
             </div>
-            <br />
-            <div class="ui grid">
-                <div class="thirteen wide column">
-                    <div class="ui segment">
-                        <div class="ui input" style="border-radius: 5px; height: 45px; position: inherit;width: 100%">
-                            <i class="add plus icon" style="margin-left: 10px; margin-top: 14px;"></i>
-                            <input type="text" style="border: none;" placeholder="Добавить задачу..." id="todoTitle">
+            <div class="ui left icon input field" style="width: 258px;">
+                <input name="email" type="text" placeholder="Задать дату выполнения">
+                <i class="calendar icon"></i>
+            </div>
+
+            <div class="ui left icon input field" style="width: 258px;">
+                <input name="email" type="text" placeholder="Напомнить">
+                <i class="clock icon"></i>
+            </div>
+
+            <div class="ui left icon input field" style="width: 258px;">
+                <input name="email" type="text" placeholder="Добавить подзадачу">
+                <i class="plus icon"></i>
+            </div>
+
+            <div class="ui left icon input field" style="width: 258px;">
+                <input name="email" type="text" placeholder="Добавить заметку">
+                <i class="pencil icon"></i>
+            </div>
+
+            <div class="ui left icon input field" style="width: 258px;">
+                <input name="email" type="text" placeholder="Добавить файл">
+                <i class="attach icon"></i>
+            </div>
+
+            <div class="ui left icon input field" style="width: 258px; position: fixed;bottom: 0">
+                <input name="email" type="text" placeholder="Добавить комментарий">
+                <i class="comment icon"></i>
+            </div>
+        </div>
+        <div class="ui standard test modal transition hidden" id="profileWindow">
+            <div class="header">
+                Free account
+            </div>
+            <div class="image content">
+                <div class="ui medium image">
+                    <img style="border-radius: 150px;" src="~/Content/images/Homer-Simpson.jpg" />
+                </div>
+                <div class="description">
+                    <div class="ui header">Profile</div>
+                    <br />
+                    <div class="ui input large">
+                        <label>Name</label>
+                        <input type="text" style="width: 380px; margin-left: 30px;" placeholder="name">
+                    </div>
+                    <br /><br />
+                    <div class="ui input large">
+                        <label>Email</label>
+                        <input type="text" placeholder="email" style="margin-left: 33px;">
+                        <button style="margin-left: 50px;" class="ui black basic button">Change Email</button>
+                    </div>
+                    <br /><br />
+                    <div class="ui input large">
+                        <label>Password</label>
+                        <button style="width: 205px; margin-left: 5px;" class="ui black basic button">Change Password</button>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui black deny button">
+                    Отмена
+                </div>
+                <div class="ui positive right labeled icon button">
+                    Изменить
+                    <i class="checkmark icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ui modal" style="width: 33%; margin-left: -15%;" id="createListWindow">
+            <div class="header" style="text-align: center">Создать список</div>
+            <div class="content" align="center">
+
+
+                <form ng-submit="addList()">
+                    <div class="ui two column stackable grid">
+                        <div class="ten wide column">
+                            <div class="ui left icon large input field">
+                                <input ng-model="title" type="text" placeholder="Имя списка...">
+                                <i class="list layout icon"></i>
+                            </div>
+                        </div>
+                        <div class="six wide column">
+                            <button type="submit" class="ui green basic button">Создать</button>
+                        </div>
+                    </div>
+                </form>
+
+                <h4 class="ui horizontal divider header">
+                    <i class="tag icon"></i>
+                    Описание
+                </h4>
+                <div class="ui horizontal list">
+                    <div class="item">
+                        <img class="ui mini circular image" src="/images/avatar2/small/molly.png">
+                        <div class="content">
+                            <div class="ui sub header">@User.Identity.Name</div>
+                            E-mail
                         </div>
                     </div>
                 </div>
-                <div class="one wide column">
-                    <button class="ui inverted green button" id="addNewItem">Добавить</button>
-                </div>
             </div>
-            <br /><br />
-            <div id="todos">
-                <div class='ui ignored positive icon message' id='0'>
-                    <button class='completeit' style='height: 16px;'></button>
-                    <div class='content' style='margin-left: 20px;'>
-                        <h3 class='header'>asaaa<i class="trash icon" style="float: right"></i></h3>
+
+        </div>
+
+        <div class="ui stackable grid">
+            <div class="three wide column">
+                <div class="ui segment" style="height: 100vh;">
+                    <div class="ui search">
+                        <div class="ui fluid icon input">
+                            <input type="text" class="prompt" placeholder="Search your task...">
+                            <i class="search icon"></i>
+                        </div>
+                        <div class="results"></div>
+                    </div>
+                    <div class="ui divided items">
+                        <div class="item" id="username">
+                            <a>@User.Identity.Name</a>
+                        </div>
+                        <div ng-repeat="list in lists" class="ui secondary vertical pointing menu" style="width: 100%;">
+                            <a class="active item" id="{{list.Id}}">
+                                aa1
+                            </a>
+
+                        </div>
+
+
+                        <button class="ui blue basic button" style="position: fixed; bottom: 0; width: 16%" id="createListButton">
+                            <i class="plus icon"></i>
+                            Создать список
+                        </button>
                     </div>
                 </div>
             </div>
-            <br />
-            <div>
-                <button class="ui green basic button" onclick="showComplete()">Показать завершенные задачи</button>
-            </div>
-            <br />
-            <div class="" style="display: none" id="completed">
-                <div class='ui ignored positive icon message' id='0'>
-                    <button class='completeit' style='height: 16px;'></button>
-                    <div class='content' style='margin-left: 20px;'>
-                        <h3 class='header'>bbbbbbbbbbbb</h3>
+            <div class="thirteen wide column inboxpage" style="margin-left: -15px;">
+                <div class="ui segment" style="opacity: 0.85;">
+                    <div>
+                        <h3 style="margin-top: 10px; margin-left: 10px; color: #668964">Входящие</h3>
+                    </div>
+                    <br />
+                    <div class="ui grid">
+                        <div class="thirteen wide column">
+                            <div class="ui segment">
+                                <div class="ui input" style="border-radius: 5px; height: 45px; position: inherit; width: 100%">
+                                    <i class="add plus icon" style="margin-left: 10px; margin-top: 14px;"></i>
+                                    <input type="text" style="border: none;" placeholder="Добавить задачу..." id="todoTitle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="one wide column">
+                            <button class="ui inverted green button" id="addNewItem">Добавить</button>
+                        </div>
+                    </div>
+                    <br /><br />
+                    <div id="todos">
+                        <div class='ui ignored positive icon message' id='0'>
+                            <button class='completeit' style='height: 16px;'></button>
+                            <div class='content' style='margin-left: 20px;'>
+                                <h3 class='header'>
+                                    asaaa<i class="trash icon" style="float: right"></i>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        <button class="ui green basic button" onclick="showComplete()">Показать завершенные задачи</button>
+                    </div>
+                    <br />
+                    <div class="" style="display: none" id="completed">
+                        <div class='ui ignored positive icon message' id='0'>
+                            <button class='completeit' style='height: 16px;'></button>
+                            <div class='content' style='margin-left: 20px;'>
+                                <h3 class='header'>bbbbbbbbbbbb</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-</body>
-</html>
-<script>
-    $(document).ready(function () {
-        $("#username").click(function () {
-            $('#profileWindow').modal('show');
-        });
-    });
+    </body>
+    </html>*@
 
-    $(document).ready(function () {
-        $("#createListButton").click(function () {
-            $('#createListWindow').modal('show');
-        });
-    });
 
-    $(document).ready(function () {
-        $(".ui.ignored.positive.icon.message").click(function () {
-            $('.ui.sidebar').sidebar('toggle');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<script>
+
+        $(document).ready(function () {
+            $("body").on("click", ".ui.ignored.positive.icon.message", function () {
+                $('.ui.sidebar').sidebar('toggle');
+            });
         });
-    });
-    $(document).ready(function () {
-        $("#addNewItem").click(function () {
-            var title = $("#todoTitle").val();
-            var todo = "<div class='ui ignored positive icon message' id='0'>" +
-                "<button class='completeit' style='height: 16px;'></button>" +
-                "<div class='content' style='margin-left: 20px;'>" +
-                    "<h3 class='header'>" + title + "<i class='trash icon' style='float: right'></i></h3>" +
-                "</div></div>";
-            //var todo = "<div class='ui ignored positive icon message' id='0'>" +
-            //    "<button class='completeit' style='height: 16px;' onclick='completeit(this)'></button>" +
-            //    "<div class='content' style='margin-left: 20px;'>" +
-            //    "<h3 class='header'>" + title + "</h3></div></div>";
-            $("#todoTitle").val('');
-            $("#todos").append(todo);
+
+        function showComplete() {
+            var completed = document.getElementById("completed");
+            if (completed.style.display === "none") {
+                completed.style.display = "inherit";
+            } else {
+                completed.style.display = "none";
+            }
+        };
+
+        $(document).ready(function() {
+            $('div a').click(function (e) {
+                var id = e.target.id;
+                $('div a').removeClass('active');
+                $('#' + id).addClass('active');
+            });
         });
-    });
-</script>
-<script>
-    var content = [
-        { title: 'Andorra' },
-        { title: 'United Arab Emirates' },
-        { title: 'Afghanistan' },
-        { title: 'Antigua' },
-        { title: 'Anguilla' },
-        { title: 'Albania' },
-        { title: 'Armenia' },
-        { title: 'Netherlands Antilles' },
-        { title: 'Angola' },
-        { title: 'Argentina' },
-        { title: 'American Samoa' },
-        { title: 'Austria' },
-        { title: 'Australia' },
-        { title: 'Aruba' },
-        { title: 'Aland Islands' },
-        { title: 'Azerbaijan' },
-        { title: 'Bosnia' },
-        { title: 'Barbados' },
-        { title: 'Bangladesh' },
-        { title: 'Belgium' },
-        { title: 'Burkina Faso' },
-        { title: 'Bulgaria' },
-        { title: 'Bahrain' },
-        { title: 'Burundi' }
-        // etc
-    ];
-    $('.ui.search')
-            .search({
-                source: content
-            })
-    ;
-</script>
+    </script>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Inbox</title>
+    </head>
+    <body>
+        <div class="ui simple sidebar vertical menu right">
+            <div>
+                <h3 style="text-align: center">name</h3>
+            </div>
+            <div class="ui left icon input field" style="width: 258px;">
+                <input name="email" type="text" placeholder="Задать дату выполнения">
+                <i class="calendar icon"></i>
+            </div>
+
+            <div class="ui left icon input field" style="width: 258px;">
+                <input name="email" type="text" placeholder="Напомнить">
+                <i class="clock icon"></i>
+            </div>
+
+            <div class="ui left icon input field" style="width: 258px;">
+                <input name="email" type="text" placeholder="Добавить подзадачу">
+                <i class="plus icon"></i>
+            </div>
+
+            <div class="ui left icon input field" style="width: 258px;">
+                <input name="email" type="text" placeholder="Добавить заметку">
+                <i class="pencil icon"></i>
+            </div>
+
+            <div class="ui left icon input field" style="width: 258px;">
+                <input name="email" type="text" placeholder="Добавить файл">
+                <i class="attach icon"></i>
+            </div>
+
+            <div class="ui left icon input field" style="width: 258px; position: fixed;bottom: 0">
+                <input name="email" type="text" placeholder="Добавить комментарий">
+                <i class="comment icon"></i>
+            </div>
+        </div>
+        <div class="ui standard test modal transition hidden" id="profileWindow">
+            <div class="header">
+                Free account
+            </div>
+            <div class="image content">
+                <div class="ui medium image">
+                    <img style="border-radius: 150px;" src="~/Content/images/Homer-Simpson.jpg" />
+                </div>
+                <div class="description">
+                    <div class="ui header">Profile</div>
+                    <br />
+                    <div class="ui input large">
+                        <label>Name</label>
+                        <input type="text" style="width: 380px; margin-left: 30px;" placeholder="name">
+                    </div>
+                    <br /><br />
+                    <div class="ui input large">
+                        <label>Email</label>
+                        <input type="text" placeholder="email" style="margin-left: 33px;">
+                        <button style="margin-left: 50px;" class="ui black basic button">Change Email</button>
+                    </div>
+                    <br /><br />
+                    <div class="ui input large">
+                        <label>Password</label>
+                        <button style="width: 205px; margin-left: 5px;" class="ui black basic button">Change Password</button>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui black deny button">
+                    Отмена
+                </div>
+                <div class="ui positive right labeled icon button">
+                    Изменить
+                    <i class="checkmark icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ui modal" style="width: 33%; margin-left: -15%;" id="createListWindow">
+            <div class="header" style="text-align: center">Создать список</div>
+            <div class="content" align="center">
+                <div class="ui two column stackable grid">
+                    <div class="ten wide column">
+                        <div class="ui left icon large input field">
+                            <input name="email" type="text" placeholder="Имя списка...">
+                            <i class="list layout icon"></i>
+                        </div>
+                    </div>
+                    <div class="six wide column">
+                        <button class="ui green basic button">Создать</button>
+                    </div>
+                </div>
+                <h4 class="ui horizontal divider header">
+                    <i class="tag icon"></i>
+                    Описание
+                </h4>
+                <div class="ui horizontal list">
+                    <div class="item">
+                        <img class="ui mini circular image" src="/images/avatar2/small/molly.png">
+                        <div class="content">
+                            <div class="ui sub header">@User.Identity.Name</div>
+                            E-mail
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui stackable grid">
+            <div class="three wide column">
+                <div class="ui segment" style="height: 100vh;">
+                    <div class="ui search">
+                        <div class="ui fluid icon input">
+                            <input type="text" class="prompt" placeholder="Search your task...">
+                            <i class="search icon"></i>
+                        </div>
+                        <div class="results"></div>
+                    </div>
+                    <div class="ui divided items">
+                        <div class="item" id="username">
+                            <a>@User.Identity.Name</a>
+                        </div>
+                        <div class="ui secondary vertical pointing menu" style="width: 100%;">
+                            <a class="active item" id="4">
+                                Входящие
+                            </a>
+                            <a class="item" id="1">
+                                Messages
+                            </a>
+                            <a class="item" id="2">
+                                Friends
+                            </a>
+                        </div>
+
+                    @if (Model != null)
+                    {
+                        foreach (var list in Model)
+                        {
+                            <a class="item" id="list_@list.ID">
+                                    @list.Name
+                            </a>
+                        }
+                    }
+                    <button class="ui blue basic button" style="position: fixed; bottom: 0; width: 16%" id="createListButton">
+                        <i class="plus icon"></i>
+                        Создать список
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="thirteen wide column inboxpage" style="margin-left: -15px;">
+            <div class="ui segment" style="opacity: 0.85;">
+                <div>
+                    <h3 style="margin-top: 10px; margin-left: 10px; color: #668964">Входящие</h3>
+                </div>
+                <br />
+                <div class="ui grid">
+                    <div class="thirteen wide column">
+                        <div class="ui segment">
+                            <div class="ui input" style="border-radius: 5px; height: 45px; position: inherit;width: 100%">
+                                <i class="add plus icon" style="margin-left: 10px; margin-top: 14px;"></i>
+                                <input type="text" style="border: none;" placeholder="Добавить задачу..." id="todoTitle">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="one wide column">
+                        <button class="ui inverted green button" id="addNewItem">Добавить</button>
+                    </div>
+                </div>
+                <br /><br />
+                <div id="todos">
+                    <div class='ui ignored positive icon message' id='0'>
+                        <button class='completeit' style='height: 16px;'></button>
+                        <div class='content' style='margin-left: 20px;'>
+                            <h3 class='header'>asaaa<i class="trash icon" style="float: right"></i></h3>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div>
+                    <button class="ui green basic button" onclick="showComplete()">Показать завершенные задачи</button>
+                </div>
+                <br />
+                <div class="" style="display: none" id="completed">
+                    <div class='ui ignored positive icon message' id='0'>
+                        <button class='completeit' style='height: 16px;'></button>
+                        <div class='content' style='margin-left: 20px;'>
+                            <h3 class='header'>bbbbbbbbbbbb</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+    </html>
+    <script>
+        $(document).ready(function () {
+            $("#username").click(function () {
+                $('#profileWindow').modal('show');
+            });
+        });
+
+        $(document).ready(function () {
+            $("#createListButton").click(function () {
+                $('#createListWindow').modal('show');
+            });
+        });
+
+        $(document).ready(function () {
+            $(".ui.ignored.positive.icon.message").click(function () {
+                $('.ui.sidebar').sidebar('toggle');
+            });
+        });
+        $(document).ready(function () {
+            $("#addNewItem").click(function () {
+                var title = $("#todoTitle").val();
+                var todo = "<div class='ui ignored positive icon message' id='0'>" +
+                    "<button class='completeit' style='height: 16px;'></button>" +
+                    "<div class='content' style='margin-left: 20px;'>" +
+                        "<h3 class='header'>" + title + "<i class='trash icon' style='float: right'></i></h3>" +
+                    "</div></div>";
+                //var todo = "<div class='ui ignored positive icon message' id='0'>" +
+                //    "<button class='completeit' style='height: 16px;' onclick='completeit(this)'></button>" +
+                //    "<div class='content' style='margin-left: 20px;'>" +
+                //    "<h3 class='header'>" + title + "</h3></div></div>";
+                $("#todoTitle").val('');
+                $("#todos").append(todo);
+            });
+        });
+    </script>
+    <script>
+        var content = [
+            { title: 'Andorra' },
+            { title: 'United Arab Emirates' },
+            { title: 'Afghanistan' },
+            { title: 'Antigua' },
+            { title: 'Anguilla' },
+            { title: 'Albania' },
+            { title: 'Armenia' },
+            { title: 'Netherlands Antilles' },
+            { title: 'Angola' },
+            { title: 'Argentina' },
+            { title: 'American Samoa' },
+            { title: 'Austria' },
+            { title: 'Australia' },
+            { title: 'Aruba' },
+            { title: 'Aland Islands' },
+            { title: 'Azerbaijan' },
+            { title: 'Bosnia' },
+            { title: 'Barbados' },
+            { title: 'Bangladesh' },
+            { title: 'Belgium' },
+            { title: 'Burkina Faso' },
+            { title: 'Bulgaria' },
+            { title: 'Bahrain' },
+            { title: 'Burundi' }
+            // etc
+        ];
+        $('.ui.search')
+                .search({
+                    source: content
+                })
+        ;
+    </script>*@

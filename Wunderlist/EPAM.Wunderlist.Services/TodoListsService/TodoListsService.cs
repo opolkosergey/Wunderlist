@@ -42,7 +42,7 @@ namespace EPAM.Wunderlist.Services.TodoListsService
             return Enumerable.Empty<TodoListServiceObject>().AsQueryable();
         }
 
-        public void Add(TodoListServiceObject list)
+        public int Add(TodoListServiceObject list)
         {
             try
             {
@@ -55,11 +55,13 @@ namespace EPAM.Wunderlist.Services.TodoListsService
                 var listToAdd = EntityConvert<TodoListServiceObject, TodoListDbModel>(list);
                 _listRepository.Add(listToAdd);
                 _unitOfWork.Commit();
+                return listToAdd.ID;
             }
             catch (Exception e)
             {
                 _logger.Error(e.Message);   
             }
+            return -1;
         }
 
         public void Remove(int id)

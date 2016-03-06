@@ -49,6 +49,6 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Repositories
         public virtual void Update(TEntity entity)
         {
             _dbSet.AddOrUpdate(entity);
-        }
+        } 
     }
 }
