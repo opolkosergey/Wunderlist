@@ -119,10 +119,7 @@
     <!--ПОКА БЕЗ КОНТРОЛЛЕРА-->
 <!--ГЛАВНОЕ ОКНО-->
     <div class="pusher">
-
-
         <div class="ui stackable grid">
-
             <!--левое меню для отображения имени пользователя и списка задач-->
             <div class="three wide column">
                 <div class="ui segment" style="background-color: ghostwhite; height: 100vh;">
@@ -138,23 +135,13 @@
                         <div class="item" id="username">
                             <a ng-cloak>{{user.UserName}}</a>
                         </div>
-                        <div class="ui secondary vertical pointing menu" ng-repeat="list in lists" ng-click="listChange(list.Id)">
-
+                        <div class="ui secondary vertical pointing menu" style="width: 100%" 
+                             ng-repeat="list in lists" ng-click="listChange(list.Id)">
                             <a class="item" id="list_{{list.Id}}">
-                                @*<i class="list layout icon" style="float: left"></i>*@
                                 <span ng-cloak>{{list.Name}}</span>
-                                <span class="badge" ng-cloak>{{list.CountItem}}</span>
-
+                                <div class="ui label">{{list.CountItem}}</div>
                             </a>
                         </div>
-
-                        <!--<div class="item">
-                            <i class="mail outline icon"></i>
-                            <div class="center aligned content">
-                                Входящие
-                            </div>
-                        </div>-->
-
                         <button class="ui blue basic button" style="position: fixed; bottom: 0; width: 16%" id="createListButton">
                             <i class="plus icon"></i>
                             Создать список
@@ -197,11 +184,10 @@
                         <div class='ui ignored positive icon message' ng-repeat="item in items | filter : { Status : '1'}">
                             <button style='height: 16px;' ng-click="completeIt(item.Id)"></button>
                             <div class='content' style='margin-left: 20px;'>
-                                <h3 class='header' ng-click="details(item)" ng-cloak>
+                                <span ng-click="details(item)" ng-cloak>
                                     {{item.TodoTask}}
-                                    <i class="trash icon" style="float: right" ng-click="deleteItem(item.Id)"></i>
-                                </h3>
-
+                                </span>
+                                <i class="trash icon" style="float: right" ng-click="deleteItem(item.Id)"></i>
                             </div>
                         </div>
                     </div>
