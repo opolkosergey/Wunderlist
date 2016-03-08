@@ -63,6 +63,8 @@ function ($scope, lists, $http, buttons,todoitems) {
     };
     $scope.displayItems = function(id) {
         alert(id);
+        $(".ui.secondary.vertical.pointing.menu a").removeClass("active");
+        $("#list_" + id).addClass("active");
     };
     $scope.getPage = function(idList, page,flag) {
         $http.get('/api/List?id=' + idList + '&page=' + page + '&isNeededPagesCount=' + flag)
@@ -113,11 +115,11 @@ app.factory('buttons', [function () {
 app.factory('lists', [function () {
     var o = {
         lists: [
-          { title: 'list 1', upvotes: 5 },
-  { title: 'list 2', upvotes: 2 },
-  { title: 'list 3', upvotes: 15 },
-  { title: 'list 4', upvotes: 9 },
-  { title: 'list 5', upvotes: 4 }]
+          { title: 'aaaaa',id: '1' },
+  { title: 'bbbbbb',id: '2' },
+  { title: 'cccccc',id: '3' },
+  { title: 'dddddd',id: '4' },
+  { title: 'eeeeee',id: '5' }]
     };
     return o;
 }]);

@@ -119,8 +119,8 @@
                 <div class="item" id="username" onclick="$('#profileWindow').modal('show');">
                     <a id="user_name">UserName</a>
                 </div> 
-                <div ng-repeat="list in lists" class="ui secondary vertical pointing menu" style="width: 100%;">
-                    <a class="item" ng-click="displayItems(list.id)">
+                <div class="ui secondary vertical pointing menu" ng-repeat="list in lists" style="width: 100%">
+                    <a class="item" ng-click="displayItems(list.id)" id="list_{{list.id}}">
                         {{list.title}}
                     </a>
                 </div>

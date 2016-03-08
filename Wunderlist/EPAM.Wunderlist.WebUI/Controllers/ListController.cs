@@ -23,30 +23,31 @@ namespace EPAM.Wunderlist.WebUI.Controllers
             _userService = userService;
         }
         // GET: api/List
-        public JsonResult<ArrayList> Get(int id,int page, bool isNeededPagesCount)
-        {
-            var list = new List<TodoItemServiceObject>
-            {
-                new TodoItemServiceObject() {ID = 0, TodoTask = "qwerty"},
-                new TodoItemServiceObject() {ID = 1, TodoTask = "asdfgh"},
-                new TodoItemServiceObject() {ID = 2, TodoTask = "zxcvbnm"},
-                new TodoItemServiceObject() {ID = 3, TodoTask = "ghjkljh"},
-                new TodoItemServiceObject() {ID = 4, TodoTask = "yrhytjh"},
-                new TodoItemServiceObject() {ID = 5, TodoTask = "b kcmbktomb"},
-                new TodoItemServiceObject() {ID = 6, TodoTask = "dog egue0 uge"},
-                new TodoItemServiceObject() {ID = 7, TodoTask = "reg ege e"}
-            };
-            var res = list.Skip((page-1) * 4).Take(4).ToList();
-            var arrlist = new ArrayList();
-            if (isNeededPagesCount)
-            {
-                if (list.Count % 4 == 0)
-                    arrlist.Add(list.Count / 4);
-                else arrlist.Add(list.Count / 4 + 1);
-            }
-            arrlist.AddRange(res);
-            return Json(arrlist);
-        }
+        //public JsonResult<ArrayList> Get(int id,int page, bool isNeededPagesCount)
+        //{
+        //    var list = new List<TodoItemServiceObject>
+        //    {
+        //        new TodoItemServiceObject() {ID = 0, TodoTask = "qwerty"},
+        //        new TodoItemServiceObject() {ID = 1, TodoTask = "asdfgh"},
+        //        new TodoItemServiceObject() {ID = 2, TodoTask = "zxcvbnm"},
+        //        new TodoItemServiceObject() {ID = 3, TodoTask = "ghjkljh"},
+        //        new TodoItemServiceObject() {ID = 4, TodoTask = "yrhytjh"},
+        //        new TodoItemServiceObject() {ID = 5, TodoTask = "b kcmbktomb"},
+        //        new TodoItemServiceObject() {ID = 6, TodoTask = "dog egue0 uge"},
+        //        new TodoItemServiceObject() {ID = 7, TodoTask = "reg ege e"}
+        //    };
+        //    var res = list.Skip((page-1) * 4).Take(4).ToList();
+        //    var arrlist = new List<TodoItemServiceObject>();
+        //    arrlist.Add(new {count = 2});
+        //    //if (isNeededPagesCount)
+        //    //{
+        //    //    if (list.Count % 4 == 0)
+        //    //        arrlist.Add(list.Count / 4);
+        //    //    else arrlist.Add(list.Count / 4 + 1);
+        //    //}
+        //    //arrlist.AddRange(res);
+        //    return Json(arrlist);
+        //}
 
         // GET: api/List/5
         public string Get(int id)
