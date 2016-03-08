@@ -1,15 +1,15 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using EPAM.Wunderlist.DataAccess.API.Entities;
+using EPAM.Wunderlist.Model;
 
 namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.EntitiesConfig
 {
-    class LogModelConfig : EntityTypeConfiguration<LogDbModel>
+    class LogModelConfig : EntityTypeConfiguration<LogModel>
     {
         public LogModelConfig()
         {
             ToTable("LogMessage");
 
-            HasKey(p => p.ID);
+            HasKey(p => p.Id);
         }
     }
 }

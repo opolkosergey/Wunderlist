@@ -1,4 +1,6 @@
 ﻿using System;
+using EPAM.Wunderlist.DataAccess.API;
+using EPAM.Wunderlist.Model;
 using NLog;
 
 namespace EPAM.Wunderlist.Services.LoggerService
@@ -12,16 +14,22 @@ namespace EPAM.Wunderlist.Services.LoggerService
             _logger = LogManager.GetCurrentClassLogger();
         }
 
-        public void Debug(string message) => _logger.Debug($"{message} at {DateTime.Now}");
+        public void Debug(string errorMessage) 
+            => _logger.Debug($"{errorMessage} at {DateTime.Now}");
 
-        public void Trace(string message) => _logger.Trace($"{message} at {DateTime.Now}");
+        public void Trace(string errorMessage) 
+            => _logger.Trace($"{errorMessage} at {DateTime.Now}");
 
-        public void Info(string message) => _logger.Info($"{message} at {DateTime.Now}");
+        public void Info(string errorMessage) 
+            => _logger.Info($"{errorMessage} at {DateTime.Now}");
 
-        public void Warn(string message) => _logger.Warn($"{message} at {DateTime.Now}");
+        public void Warn(string errorMessage) 
+            => _logger.Warn($"{errorMessage} at {DateTime.Now}");
 
-        public void Fatal(string message) => _logger.Fatal($"{message} at {DateTime.Now}");
+        public void Fatal(string errorMessage)
+            => _logger.Fatal($"{errorMessage} at {DateTime.Now}");
 
-        public void Error(string message) => _logger.Error($"{message} at {DateTime.Now}");
+        public void Error(string errorMessage) 
+            => _logger.Error($"{errorMessage} at {DateTime.Now}");
     }
 }

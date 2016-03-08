@@ -1,15 +1,15 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using EPAM.Wunderlist.DataAccess.API.Entities;
+using EPAM.Wunderlist.Model;
 
 namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.EntitiesConfig
 {
-    public class TodoItemModelConfig : EntityTypeConfiguration<TodoItemDbModel>
+    public class TodoItemModelConfig : EntityTypeConfiguration<TodoItemModel>
     {
         public TodoItemModelConfig()
         {
             ToTable("TodoItem");
 
-            HasKey(p => p.ID);
+            HasKey(p => p.Id);
 
             Property(p => p.Description)
                 .HasMaxLength(255);

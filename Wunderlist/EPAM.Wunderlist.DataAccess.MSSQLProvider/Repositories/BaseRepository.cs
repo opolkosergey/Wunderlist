@@ -4,11 +4,12 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using EPAM.Wunderlist.DataAccess.API;
+using EPAM.Wunderlist.Model;
 
 namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Repositories
 {
     public abstract class BaseRepository<TEntity> : IRepository<TEntity> 
-        where TEntity : class, IEntityDb
+        where TEntity : class, IEntityModel
     {
         private readonly IDbSet<TEntity> _dbSet;
 
@@ -37,7 +38,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Repositories
                
         public virtual TEntity GetById(int id)
         {
-            return _dbSet.FirstOrDefault(p => p.ID == id);
+            return _dbSet.FirstOrDefault(p => p.Id == id);
         }
                
         public virtual void Remove(int id)

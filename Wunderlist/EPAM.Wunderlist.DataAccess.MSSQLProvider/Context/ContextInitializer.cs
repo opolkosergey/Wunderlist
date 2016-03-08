@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
-using EPAM.Wunderlist.DataAccess.API.Entities;
+using EPAM.Wunderlist.Model;
 
 namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
 {
@@ -10,65 +10,65 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
         {
             #region User1
 
-            TodoListDbModel[] user1List = {
-                new TodoListDbModel
+            TodoListModel[] user1List = {
+                new TodoListModel
                 {
                     Name = "Inbox",
                     TodoItems = new[]
                     {
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
                             TodoTask = "FIRST Task Default List For User1",
                             Description = "This is default first Task For User1",
-                            Status = TodoStatus.New,
+                            Status = TodoStatus.Unfinished,
                             Date = null
                         },
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
                             TodoTask = "SECOND Task Default List For User1",
-                            Status = TodoStatus.New,
+                            Status = TodoStatus.Unfinished,
                             Date = null
                         }
                     }
                 },
-                new TodoListDbModel
+                new TodoListModel
                 {
                     Name = "Work",
                     TodoItems = new[]
                     {
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
                             TodoTask = "FIRST Task Work List For User1",
                             Description = "This is work first Task For User1",
-                            Status = TodoStatus.New,
-                            Date = DateTime.Today
+                            Status = TodoStatus.Unfinished,
+                            Date = "01/01/2017"
                         },
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
                             TodoTask = "SECOND Task Work List For User1",
-                            Status = TodoStatus.New,
-                            Date = null
+                            Status = TodoStatus.Unfinished,
+                            Date = "01/12/2017"
                         },
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
                             TodoTask = "THIRD Task Work List For User1",
-                            Status = TodoStatus.New,
-                            Date = DateTime.Today
+                            Status = TodoStatus.Unfinished,
+                            Date = "01/04/2017"
                         }
                     }
                 },
-                new TodoListDbModel
+                new TodoListModel
                 {
                     Name = "Shopping"
                 }
             };
 
-            UserDbModel user1 = new UserDbModel
+            UserModel user1 = new UserModel
             {
                 Email = "First@gmail.com",
                 Password = "AH3KUibfw1+uZNzUkYrQ5sbCXKs1QloGYGmxmEjfurc6kahgZNcq3KuZ2Wn9R+32bw==",  //FirstPassword
                 TodoLists = user1List,
-                Profile = new UserProfileDbModel
+                Profile = new UserProfileModel
                 {
                     Name = "FirstName"
                 }
@@ -78,68 +78,87 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
 
             #region User2
 
-            TodoListDbModel[] user2List = {
-                new TodoListDbModel
+            TodoListModel[] user2List = {
+                new TodoListModel
                 {
                     Name = "Inbox",
                     TodoItems = new[]
                     {
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
-                            TodoTask = "FIRST Task Default List For User2",
+                            TodoTask = "FIRST Task INBOX List For User2",
                             Description = "This List is default for all users",
-                            Status = TodoStatus.New,
+                            Status = TodoStatus.Unfinished,
                             Date = null
                         },
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
-                            TodoTask = "SECOND Task Default List For User2",
-                            Status = TodoStatus.New,
+                            TodoTask = "SECOND Task INBOX List For User2",
+                            Status = TodoStatus.Unfinished,
+                            Date = null
+                        },
+                        new TodoItemModel
+                        {
+                            TodoTask = "FIRST COMPLETED Task INBOX List For User2",
+                            Description = "This List is default for all users",
+                            Status = TodoStatus.Сompleted,
                             Date = null
                         }
                     }
                 },
-                new TodoListDbModel
+                new TodoListModel
                 {
                     Name = "Journey",
                     TodoItems = new[]
                     {
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
                             TodoTask = "FIRST Task Journey List For User2",
                             Description = "This is Journey first Task For User2",
-                            Status = TodoStatus.New,
-                            Date = DateTime.Today
+                            Status = TodoStatus.Unfinished,
+                            //Date = DateTime.Today
                         }
                     }
                 },
-                new TodoListDbModel
+                new TodoListModel
                 {
                     Name = "Weekend",
                     TodoItems = new[]
                     {
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
                             TodoTask = "FIRST Task Weekend List For User2",
-                            Status = TodoStatus.New,
+                            Status = TodoStatus.Unfinished,
                             Date = null
                         },
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
                             TodoTask = "SECOND Task Weekend List For User2",
-                            Status = TodoStatus.New,
-                            Date = DateTime.Today
+                            Status = TodoStatus.Unfinished,
+                            //Date = DateTime.Today
+                        },
+                        new TodoItemModel
+                        {
+                            TodoTask = "FIRST COMPETED Task Weekend List For User2",
+                            Status = TodoStatus.Сompleted,
+                            //Date = DateTime.Today
+                        },
+                        new TodoItemModel
+                        {
+                            TodoTask = "SECOND COMPETED Task Weekend List For User2",
+                            Status = TodoStatus.Сompleted,
+                            //Date = DateTime.Today
                         }
                     }
                 }
             };
 
-            UserDbModel user2 = new UserDbModel
+            UserModel user2 = new UserModel
             {
                 Email = "Second@gmail.com",
                 Password = "AF/m6pDyg8jb3H15CnzY1XTZTRkISUadw2bSFYsV+fAZiCqOMxwRY2l3gVnyM2ni+A==",   //SecondPassword
                 TodoLists = user2List,
-                Profile = new UserProfileDbModel
+                Profile = new UserProfileModel
                 {
                     Name = "SecondName"
                 }
@@ -149,64 +168,65 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
 
             #region User3
 
-            TodoListDbModel[] user3List = {
-                new TodoListDbModel
+            TodoListModel[] user3List =
+            {
+                new TodoListModel
                 {
                     Name = "Inbox"
                 },
-                new TodoListDbModel
+                new TodoListModel
                 {
                     Name = "Journey",
                     TodoItems = new[]
                     {
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
                             TodoTask = "FIRST Task Journey List For User3",
                             Description = "This is Journey first Task For User3",
-                            Status = TodoStatus.New,
-                            Date = DateTime.Today
+                            Status = TodoStatus.Unfinished,
+                            //Date = DateTime.Today
                         }
                     }
                 },
-                new TodoListDbModel
+                new TodoListModel
                 {
                     Name = "Weekend",
                     TodoItems = new[]
                     {
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
                             TodoTask = "FIRST Task Weekend List For User3",
-                            Status = TodoStatus.New,
+                            Status = TodoStatus.Unfinished,
                             Date = null
                         },
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
                             TodoTask = "SECOND Task Weekend List For User3",
-                            Status = TodoStatus.New,
-                            Date = DateTime.Today
+                            Status = TodoStatus.Unfinished,
+                            //Date = DateTime.Today
                         },
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
                             TodoTask = "Third Task Weekend List For User3",
-                            Status = TodoStatus.New,
+                            Status = TodoStatus.Unfinished,
                             Date = null
                         },
-                        new TodoItemDbModel
+                        new TodoItemModel
                         {
                             TodoTask = "FOURTH Task Weekend List For User3",
-                            Status = TodoStatus.New,
-                            Date = DateTime.Today
+                            Status = TodoStatus.Unfinished,
+                            //Date = DateTime.Today
                         }
                     }
                 }
             };
 
-            UserDbModel user3 = new UserDbModel
+            UserModel user3 = new UserModel
             {
                 Email = "Third@gmail.com",
-                Password = "AGt4RQ47x3U9VQRJtys593311Cw/DytsAL6/XcechPUFgK+tkM2HhqqVHP8LO+yoPw==",  //ThirdPassword
+                Password = "AGt4RQ47x3U9VQRJtys593311Cw/DytsAL6/XcechPUFgK+tkM2HhqqVHP8LO+yoPw==", //ThirdPassword
                 TodoLists = user3List,
-                Profile = new UserProfileDbModel
+                Profile = new UserProfileModel
                 {
                     Name = "ThirdName"
                 }

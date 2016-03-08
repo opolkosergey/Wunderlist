@@ -1,12 +1,12 @@
 ﻿using System;
 using EPAM.Wunderlist.DataAccess.API;
-using EPAM.Wunderlist.DataAccess.API.Entities;
+using EPAM.Wunderlist.Model;
 
 namespace EPAM.Wunderlist.Services.LoggerService
 {
     public class DatabaseLoggerService : ILoggerService
     {
-        private readonly IRepository<LogDbModel> _logRepository;
+        private readonly IRepository<LogModel> _logRepository;
 
         public DatabaseLoggerService(IUnitOfWork unitOfWork)
         {
@@ -16,34 +16,58 @@ namespace EPAM.Wunderlist.Services.LoggerService
             _logRepository = unitOfWork.LogRepository;
         }
 
-        public void Debug(string message)
+        public void Debug(string errorMessage)
         {
-            _logRepository.Add(new LogDbModel {Log = $"Debug : {message}", Time = DateTime.Now });
+            _logRepository.Add(new LogModel
+            {
+                Log = $"Debug : {errorMessage}",
+                Time = DateTime.Now
+            });
         }
 
-        public void Trace(string message)
+        public void Trace(string errorMessage)
         {
-            _logRepository.Add(new LogDbModel { Log = $"Trace : {message}", Time = DateTime.Now });
+            _logRepository.Add(new LogModel
+            {
+                Log = $"Trace : {errorMessage}",
+                Time = DateTime.Now
+            });
         }
 
-        public void Info(string message)
+        public void Info(string errorMessage)
         {
-            _logRepository.Add(new LogDbModel { Log = $"Info : {message}", Time = DateTime.Now });
+            _logRepository.Add(new LogModel
+            {
+                Log = $"Info : {errorMessage}",
+                Time = DateTime.Now
+            });
         }
 
-        public void Warn(string message)
+        public void Warn(string errorMessage)
         {
-            _logRepository.Add(new LogDbModel { Log = $"Warn : {message}", Time = DateTime.Now });
+            _logRepository.Add(new LogModel
+            {
+                Log = $"Warn : {errorMessage}",
+                Time = DateTime.Now
+            });
         }
 
-        public void Fatal(string message)
+        public void Fatal(string errorMessage)
         {
-            _logRepository.Add(new LogDbModel { Log = $"Fatal : {message}", Time = DateTime.Now });
+            _logRepository.Add(new LogModel
+            {
+                Log = $"Fatal : {errorMessage}",
+                Time = DateTime.Now
+            });
         }
 
-        public void Error(string message)
+        public void Error(string errorMessage)
         {
-            _logRepository.Add(new LogDbModel { Log = $"Error : {message}", Time = DateTime.Now });
+            _logRepository.Add(new LogModel
+            {
+                Log = $"Error : {errorMessage}",
+                Time = DateTime.Now
+            });
         }
     }
 }

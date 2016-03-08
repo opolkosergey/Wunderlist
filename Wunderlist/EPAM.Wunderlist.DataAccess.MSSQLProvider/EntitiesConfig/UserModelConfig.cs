@@ -1,15 +1,15 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using EPAM.Wunderlist.DataAccess.API.Entities;
+using EPAM.Wunderlist.Model;
 
 namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.EntitiesConfig
 {
-    class UserModelConfig : EntityTypeConfiguration<UserDbModel>
+    class UserModelConfig : EntityTypeConfiguration<UserModel>
     {
         public UserModelConfig()
         {
             ToTable("User");
 
-            HasKey(p => p.ID);
+            HasKey(p => p.Id);
             
             Property(p => p.Email)
                 .IsRequired()

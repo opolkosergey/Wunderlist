@@ -3,12 +3,12 @@ using Microsoft.AspNet.Identity;
 
 namespace EPAM.Wunderlist.WebUI
 {
-    public class ManagerIdentityUser : UserManager<UserIdentity, int>
+    public class ManagerIdentityUser : UserManager<User, int>
     {
-        public ManagerIdentityUser(IUserStore<UserIdentity, int> store)
+        public ManagerIdentityUser(IUserPasswordStore<User, int> store)
             : base(store)
         {
-            UserValidator = new UserValidator<UserIdentity, int>(this)
+            UserValidator = new UserValidator<User, int>(this)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 //RequireUniqueEmail = true

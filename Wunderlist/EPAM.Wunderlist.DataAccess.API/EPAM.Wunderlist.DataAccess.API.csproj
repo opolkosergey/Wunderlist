@@ -40,15 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\LogDbModel.cs" />
-    <Compile Include="Entities\TodoItemDbModel.cs" />
-    <Compile Include="Entities\TodoListDbModel.cs" />
-    <Compile Include="Entities\UserDbModel.cs" />
-    <Compile Include="Entities\UserProfileDbModel.cs" />
-    <Compile Include="IEntityDb.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EPAM.Wunderlist.Model\EPAM.Wunderlist.Model.csproj">
+      <Project>{bc080059-fe07-481c-a6ce-22bd8585368b}</Project>
+      <Name>EPAM.Wunderlist.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

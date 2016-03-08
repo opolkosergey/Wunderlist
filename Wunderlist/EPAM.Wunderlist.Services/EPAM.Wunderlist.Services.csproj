@@ -57,16 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\Mapper\HelperConvert.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="IBaseService.cs" />
     <Compile Include="LoggerService\DatabaseLoggerService.cs" />
     <Compile Include="LoggerService\FileLoggerService.cs" />
     <Compile Include="LoggerService\ILoggerService.cs" />
     <Compile Include="PhotoService\IPhotoService.cs" />
     <Compile Include="PhotoService\PhotoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Infrastructure\ServiceObjects\TodoItemServiceObject.cs" />
-    <Compile Include="Infrastructure\ServiceObjects\TodoListServiceObject.cs" />
-    <Compile Include="Infrastructure\ServiceObjects\UserServiceObject.cs" />
     <Compile Include="TodoItemsService\ITodoItemsService.cs" />
     <Compile Include="TodoItemsService\TodoItemsService.cs" />
     <Compile Include="TodoListsService\ITodoListsService.cs" />
@@ -80,6 +78,10 @@
     <ProjectReference Include="..\EPAM.Wunderlist.DataAccess.API\EPAM.Wunderlist.DataAccess.API.csproj">
       <Project>{696c32d2-a09c-4477-b79b-b8862d86b706}</Project>
       <Name>EPAM.Wunderlist.DataAccess.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EPAM.Wunderlist.Model\EPAM.Wunderlist.Model.csproj">
+      <Project>{bc080059-fe07-481c-a6ce-22bd8585368b}</Project>
+      <Name>EPAM.Wunderlist.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

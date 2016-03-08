@@ -1,0 +1,238 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Inbox</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/angularCore")
+    @Scripts.Render("~/bundles/angularWunderlistApp")
+
+    <link href="~/Content/jquery.ui.theme.css" rel="stylesheet" />
+    <link href="~/Content/jquery.ui.base.css" rel="stylesheet" />
+    <link href="~/Content/jquery.ui.datepicker.css" rel="stylesheet" />
+</head>
+<!--НАЧАЛО ОБСЛУЖИВАНИЯ maniCtrl-->
+<body ng-app="wunderlistApp" ng-controller="mainCtrl">
+
+    <!--Правое окно для работы с item-->
+    <!--НАЧАЛО ОБСЛУЖИВАНИЯ itemCtrl-->
+    <div class="ui simple sidebar vertical menu right" ng-controller="itemCtrl">
+
+        <div>
+            <h4 style="text-align: center">{{currenItem.current.TodoTask}}</h4>
+        </div>
+
+        <div class="ui left icon input field" style="width: 258px;">
+            <input name="title" type="text" ng-model="currenItem.current.TodoTask">
+            <i class="pencil icon"></i>
+        </div>
+
+        <div class="ui left icon input field" style="width: 258px;">
+            <input name="addDate" id="datepicker" type="text" ng-model="currenItem.current.Date" placeholder="Задать дату выполнения">
+            <i class="calendar icon"></i>
+        </div>
+
+        <div class="ui left icon input field" style="width: 258px; position: fixed; bottom: 0">
+            <input name="addComment" type="text" ng-model="addComment" placeholder="Добавить комментарий">
+            <i class="comment icon"></i>
+        </div>
+    </div>
+    <!--КОНЕЦ ОБСЛУЖИВАНИЯ itemCtrl-->
+    <!--Окно для работы с данными пользователя-->
+    <!--НАЧАЛО ОБСЛУЖИВАНИЯ userCtrl-->
+    <div class="ui standard test modal transition hidden" id="profileWindow" ng-controller="userCtrl">
+
+        <div class="header">
+            Free account
+        </div>
+
+        <div class="image content">
+            <div class="ui medium image">
+                <img style="border-radius: 150px;" src="~/Content/images/homer-simpson.jpg" />
+            </div>
+
+            <div class="description">
+
+                <div class="ui header">Profile</div><br />
+
+                <div class="ui input large">
+                    <label>Name</label>
+                    <input type="text" style="width: 380px; margin-left: 30px;" placeholder="name">
+                </div><br /><br />
+
+                <div class="ui input large">
+                    <label>Email</label>
+                    <input type="text" placeholder="email" style="margin-left: 33px;">
+                    <button style="margin-left: 50px;" class="ui black basic button">Change Email</button>
+                </div><br /><br />
+
+                <div class="ui input large">
+                    <label>Password</label>
+                    <button style="width: 205px; margin-left: 5px;" class="ui black basic button">Change Password</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="actions">
+            <div class="ui black deny button">
+                Nope
+            </div>
+
+            <div class="ui positive right labeled icon button">
+                Yep, that's me
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+    <!--КОНЕЦ ОБСЛУЖИВАНИЯ userCtrl-->
+    <!--Окно для создания списка-->
+    <!--ПОКА БЕЗ КОНТРОЛЛЕРА-->
+    <div class="ui modal" id="createListWindow" ng-controller="listCtrl">
+        <div class="header" style="text-align: center">Создать список</div>
+        <div class="content">
+            <div class="ui left icon large input field" align="center">
+                <input name="newList" ng-model="newListName" type="text" placeholder="Имя списка...">
+                <i class="list layout icon"></i>
+
+                <input type="submit" value="Добавить список" ng-click="addNewList(newListName)">
+            </div>
+            <h4 class="ui horizontal divider header">
+                <i class="tag icon"></i>
+                Описание
+            </h4>
+            <div class="ui horizontal list">
+                <div class="item">
+                    <!--<img class="ui mini circular image" src="/images/avatar2/small/molly.png">-->
+                    <div class="content">
+                        <div class="ui sub header" ng-cloak>{{user.UserName}}</div>
+                        {{user.Email}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--ПОКА БЕЗ КОНТРОЛЛЕРА-->
+<!--ГЛАВНОЕ ОКНО-->
+    <div class="pusher">
+
+
+        <div class="ui stackable grid">
+
+            <!--левое меню для отображения имени пользователя и списка задач-->
+            <div class="three wide column">
+                <div class="ui segment" style="background-color: ghostwhite; height: 100vh;">
+                    <div class="ui search">
+                        <div class="ui fluid icon input">
+                            <input type="text" class="prompt" placeholder="Search your task...">
+                            <i class="search icon"></i>
+                        </div>
+                        <div class="results"></div>
+                    </div>
+                    <!--НАЧАЛО ОБСЛУЖИВАНИЯ listCtrl-->
+                    <div class="ui divided items" ng-controller="listCtrl">
+                        <div class="item" id="username">
+                            <a ng-cloak>{{user.UserName}}</a>
+                        </div>
+                        <div class="ui secondary vertical pointing menu" ng-repeat="list in lists" ng-click="listChange(list.Id)">
+
+                            <a class="item" id="list_{{list.Id}}">
+                                @*<i class="list layout icon" style="float: left"></i>*@
+                                <span ng-cloak>{{list.Name}}</span>
+                                <span class="badge" ng-cloak>{{list.CountItem}}</span>
+
+                            </a>
+                        </div>
+
+                        <!--<div class="item">
+                            <i class="mail outline icon"></i>
+                            <div class="center aligned content">
+                                Входящие
+                            </div>
+                        </div>-->
+
+                        <button class="ui blue basic button" style="position: fixed; bottom: 0; width: 16%" id="createListButton">
+                            <i class="plus icon"></i>
+                            Создать список
+                        </button>
+                    </div>
+                    <!--КОНЕЦ ОБСЛУЖИВАНИЯ listCtrl-->
+                </div>
+            </div>
+
+
+            <!--Центральная разметка отображающая форму создания задачи и вывод всех задач определенного списка-->
+            <!--Пока без контроллера (ПРЕДПОЛОЖИТЕЛЬНО: ng-controller="itemCtrl")-->
+            <div class="thirteen wide column inboxpage" style="margin-left: -15px;" ng-controller="itemCtrl">
+                <div class="ui segment" style="opacity: 0.85;">
+                    <div>
+                        <h3 style="margin-top: 10px; margin-left: 10px; color: #668964">Входящие</h3>
+                        @*<div style="float: right; margin-top: 10px;">
+                                <i class="add user icon"></i>
+                                <i class="sort alphabet ascending icon"></i>
+                                <i class="ellipsis vertical icon"></i>
+                            </div>*@
+                    </div>
+                    <br />
+                    <div class="ui grid">
+                        <div class="thirteen wide column">
+                            <div class="ui segment">
+                                <div class="ui input" style="border-radius: 5px; height: 45px; position: inherit; width: 100%">
+                                    <i class="add plus icon" style="margin-left: 10px; margin-top: 14px;"></i>
+                                    <input type="text" ng-model="newTask" style="border: none;" placeholder="Добавить задачу..." id="todoTitle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="one wide column">
+                            <button class="ui inverted green button" id="addNewItem" ng-click="addNewItem(newTask)">Добавить</button>
+                        </div>
+                    </div><br /><br />
+
+
+                    <div id="todos">
+                        <div class='ui ignored positive icon message' ng-repeat="item in items | filter : { Status : '1'}">
+                            <button style='height: 16px;' ng-click="completeIt(item.Id)"></button>
+                            <div class='content' style='margin-left: 20px;'>
+                                <h3 class='header' ng-click="details(item)" ng-cloak>
+                                    {{item.TodoTask}}
+                                    <i class="trash icon" style="float: right" ng-click="deleteItem(item.Id)"></i>
+                                </h3>
+
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div style="">
+                        <button class="ui green basic button" onclick="showComplete()">Показать завершенные задачи</button>
+                    </div>
+                    <br />
+                    <div class="" style="display: none" id="completed">
+                        <div class='ui ignored positive icon message' id='0' ng-repeat="item in items | filter : { Status : '2'}">
+                            <button class='completeit' style='height: 16px;'></button>
+                            <div class='content' style='margin-left: 20px;'>
+                                <h3 class='header' ng-cloak>{{item.TodoTask}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Пока без контроллера (ПРЕДПОЛОЖИТЕЛЬНО: ng-controller="itemCtrl")-->
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/wunderlist")
+    <script src="~/Scripts/jquery.ui.widget.js"></script>
+    <script src="~/Scripts/jquery.ui.core.js"></script>
+    <script src="~/Scripts/jquery.ui.datepicker.js"></script>
+    <script>
+        $(function () {
+            // Инициализация виджета datapicker
+            $("#datepicker").datepicker();
+        });
+    </script>
+</body>
+<!--КОНЕЦ ОБСЛУЖИВАНИЯ maniCtrl-->
+</html>

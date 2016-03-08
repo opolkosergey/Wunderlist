@@ -1,10 +1,9 @@
-﻿using EPAM.Wunderlist.DataAccess.API.Entities;
+﻿using EPAM.Wunderlist.Model;
 
 namespace EPAM.Wunderlist.Services.UserProfileService
 {
-    public interface IUserProfileService
+    public interface IUserProfileService : IBaseService<UserProfileModel>
     {
-        UserProfileDbModel GetProfile(int userId);
-        void ChangeName(int id, string name);
+
     }
 }

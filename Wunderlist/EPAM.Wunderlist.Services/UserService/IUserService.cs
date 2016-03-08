@@ -1,16 +1,10 @@
-﻿using System.Linq;
-using EPAM.Wunderlist.Services.Infrastructure.ServiceObjects;
+﻿using EPAM.Wunderlist.Model;
 
 namespace EPAM.Wunderlist.Services.UserService
 {
-    public interface IUserService
+    public interface IUserService : IBaseService<UserModel>
     {
-        void Add(UserServiceObject user);
-        UserServiceObject GetUserById(int id);
-        UserServiceObject GetUserByName(string name);
-        UserServiceObject GetUserByEmail(string email);
-        bool CheckEmail(string email);
-        void Remove(int id);
-        void Update(UserServiceObject user);
+        void CreateUser(UserModel user, string name);
+        UserModel GetUserByEmail(string email);
     }
 }

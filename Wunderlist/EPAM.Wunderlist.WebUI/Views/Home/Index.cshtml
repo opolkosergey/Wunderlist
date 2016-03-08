@@ -6,12 +6,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Wunderlist</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/semantic.css" rel="stylesheet" />
-    <script src="~/Scripts/semantic.js"></script>
-    <link href="~/Content/wunderlist.css" rel="stylesheet" />
 </head>
 <body>
     <div class="ui secondary menu">
@@ -26,30 +23,31 @@
         <a class="item">Блог</a>
         <div class="right menu">
             <div class="item">
-            @Html.ActionLink("Вход", "Login", "Account", null, new { @class = "ui right floated grey basic button" })
+                @Html.ActionLink("Вход", "Login", "Account", null, new { @class = "ui right floated grey basic button" })
             </div>
             <div class="item">
-            @Html.ActionLink("Создать бесплатную учетную запись", "Register", "Account", null, new { @class = "ui right floated blue button" })
+                @Html.ActionLink("Создать бесплатную учетную запись", "Register", "Account", null, new { @class = "ui right floated blue button" })
             </div>
         </div>
     </div>
-    <div class="intro">
-        <div class="ui two column centered grid">
-            <div class="four column centered row">
-                <div class="column">
-                    <br />
-                    <h2 style="color: white">Синхронизируйте свою жизнь</h2>
-                    <br /><br />
-                    <p class="subline">Wunderlist – простейший способ организации чего угодно. Планируете ли вы отпуск, хотите ли поделиться списком покупок с партнёром или работаете с несколькими проектами, – вам поможет Wunderlist, в котором вы можете отметить все свои личные и профессиональные задачи.</p>
-                    <button class="ui white button">Создайте бесплатную учетную запись</button>
-                    <br /><br />
-                    <button class="ui outlined-white button">Загрузить Wunderlist</button>
-                </div>
-                <div class="column">
-                    <img style="margin-top: 190px;" height="527" src="//dr0wv9n0kx6h5.cloudfront.net/4f8fe5befb0b95eda676c05faea99bfed39c0b42/content/twodevices@2x.png" />
-                </div>
+<div class="intro">
+    <div class="ui two column centered grid">
+        <div class="four column centered row">
+            <div class="column">
+                <br/>
+                <h2 style="color: white">Синхронизируйте свою жизнь</h2>
+                <br/><br/>
+                <p class="subline">Wunderlist – простейший способ организации чего угодно. Планируете ли вы отпуск, хотите ли поделиться списком покупок с партнёром или работаете с несколькими проектами, – вам поможет Wunderlist, в котором вы можете отметить все свои личные и профессиональные задачи.</p>
+                <button class="ui white button">Создайте бесплатную учетную запись</button>
+                <br/><br/>
+                <button class="ui outlined-white button">Загрузить Wunderlist</button>
+            </div>
+            <div class="column">
+                <img style="margin-top: 190px;" height="527" src="//dr0wv9n0kx6h5.cloudfront.net/4f8fe5befb0b95eda676c05faea99bfed39c0b42/content/twodevices@2x.png"/>
             </div>
         </div>
     </div>
+</div>
+    @Scripts.Render("~/bundles/wunderlist")
 </body>
 </html>

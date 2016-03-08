@@ -1,21 +1,15 @@
 ﻿using System;
 using EPAM.Wunderlist.DataAccess.API;
-using EPAM.Wunderlist.DataAccess.API.Entities;
+using EPAM.Wunderlist.Model;
+using EPAM.Wunderlist.Services.LoggerService;
 
 namespace EPAM.Wunderlist.Services.PhotoService
 {
-    public class PhotoService : IPhotoService
+    public class PhotoService : BaseService<UserProfileModel>, IPhotoService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IRepository<UserProfileDbModel> _profileRepository;
-
-        public PhotoService(IUnitOfWork unitOfWork)
+        public PhotoService(IUnitOfWork workWithMssql, ILoggerService logger)
+            : base(workWithMssql, logger, new[] { "Id", "Name", "UserModel" })
         {
-            if(unitOfWork == null)
-                throw new ArgumentNullException(nameof(unitOfWork));
-
-            _unitOfWork = unitOfWork;
-            _profileRepository = unitOfWork.ProfileRepository;
         }
 
         public void AddOrUpdatePhoto(int userId, byte[] photo)
@@ -27,5 +21,8 @@ namespace EPAM.Wunderlist.Services.PhotoService
         {
             throw new NotImplementedException();
         }
+
+        protected override IRepository<UserProfileModel> GetRepository
+            => WorkWithMssql.ProfileRepository;
     }
 }

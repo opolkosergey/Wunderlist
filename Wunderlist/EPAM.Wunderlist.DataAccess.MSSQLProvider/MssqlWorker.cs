@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
 using EPAM.Wunderlist.DataAccess.API;
-using EPAM.Wunderlist.DataAccess.API.Entities;
 using EPAM.Wunderlist.DataAccess.MSSQLProvider.Repositories;
+using EPAM.Wunderlist.Model;
 
 namespace EPAM.Wunderlist.DataAccess.MSSQLProvider
 {
@@ -23,15 +23,15 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider
             LogRepository = new LoggerRepository(context);
         }
 
-        public IRepository<TodoItemDbModel> ItemRepository { get; }
+        public IRepository<TodoItemModel> ItemRepository { get; }
 
-        public IRepository<TodoListDbModel> ListRepository { get; }
+        public IRepository<TodoListModel> ListRepository { get; }
 
-        public IRepository<UserProfileDbModel> ProfileRepository { get; }
+        public IRepository<UserProfileModel> ProfileRepository { get; }
 
-        public IRepository<UserDbModel> UserRepository { get; }
+        public IRepository<UserModel> UserRepository { get; }
 
-        public IRepository<LogDbModel> LogRepository { get; } 
+        public IRepository<LogModel> LogRepository { get; } 
 
         public void Commit()
         {

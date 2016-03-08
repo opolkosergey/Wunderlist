@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
-using EPAM.Wunderlist.Services.Infrastructure.ServiceObjects;
+using EPAM.Wunderlist.Model;
 
 namespace EPAM.Wunderlist.Services.TodoListsService
 {
-    public interface ITodoListsService
+    public interface ITodoListsService : IBaseService<TodoListModel>
     {
-        IEnumerable<TodoListServiceObject> GetAllTodoLists(int userId);
-        void Add(TodoListServiceObject list);
-        void Remove(int id);
-        void Rename(int id, string newName);
+        IEnumerable<TodoListModel> GetAllTodoLists(int userId);
     }
 }
