@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using EPAM.Wunderlist.Model;
@@ -16,10 +13,13 @@ namespace EPAM.Wunderlist.WebUI.Mapper
             var name = request.Form.Get("newUserName");
             var id = request.Form.Get("userId");
             HttpPostedFileBase image = request.Files.Get("image");
-
-            var fullPath = UserContentPathResolver.SavePhoto(controllerContext, image);
-            var fileName = Path.GetFileName(fullPath);
-
+            string fileName = "";
+            if (image != null)
+            {
+                var fullPath = UserContentPathResolver.SavePhoto(controllerContext, image);
+                fileName = Path.GetFileName(fullPath);
+            }
+          
             return new UserProfileModel()
             {
                 Id = int.Parse(id),
@@ -27,6 +27,5 @@ namespace EPAM.Wunderlist.WebUI.Mapper
                 Name = name
             };
         }
-
     }
 }

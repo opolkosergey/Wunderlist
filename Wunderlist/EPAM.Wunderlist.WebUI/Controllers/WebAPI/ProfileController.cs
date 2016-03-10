@@ -24,7 +24,9 @@ namespace EPAM.Wunderlist.WebUI.Controllers.WebAPI
         public async Task<ActionResult> UpdateUser(UserProfileModel profile)
         {
             _profileService.Update(profile);
-            return Json(new {PhotoUrl = profile.Photo,name = profile.Name});
+            if(string.IsNullOrEmpty(profile.Photo))
+                return Json(new {PhotoUrl = "",name = profile.Name});
+            return Json(new { PhotoUrl = profile.Photo, name = profile.Name });
         }
     }
 }

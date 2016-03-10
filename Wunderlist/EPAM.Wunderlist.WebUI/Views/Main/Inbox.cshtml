@@ -49,46 +49,40 @@
     </div>
     <br/>
     <div class="ui stackable grid">
-        <div class="three wide column">
+        <div class="five wide column">
             <div class="image content">
                 <div class="ui image">
-                    <img id="ava" style="border-radius: 50px;" src="#"/>
+                    <img id="ava" src="#"/>
                     <div class="ui input large">
-                        <label>Email</label>
-                        @*<input type="text" placeholder="email" style="margin-left: 33px;">
-                            <button style="margin-left: 50px;" class="ui black basic button">Изменить Email</button>*@
+                        <label>{{user.Email}}</label>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="eight wide column">
-            <div class="description">
-                <label>Имя</label>
-                <div class="ui fluid input">
-                    <input type="text" id="newusername" placeholder="Ваше имя" ng-model="newUserName">
-                </div>
-                <br/>
-                <br/>
-                <div>
-                    <div class="ui form" id="uploadForm" enctype="multipart/form-data">
-                        <input type="file" style="display: none;" id="hiddenFile" name="hiddenFile" ng-model="file"/>
-
-                        <label>Выберите ваш аватар</label>
-                        <div class="ui fluid action input">
-                            <input type="text" placeholder="Обзор..." name="photoCover" id="photoCover" readonly="readonly">
-                            <div class="ui button" onclick="$('#hiddenFile').click();">
-                                <i class="folder icon"></i>Обзор
+        <div class="six wide column">
+            <div class="description">    
+                    <label>Имя</label>
+                    <div class="ui fluid input">
+                        <input type="text" name="name" placeholder="Ваше имя" ng-model="user.UserName">
+                    </div>
+                    <div class="ui error message hidden"></div>
+                    <br />
+                    <br />
+                    <div>
+                        <div id="uploadForm" enctype="multipart/form-data">
+                            <input type="file" style="display: none;" id="hiddenFile" name="hiddenFile" ng-model="file"/>
+                            <label>Выберите ваш аватар</label>
+                            <div class="ui fluid action input">
+                                <input type="text" placeholder="Обзор..." name="photoCover" id="photoCover" readonly="readonly">
+                                <div class="ui button" onclick="$('#hiddenFile').click();">
+                                    <i class="folder icon"></i>Обзор
+                                </div>
                             </div>
                         </div>
-                        @*<input type="submit" value="апдейт" ng-click="updateUser()">*@
-                        @*<div id="realSubmit" ng-click="updateUser(newUserName)" style="display: none;"></div>
-                            <div id="photoSubmit" class="ui blue submit right floated button">Submit</div>*@
                     </div>
-                </div>
-            </div>
-            @*<div class="ui error message" id="errMessages"></div>*@
+                
+            </div> 
         </div>
-
         <div class="five wide column">
             <div id="uploadPreview" class="hidden">
                 <h4 class="ui horizontal divider header">
@@ -98,7 +92,6 @@
                 <div class="ui fluid card" style="width: 70%; margin-left: 15%">
                     <div class="ui fluid image">
                         <a class="ui right corner label" role="closePreview">
-                            @*<i disabled class="close icon" style="cursor: pointer;"></i>*@
                             close
                         </a>
                         <img id="preview" style="width: 200px; height: 200px;" src="#">
@@ -112,18 +105,10 @@
         <div class="ui black deny button">
             Отмена
         </div>
-
         <div class="ui positive button submit" ng-click="updateUser()">
             Обновить
         </div>
-        @*<input type="submit" class="ui blue" ng-click="updateUser()" value="Обновить"/>*@
-        @*Обновить
-                    <i class="checkmark icon"></i>*@
-
     </div>
-
-
-
 </div>
 
     <!--КОНЕЦ ОБСЛУЖИВАНИЯ userCtrl-->
@@ -256,8 +241,24 @@
         $("#datepicker").datepicker();
     });
 </script>
-
     <script>
+    $('.ui.form')
+  .form({
+      on: 'blur',
+      fields: {
+          text: {
+              identifier: 'name',
+              rules: [
+                  {
+                      type: 'length[' + 1 + ']',
+                      prompt: 'Поле не должно быть пустым'
+                  }
+              ]
+          }
+      }
+  });
+    </script>
+<script>
         var readURL;
         readURL = function(input) {
             var reader;
