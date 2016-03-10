@@ -4,6 +4,7 @@
         $scope.listsResource = $resource("/api/list/");
         $scope.itemsResource = $resource("/api/item/");
         $scope.userUrl = "/api/user/";
+        $scope.avatarPath = "/Content/images/homer-simpson.jpg";
 
         $scope.currenItem = {
             current: null

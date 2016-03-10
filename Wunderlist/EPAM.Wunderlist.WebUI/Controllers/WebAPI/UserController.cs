@@ -19,7 +19,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers.WebAPI
         {
             if (userService == null)
                 throw new ArgumentNullException(nameof(userService));
-            
+
             _userService = userService;
         }
 
@@ -44,7 +44,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers.WebAPI
                     user.Password = Crypto.HashPassword(user.Password);
 
                 var userToUpdate = EntityConvert<User, UserModel>(user);
-                userToUpdate.Profile = new UserProfileModel {Name = user.UserName};
+                userToUpdate.Profile = new UserProfileModel { Name = user.UserName };
                 _userService.Update(userToUpdate);
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
