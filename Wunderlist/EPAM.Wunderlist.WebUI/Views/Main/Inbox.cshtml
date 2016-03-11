@@ -10,7 +10,6 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/angularCore")
     @Scripts.Render("~/bundles/angularWunderlistApp")
-
     <link href="~/Content/jquery.ui.theme.css" rel="stylesheet" />
     <link href="~/Content/jquery.ui.base.css" rel="stylesheet" />
     <link href="~/Content/jquery.ui.datepicker.css" rel="stylesheet" />
@@ -44,51 +43,74 @@
     <!--КОНЕЦ ОБСЛУЖИВАНИЯ itemCtrl-->
     <!--Окно для работы с данными пользователя-->
     <!--НАЧАЛО ОБСЛУЖИВАНИЯ userCtrl-->
-    <div class="ui standard test modal transition hidden" id="profileWindow" ng-controller="userCtrl">
-
-        <div class="header">
-            Free account
-        </div>
-
-        <div class="image content">
-            <div class="ui medium image">
-                <img style="border-radius: 150px;" src="~/Content/images/homer-simpson.jpg" />
-            </div>
-
-            <div class="description">
-
-                <div class="ui header">Profile</div><br />
-
-                <div class="ui input large">
-                    <label>Name</label>
-                    <input type="text" style="width: 380px; margin-left: 30px;" placeholder="name">
-                </div><br /><br />
-
-                <div class="ui input large">
-                    <label>Email</label>
-                    <input type="text" placeholder="email" style="margin-left: 33px;">
-                    <button style="margin-left: 50px;" class="ui black basic button">Change Email</button>
-                </div><br /><br />
-
-                <div class="ui input large">
-                    <label>Password</label>
-                    <button style="width: 205px; margin-left: 5px;" class="ui black basic button">Change Password</button>
+<div class="ui standard test modal transition hidden" id="profileWindow" ng-controller="userCtrl">
+    <div class="header">
+        Бесплатный аккаунт
+    </div>
+    <br/>
+    <div class="ui stackable grid">
+        <div class="five wide column">
+            <div class="image content">
+                <div class="ui image">
+                    <img id="ava" src="#"/>
+                    <div class="ui input large">
+                        <label>{{user.Email}}</label>
+                    </div>
                 </div>
-
             </div>
         </div>
-
-        <div class="actions">
-            <div class="ui black deny button">
-                Nope
-            </div>
-
-            <div class="ui positive right labeled icon button">
-                Yep, that's me
-                <i class="checkmark icon"></i>
+        <div class="six wide column">
+            <div class="description">    
+                    <label>Имя</label>
+                    <div class="ui fluid input">
+                        <input type="text" name="name" placeholder="Ваше имя" ng-model="user.UserName">
+                    </div>
+                    <div class="ui error message hidden"></div>
+                    <br />
+                    <br />
+                    <div>
+                        <div id="uploadForm" enctype="multipart/form-data">
+                            <input type="file" style="display: none;" id="hiddenFile" name="hiddenFile" ng-model="file"/>
+                            <label>Выберите ваш аватар</label>
+                            <div class="ui fluid action input">
+                                <input type="text" placeholder="Обзор..." name="photoCover" id="photoCover" readonly="readonly">
+                                <div class="ui button" onclick="$('#hiddenFile').click();">
+                                    <i class="folder icon"></i>Обзор
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div> 
+        </div>
+        <div class="five wide column">
+            <div id="uploadPreview" class="hidden">
+                <h4 class="ui horizontal divider header">
+                    <i class="photo icon"></i>
+                    Предосмотр
+                </h4>
+                <div class="ui fluid card" style="width: 70%; margin-left: 15%">
+                    <div class="ui fluid image">
+                        <a class="ui right corner label" role="closePreview">
+                            close
+                        </a>
+                        <img id="preview" style="width: 200px; height: 200px;" src="#">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <br/>
+    <div class="actions">
+        <div class="ui black deny button">
+            Отмена
+        </div>
+        <div class="ui positive button submit" ng-click="updateUser()">
+            Обновить
+        </div>
+    </div>
+</div>
+
     <!--КОНЕЦ ОБСЛУЖИВАНИЯ userCtrl-->
     <!--Окно для создания списка-->
     <!--ПОКА БЕЗ КОНТРОЛЛЕРА-->
@@ -136,11 +158,24 @@
                             <a ng-cloak>{{user.UserName}}</a>
                         </div>
                         <div class="ui secondary vertical pointing menu" style="width: 100%" 
-                             ng-repeat="list in lists" ng-click="listChange(list.Id)">
-                            <a class="item" id="list_{{list.Id}}">
-                                <span ng-cloak>{{list.Name}}</span>
-                                <div class="ui label">{{list.CountItem}}</div>
-                            </a>
+                             ng-repeat="list in lists" >
+                            <a class="item" id="list_{{list.Id}}" >
+                                <span ng-click="listChange(list.Id)" ng-cloak id="listTitle_{{list.Id}}">{{list.Name}}</span>
+                                <div style="float: right">
+                                    <span class="hidden editing" id="editIcon_{{list.Id}}" ng-click="editTitle(list.Id)"><i class="ui edit icon"></i></span>
+                                    <div class="ui label">
+                                        {{list.CountItem}}
+                                    </div>
+                                </div>
+                                <div class="hidden editingblock" id="editingblock_{{list.Id}}">
+                                    <br/>
+                                    <div class="ui input">
+                                        <input type="text" value="{{list.Name}}" id="newTitle_{{list.Id}}" placeholder="Новое название списка...">
+                                    </div>
+                                    <i class="checkmark icon" ng-click="submitEdit(list.Id)"></i>
+                                    <i class="remove circle outline icon" style="margin-top: 5%" onclick="$('.editingblock').addClass('hidden');"></i>
+                                </div>
+                            </a>              
                         </div>
                         <button class="ui blue basic button" style="position: fixed; bottom: 0; width: 16%" id="createListButton">
                             <i class="plus icon"></i>
@@ -213,10 +248,91 @@
     <script src="~/Scripts/jquery.ui.widget.js"></script>
     <script src="~/Scripts/jquery.ui.core.js"></script>
     <script src="~/Scripts/jquery.ui.datepicker.js"></script>
+<script>
+    $(function() {
+        // Инициализация виджета datapicker
+        $("#datepicker").datepicker();
+    });
+</script>
     <script>
-        $(function () {
-            // Инициализация виджета datapicker
-            $("#datepicker").datepicker();
+    $('.ui.form')
+  .form({
+      on: 'blur',
+      fields: {
+          text: {
+              identifier: 'name',
+              rules: [
+                  {
+                      type: 'length[' + 1 + ']',
+                      prompt: 'Поле не должно быть пустым'
+                  }
+              ]
+          }
+      }
+  });
+    </script>
+<script>
+        var readURL;
+        readURL = function(input) {
+            var reader;
+            if (input.files && input.files[0]) {
+                reader = new FileReader();
+                reader.onload = function(e) {
+                    $("#preview").attr("src", e.target.result);
+                    return $("#preview").removeClass("hidden");
+                };
+                $('#uploadPreview').removeClass('hidden');
+                return reader.readAsDataURL(input.files[0]);
+            }
+            $('#uploadPreview').addClass('hidden');
+            return null;
+        }
+        $("#hiddenFile").change(function() {
+            return $("#photoCover").val($(this).val());
+        });
+        $("#hiddenFile").change(function() {
+            return readURL(this);
+        });
+        $("[role=closePreview]").on('click', function() {
+            $('#hiddenFile').val("");
+            $('#photoCover').val("");
+            //alert(111);
+            $("#preview").attr("src", '#');
+            $('#uploadPreview').addClass('hidden');
+        });
+
+
+        $('#uploadForm')
+            .form({
+                on: 'submit',
+                fields: {
+                    photoCover: {
+                        identifier: 'photoCover',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Photo not selected'
+                            }
+                        ]
+                    },
+                    Description: {
+                        identifier: 'Description',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Description is empty'
+                            }
+                        ]
+                    },
+                }
+            });
+
+        $("#uploadForm").on('submit', function (data) {
+            if ($('#photoCover').val() && $('#photoDescription').val()) {
+                var btn = $('#realSubmit');
+                btn.click();
+                $('#uploadRow').replaceWith($('#loading'));
+            }
         });
     </script>
 </body>

@@ -70,7 +70,8 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                 TodoLists = user1List,
                 Profile = new UserProfileModel
                 {
-                    Name = "FirstName"
+                    Name = "FirstName",
+                    Photo = "1.jpg"
                 }
             };
 

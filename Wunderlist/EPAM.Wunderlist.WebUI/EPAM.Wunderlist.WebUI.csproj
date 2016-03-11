@@ -197,6 +197,7 @@
     <Compile Include="Controllers\Mvc\MainController.cs" />
     <Compile Include="Controllers\WebAPI\ItemController.cs" />
     <Compile Include="Controllers\WebAPI\ListController.cs" />
+    <Compile Include="Controllers\WebAPI\ProfileController.cs" />
     <Compile Include="Controllers\WebAPI\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -204,6 +205,8 @@
     <Compile Include="IdentityCore\WunderlistUserStore.cs" />
     <Compile Include="IdentityCore\User.cs" />
     <Compile Include="Mapper\HelperConvert.cs" />
+    <Compile Include="Mapper\ProfileBinder.cs" />
+    <Compile Include="Mapper\UserContentPathResolver.cs" />
     <Compile Include="Models\LogOnViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\TodoItemViewModel.cs" />
@@ -433,6 +436,20 @@
     <Content Include="Scripts\semantic.min.js" />
     <Content Include="Scripts\wunderlistApp.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="UserContent\Photos\2kocoerw.u5k..jpg" />
+    <Content Include="UserContent\Photos\3rqpdns3.3va..jpg" />
+    <Content Include="UserContent\Photos\4bdyyd5f.rec..jpg" />
+    <Content Include="UserContent\Photos\5vd4vcpk.slc..jpg" />
+    <Content Include="UserContent\Photos\cmh0affy.sf2..jpg" />
+    <Content Include="UserContent\Photos\eanowtmy.sm0..jpg" />
+    <Content Include="UserContent\Photos\gps34k1y.vzm..jpg" />
+    <Content Include="UserContent\Photos\j3e0slvb.hlt..jpg" />
+    <Content Include="UserContent\Photos\jz5duy4u.ttf..jpg" />
+    <Content Include="UserContent\Photos\k3h1igic.bct..jpg" />
+    <Content Include="UserContent\Photos\kehue0ak.hbt..jpg" />
+    <Content Include="UserContent\Photos\nmnby1b1.eoo..jpg" />
+    <Content Include="UserContent\Photos\omfy1ubv.1vd..jpg" />
+    <Content Include="UserContent\Photos\tg1qi2ax.2j2..jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -451,6 +468,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Us\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

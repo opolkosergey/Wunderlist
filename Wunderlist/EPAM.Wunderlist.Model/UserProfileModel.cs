@@ -1,11 +1,10 @@
 ﻿namespace EPAM.Wunderlist.Model
 {
-    public  class UserProfileModel : IEntityModel
+    public class UserProfileModel : IEntityModel
     {
-        public int Id { get; protected set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public byte[] Photo { get; set; }
-
+        public string Photo { get; set; }
         public UserModel UserModel { get; set; }
     }
 }

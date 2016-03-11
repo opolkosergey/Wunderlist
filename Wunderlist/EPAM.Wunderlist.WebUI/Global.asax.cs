@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using EPAM.Wunderlist.Model;
+using EPAM.Wunderlist.WebUI.Mapper;
 
 namespace EPAM.Wunderlist.WebUI
 {
@@ -14,7 +16,7 @@ namespace EPAM.Wunderlist.WebUI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
+            ModelBinders.Binders.Add(typeof(UserProfileModel), new ProfileBinder());
             ResolverConfig.Config();
         }
     }
