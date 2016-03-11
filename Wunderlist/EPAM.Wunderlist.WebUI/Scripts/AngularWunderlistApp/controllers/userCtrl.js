@@ -23,7 +23,7 @@
                         $scope.avatarPath = "/UserContent/Photos/" + res.PhotoUrl;
                         $("#ava").attr("src", $scope.avatarPath);
                     }
-                    $scope.user.UserName = res.name;   
+                    $scope.user.UserName = res.name;
                     $('#hiddenFile').val("");
                     $('#photoCover').val("");
                     $("#preview").attr("src", '#');
@@ -45,5 +45,4 @@
             user.Email = newEmail;
             updateUser(user);
         };
-
     });

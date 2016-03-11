@@ -20,4 +20,24 @@
                 $('#createListWindow').modal('hide');
             });
         }
+
+        $scope.editTitle = function(id) {
+            $(".editingblock").addClass('hidden');
+            $("#editingblock_" + id).removeClass('hidden');
+        }
+
+        $scope.submitEdit = function (id) {
+            var a = $('#newTitle_' + id).val();
+            alert(a);
+            $.ajax('/api/List/'+id, {
+                type: "PUT",
+                data: a
+            });
+            //$.put('/api/List/UpdateList/'+id, {
+            //    newTitle: a
+            //}).then(function successCallback(response) {
+            //    $('.editingblock').addClass('hidden');
+            //    $("#listTitle_" + response.data.Id).val(response.data.Name);
+            //});
+        }
     });

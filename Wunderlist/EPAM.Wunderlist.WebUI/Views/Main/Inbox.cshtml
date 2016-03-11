@@ -158,11 +158,24 @@
                             <a ng-cloak>{{user.UserName}}</a>
                         </div>
                         <div class="ui secondary vertical pointing menu" style="width: 100%" 
-                             ng-repeat="list in lists" ng-click="listChange(list.Id)">
-                            <a class="item" id="list_{{list.Id}}">
-                                <span ng-cloak>{{list.Name}}</span>
-                                <div class="ui label">{{list.CountItem}}</div>
-                            </a>
+                             ng-repeat="list in lists" >
+                            <a class="item" id="list_{{list.Id}}" >
+                                <span ng-click="listChange(list.Id)" ng-cloak id="listTitle_{{list.Id}}">{{list.Name}}</span>
+                                <div style="float: right">
+                                    <span class="hidden editing" id="editIcon_{{list.Id}}" ng-click="editTitle(list.Id)"><i class="ui edit icon"></i></span>
+                                    <div class="ui label">
+                                        {{list.CountItem}}
+                                    </div>
+                                </div>
+                                <div class="hidden editingblock" id="editingblock_{{list.Id}}">
+                                    <br/>
+                                    <div class="ui input">
+                                        <input type="text" value="{{list.Name}}" id="newTitle_{{list.Id}}" placeholder="Новое название списка...">
+                                    </div>
+                                    <i class="checkmark icon" ng-click="submitEdit(list.Id)"></i>
+                                    <i class="remove circle outline icon" style="margin-top: 5%" onclick="$('.editingblock').addClass('hidden');"></i>
+                                </div>
+                            </a>              
                         </div>
                         <button class="ui blue basic button" style="position: fixed; bottom: 0; width: 16%" id="createListButton">
                             <i class="plus icon"></i>

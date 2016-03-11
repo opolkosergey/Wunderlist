@@ -28,5 +28,11 @@ namespace EPAM.Wunderlist.WebUI.Controllers.WebAPI
                 return Json(new {PhotoUrl = "",name = profile.Name});
             return Json(new { PhotoUrl = profile.Photo, name = profile.Name });
         }
+
+        [HttpGet]
+        public ActionResult GetProfile(int id)
+        {
+            return Json(_profileService.GetById(id),JsonRequestBehavior.AllowGet);
+        } 
     }
 }

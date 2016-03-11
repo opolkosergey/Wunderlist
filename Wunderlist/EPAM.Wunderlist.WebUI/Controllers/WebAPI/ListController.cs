@@ -49,12 +49,15 @@ namespace EPAM.Wunderlist.WebUI.Controllers.WebAPI
         }
 
         // Обновление листа по id
-        [HttpPost]
-        public HttpResponseMessage UpdateList(int id, [FromBody]TodoListModel list)
+        [HttpPut]
+        public HttpResponseMessage UpdateList(int id, string newTitle)
         {
             try
             {
-                return Request.CreateResponse(HttpStatusCode.OK);
+                var list = _listService.GetById(id);
+                list.Name = newTitle;
+                _listService.Update(list);
+                return Request.CreateResponse(HttpStatusCode.OK,list);
             }
             catch (Exception)
             {
