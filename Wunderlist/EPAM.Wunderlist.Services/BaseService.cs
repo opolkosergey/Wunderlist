@@ -90,8 +90,13 @@ namespace EPAM.Wunderlist.Services
             {
                 if (ExcludeFromComparison(targetProp.Name))
                 {
-                    if (targetProp.CanWrite)
-                        targetProp.SetValue(target, targetProp.GetValue(source));
+                    var sourceValue = targetProp.GetValue(source);
+                    var targetValue = targetProp.GetValue(target);
+
+                    if (targetProp.CanWrite && sourceValue != targetValue)
+                    {
+                        targetProp.SetValue(target, sourceValue);
+                    }
                 }
             }
 

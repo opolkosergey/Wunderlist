@@ -29,7 +29,8 @@ namespace EPAM.Wunderlist.Services.UserService
 
             user.Profile = new UserProfileModel
             {
-                Name = name
+                Name = name,
+                Photo = "1.jpg"
             };
             user.TodoLists = new List<TodoListModel>
             {

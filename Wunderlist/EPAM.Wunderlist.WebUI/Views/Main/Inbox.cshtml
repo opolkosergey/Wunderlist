@@ -10,57 +10,50 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/angularCore")
     @Scripts.Render("~/bundles/angularWunderlistApp")
-    <link href="~/Content/jquery.ui.theme.css" rel="stylesheet" />
-    <link href="~/Content/jquery.ui.base.css" rel="stylesheet" />
-    <link href="~/Content/jquery.ui.datepicker.css" rel="stylesheet" />
 </head>
-<!--НАЧАЛО ОБСЛУЖИВАНИЯ maniCtrl-->
 <body ng-app="wunderlistApp" ng-controller="mainCtrl">
 
     <!--Правое окно для работы с item-->
-    <!--НАЧАЛО ОБСЛУЖИВАНИЯ itemCtrl-->
     <div class="ui simple sidebar vertical menu right" ng-controller="itemCtrl">
 
         <div>
-            <h4 style="text-align: center">{{currenItem.current.TodoTask}}</h4>
+            <h4 style="text-align: center">{{currenItem.item.TodoTask}}</h4>
         </div>
 
         <div class="ui left icon input field" style="width: 258px;">
-            <input name="title" type="text" ng-model="currenItem.current.TodoTask">
+            <input name="title" type="text" ng-blur="changeName()" ng-model="currenItem.item.TodoTask">
             <i class="pencil icon"></i>
         </div>
 
         <div class="ui left icon input field" style="width: 258px;">
-            <input name="addDate" id="datepicker" type="text" ng-model="currenItem.current.Date" placeholder="Задать дату выполнения">
+            <input name="addDate" id="datepicker" type="date" ng-blur="changeDate()" ng-model="date" placeholder="Задать дату выполнения" />
             <i class="calendar icon"></i>
         </div>
 
         <div class="ui left icon input field" style="width: 258px; position: fixed; bottom: 0">
-            <input name="addComment" type="text" ng-model="addComment" placeholder="Добавить комментарий">
+            <input name="addComment" type="text" ng-model="newDescription" ng-blur="changeDescription()" placeholder="Добавить описание">
             <i class="comment icon"></i>
         </div>
     </div>
-    <!--КОНЕЦ ОБСЛУЖИВАНИЯ itemCtrl-->
     <!--Окно для работы с данными пользователя-->
-    <!--НАЧАЛО ОБСЛУЖИВАНИЯ userCtrl-->
-<div class="ui standard test modal transition hidden" id="profileWindow" ng-controller="userCtrl">
-    <div class="header">
-        Бесплатный аккаунт
-    </div>
-    <br/>
-    <div class="ui stackable grid">
-        <div class="five wide column">
-            <div class="image content">
-                <div class="ui image">
-                    <img id="ava" src="#"/>
-                    <div class="ui input large">
-                        <label>{{user.Email}}</label>
+    <div class="ui standard test modal transition hidden" id="profileWindow" ng-controller="userCtrl">
+        <div class="header">
+            Бесплатный аккаунт
+        </div>
+        <br />
+        <div class="ui stackable grid">
+            <div class="five wide column">
+                <div class="image content">
+                    <div class="ui image">
+                        <img id="ava" src="#" />
+                        <div class="ui input large">
+                            <label>{{user.Email}}</label>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="six wide column">
-            <div class="description">    
+            <div class="six wide column">
+                <div class="description">
                     <label>Имя</label>
                     <div class="ui fluid input">
                         <input type="text" name="name" placeholder="Ваше имя" ng-model="user.UserName">
@@ -70,7 +63,7 @@
                     <br />
                     <div>
                         <div id="uploadForm" enctype="multipart/form-data">
-                            <input type="file" style="display: none;" id="hiddenFile" name="hiddenFile" ng-model="file"/>
+                            <input type="file" style="display: none;" id="hiddenFile" name="hiddenFile" ng-model="file" />
                             <label>Выберите ваш аватар</label>
                             <div class="ui fluid action input">
                                 <input type="text" placeholder="Обзор..." name="photoCover" id="photoCover" readonly="readonly">
@@ -80,40 +73,38 @@
                             </div>
                         </div>
                     </div>
-                
-            </div> 
-        </div>
-        <div class="five wide column">
-            <div id="uploadPreview" class="hidden">
-                <h4 class="ui horizontal divider header">
-                    <i class="photo icon"></i>
-                    Предосмотр
-                </h4>
-                <div class="ui fluid card" style="width: 70%; margin-left: 15%">
-                    <div class="ui fluid image">
-                        <a class="ui right corner label" role="closePreview">
-                            close
-                        </a>
-                        <img id="preview" style="width: 200px; height: 200px;" src="#">
+
+                </div>
+            </div>
+            <div class="five wide column">
+                <div id="uploadPreview" class="hidden">
+                    <h4 class="ui horizontal divider header">
+                        <i class="photo icon"></i>
+                        Предосмотр
+                    </h4>
+                    <div class="ui fluid card" style="width: 70%; margin-left: 15%">
+                        <div class="ui fluid image">
+                            <a class="ui right corner label" role="closePreview">
+                                close
+                            </a>
+                            <img id="preview" style="width: 200px; height: 200px;" src="#">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <br/>
-    <div class="actions">
-        <div class="ui black deny button">
-            Отмена
+        <br />
+        <div class="actions">
+            <div class="ui black deny button">
+                Отмена
+            </div>
+            <div class="ui positive button submit" ng-click="updateUser()">
+                Обновить
+            </div>
         </div>
-        <div class="ui positive button submit" ng-click="updateUser()">
-            Обновить
-        </div>
     </div>
-</div>
 
-    <!--КОНЕЦ ОБСЛУЖИВАНИЯ userCtrl-->
     <!--Окно для создания списка-->
-    <!--ПОКА БЕЗ КОНТРОЛЛЕРА-->
     <div class="ui modal" id="createListWindow" ng-controller="listCtrl">
         <div class="header" style="text-align: center">Создать список</div>
         <div class="content">
@@ -138,12 +129,12 @@
             </div>
         </div>
     </div>
-    <!--ПОКА БЕЗ КОНТРОЛЛЕРА-->
-<!--ГЛАВНОЕ ОКНО-->
+    <!--ГЛАВНОЕ ОКНО-->
     <div class="pusher">
         <div class="ui stackable grid">
             <!--левое меню для отображения имени пользователя и списка задач-->
             <div class="three wide column">
+
                 <div class="ui segment" style="background-color: ghostwhite; height: 100vh;">
                     <div class="ui search">
                         <div class="ui fluid icon input">
@@ -152,45 +143,42 @@
                         </div>
                         <div class="results"></div>
                     </div>
-                    <!--НАЧАЛО ОБСЛУЖИВАНИЯ listCtrl-->
-                    <div class="ui divided items" ng-controller="listCtrl">
+
+                    <div class="ui divided items">
                         <div class="item" id="username">
                             <a ng-cloak>{{user.UserName}}</a>
                         </div>
-                        <div class="ui secondary vertical pointing menu" style="width: 100%" 
-                             ng-repeat="list in lists" >
-                            <a class="item" id="list_{{list.Id}}" >
-                                <span ng-click="listChange(list.Id)" ng-cloak id="listTitle_{{list.Id}}">{{list.Name}}</span>
+                        <div class="ui secondary vertical pointing menu" style="width: 100%" ng-repeat="list in allListsUser.lists">
+                            <a class="item" id="list_{{list.Id}}">
+                                <span ng-click="sirenItem.loadItems(list)" ng-cloak id="listTitle_{{list.Id}}">{{list.Name}}</span>
                                 <div style="float: right">
-                                    <span class="hidden editing" id="editIcon_{{list.Id}}" ng-click="editTitle(list.Id)"><i class="ui edit icon"></i></span>
-                                    <div class="ui label">
-                                        {{list.CountItem}}
-                                    </div>
+                                    <span class="hidden editing" id="editIcon_{{list.Id}}" ng-click="sirenList.editTitle(list.Id)"><i class="ui edit icon"></i></span>
+                                    <div class="ui label">{{list.CountItem}}</div>
                                 </div>
+
                                 <div class="hidden editingblock" id="editingblock_{{list.Id}}">
-                                    <br/>
+                                    <br />
                                     <div class="ui input">
                                         <input type="text" value="{{list.Name}}" id="newTitle_{{list.Id}}" placeholder="Новое название списка...">
                                     </div>
-                                    <i class="checkmark icon" ng-click="submitEdit(list.Id)"></i>
+                                    <i class="checkmark icon" ng-click="sirenList.changeTitle(list)"></i>
                                     <i class="remove circle outline icon" style="margin-top: 5%" onclick="$('.editingblock').addClass('hidden');"></i>
                                 </div>
-                            </a>              
+                            </a>
                         </div>
                         <button class="ui blue basic button" style="position: fixed; bottom: 0; width: 16%" id="createListButton">
                             <i class="plus icon"></i>
                             Создать список
                         </button>
                     </div>
-                    <!--КОНЕЦ ОБСЛУЖИВАНИЯ listCtrl-->
                 </div>
             </div>
 
-
             <!--Центральная разметка отображающая форму создания задачи и вывод всех задач определенного списка-->
-            <!--Пока без контроллера (ПРЕДПОЛОЖИТЕЛЬНО: ng-controller="itemCtrl")-->
-            <div class="thirteen wide column inboxpage" style="margin-left: -15px;" ng-controller="itemCtrl">
+            <div class="thirteen wide column inboxpage" style="margin-left: -15px;">
+
                 <div class="ui segment" style="opacity: 0.85;">
+
                     <div>
                         <h3 style="margin-top: 10px; margin-left: 10px; color: #668964">Входящие</h3>
                         @*<div style="float: right; margin-top: 10px;">
@@ -198,80 +186,69 @@
                                 <i class="sort alphabet ascending icon"></i>
                                 <i class="ellipsis vertical icon"></i>
                             </div>*@
-                    </div>
-                    <br />
+                    </div><br />
+
                     <div class="ui grid">
                         <div class="thirteen wide column">
                             <div class="ui segment">
                                 <div class="ui input" style="border-radius: 5px; height: 45px; position: inherit; width: 100%">
                                     <i class="add plus icon" style="margin-left: 10px; margin-top: 14px;"></i>
-                                    <input type="text" ng-model="newTask" style="border: none;" placeholder="Добавить задачу..." id="todoTitle">
+                                    <input type="text" ng-model="newTaskName" style="border: none;" placeholder="Добавить задачу..." id="todoTitle">
                                 </div>
                             </div>
                         </div>
                         <div class="one wide column">
-                            <button class="ui inverted green button" id="addNewItem" ng-click="addNewItem(newTask)">Добавить</button>
+                            <button class="ui inverted green button" id="addNewItem" ng-click="sirenItem.addNewTask(newTaskName)">Добавить</button>
                         </div>
                     </div><br /><br />
 
-
                     <div id="todos">
-                        <div class='ui ignored positive icon message' ng-repeat="item in items | filter : { Status : '1'}">
-                            <button style='height: 16px;' ng-click="completeIt(item.Id)"></button>
+                        <div class='ui ignored positive icon message' ng-repeat="item in allItemsList.items | filter : { Status : '1'}">
+                            <button style='height: 16px;' ng-click="sirenItem.completeTast(item)"></button>
                             <div class='content' style='margin-left: 20px;'>
-                                <span ng-click="details(item)" ng-cloak>
-                                    {{item.TodoTask}}
-                                </span>
-                                <i class="trash icon" style="float: right" ng-click="deleteItem(item.Id)"></i>
+                                <span ng-click="sirenItem.showDetails(item)" ng-cloak>{{item.TodoTask}}</span>
+                                <i class="trash icon" style="float: right" ng-click="sirenItem.deleteTask(item)"></i>
                             </div>
                         </div>
-                    </div>
-                    <br />
+                    </div><br />
+
                     <div style="">
-                        <button class="ui green basic button" onclick="showComplete()">Показать завершенные задачи</button>
-                    </div>
-                    <br />
+                        <button class="ui green basic button" ng-disabled="(allItemsList.items | filter : { Status : '2'}).length == 0" onclick="showComplete()">Показать завершенные задачи</button>
+                    </div><br />
+
                     <div class="" style="display: none" id="completed">
-                        <div class='ui ignored positive icon message' id='0' ng-repeat="item in items | filter : { Status : '2'}">
-                            <button class='completeit' style='height: 16px;'></button>
+                        <div class='ui ignored positive icon message' ng-repeat="item in allItemsList.items | filter : { Status : '2'}">
+                            <button class='completeit' style='height: 16px;' ng-click="sirenItem.incomplete(item)"></button>
                             <div class='content' style='margin-left: 20px;'>
-                                <h3 class='header' ng-cloak>{{item.TodoTask}}</h3>
+                                <span ng-click="sirenItem.showDetails(item)" ng-cloak>{{item.TodoTask}}</span>
+                                <i class="trash icon" style="float: right" ng-click="sirenItem.deleteTask(item)"></i>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-            <!--Пока без контроллера (ПРЕДПОЛОЖИТЕЛЬНО: ng-controller="itemCtrl")-->
         </div>
     </div>
     @Scripts.Render("~/bundles/wunderlist")
-    <script src="~/Scripts/jquery.ui.widget.js"></script>
-    <script src="~/Scripts/jquery.ui.core.js"></script>
-    <script src="~/Scripts/jquery.ui.datepicker.js"></script>
-<script>
-    $(function() {
-        // Инициализация виджета datapicker
-        $("#datepicker").datepicker();
-    });
-</script>
     <script>
-    $('.ui.form')
-  .form({
-      on: 'blur',
-      fields: {
-          text: {
-              identifier: 'name',
-              rules: [
-                  {
-                      type: 'length[' + 1 + ']',
-                      prompt: 'Поле не должно быть пустым'
-                  }
-              ]
+        $('.ui.form')
+      .form({
+          on: 'blur',
+          fields: {
+              text: {
+                  identifier: 'name',
+                  rules: [
+                      {
+                          type: 'length[' + 1 + ']',
+                          prompt: 'Поле не должно быть пустым'
+                      }
+                  ]
+              }
           }
-      }
-  });
+      });
     </script>
-<script>
+    <script>
         var readURL;
         readURL = function(input) {
             var reader;
@@ -336,5 +313,4 @@
         });
     </script>
 </body>
-<!--КОНЕЦ ОБСЛУЖИВАНИЯ maniCtrl-->
 </html>

@@ -1,43 +1,42 @@
 ﻿angular.module("wunderlistApp")
-    .controller("listCtrl", function($scope) {
+    .controller("listCtrl", function ($scope, $http, listsUrl) {
 
-        $scope.listChange = function (id) {
-            document.getElementById("completed").style.display = "none";
-            
-            $scope.sirenLoadItems(id);
-        }
+        $scope.addNewList = function (newListName) {
+            if (newListName == undefined || newListName == "") {
+                alert("You do not lead a list name! Please specify the field for the list name!");
+            } else {
+                var list = {
+                    UserModelId: $scope.user.Id,
+                    Name: newListName
+                }
 
-        $scope.addNewList = function(newListName) {
-            var list = {
-                UserModelId: $scope.user.Id,
-                Name: newListName
+                $scope.newListName = "";
+
+                $http.post(listsUrl, list).success(function (newList) {
+                    $scope.allListsUser.lists.push(newList);
+                    $('#createListWindow').modal('hide');
+                });
             }
-
-            $scope.newListName = "";
-
-            new $scope.listsResource(list).$save().then(function (newList) {
-                $scope.lists.push(newList);
-                $('#createListWindow').modal('hide');
-            });
         }
 
-        $scope.editTitle = function(id) {
+        function editTitle(id) {
             $(".editingblock").addClass('hidden');
             $("#editingblock_" + id).removeClass('hidden');
         }
 
-        $scope.submitEdit = function (id) {
-            var a = $('#newTitle_' + id).val();
-            alert(a);
-            $.ajax('/api/List/'+id, {
-                type: "PUT",
-                data: a
+        function changeTitle(list) {
+            var newName = $('#newTitle_' + list.Id).val();
+            list.Name = newName;
+            $http.put(listsUrl + list.Id, list).success(function (list) {
+                $(".editingblock").addClass("hidden");
             });
-            //$.put('/api/List/UpdateList/'+id, {
-            //    newTitle: a
-            //}).then(function successCallback(response) {
-            //    $('.editingblock').addClass('hidden');
-            //    $("#listTitle_" + response.data.Id).val(response.data.Name);
-            //});
         }
+
+        $scope.$on("editTitleEvent", function (event, args) {
+            editTitle(args.taskId);
+        });
+
+        $scope.$on("changeTitleEvent", function (event, args) {
+            changeTitle(args.newList);
+        });
     });

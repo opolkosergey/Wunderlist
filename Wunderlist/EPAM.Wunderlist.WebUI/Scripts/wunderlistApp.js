@@ -63,19 +63,3 @@ $('.ui.search')
         source: content
     });
 
-//$(document).ready(function () {
-//    $("#addNewItem").click(function () {
-//        var title = $("#todoTitle").val();
-//        var todo = "<div class='ui ignored positive icon message' id='0'>" +
-//            "<button class='completeit' style='height: 16px;'></button>" +
-//            "<div class='content' style='margin-left: 20px;'>" +
-//                "<h3 class='header'>" + title + "<i class='trash icon' style='float: right'></i></h3>" +
-//            "</div></div>";
-//        //var todo = "<div class='ui ignored positive icon message' id='0'>" +
-//        //    "<button class='completeit' style='height: 16px;' onclick='completeit(this)'></button>" +
-//        //    "<div class='content' style='margin-left: 20px;'>" +
-//        //    "<h3 class='header'>" + title + "</h3></div></div>";
-//        $("#todoTitle").val('');
-//        $("#todos").append(todo);
-//    });
-//});
