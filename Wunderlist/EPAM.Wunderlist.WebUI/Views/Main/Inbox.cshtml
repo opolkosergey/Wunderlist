@@ -108,11 +108,11 @@
     <div class="ui modal" id="createListWindow" ng-controller="listCtrl">
         <div class="header" style="text-align: center">Создать список</div>
         <div class="content">
-            <div class="ui left icon large input field" align="center">
+            <div class="ui left icon large input field" style="margin-left: 20%">
                 <input name="newList" ng-model="newListName" type="text" placeholder="Имя списка...">
                 <i class="list layout icon"></i>
 
-                <input type="submit" value="Добавить список" ng-click="addNewList(newListName)">
+                <input type="submit" value="Добавить список" style="margin-left: 10%" ng-click="addNewList(newListName)">
             </div>
             <h4 class="ui horizontal divider header">
                 <i class="tag icon"></i>
@@ -133,7 +133,7 @@
     <div class="pusher">
         <div class="ui stackable grid">
             <!--левое меню для отображения имени пользователя и списка задач-->
-            <div class="three wide column">
+            <div class="four wide column">
 
                 <div class="ui segment" style="background-color: ghostwhite; height: 100vh;">
                     <div class="ui search">
@@ -152,6 +152,7 @@
                             <a class="item" id="list_{{list.Id}}">
                                 <span ng-click="sirenItem.loadItems(list)" ng-cloak id="listTitle_{{list.Id}}">{{list.Name}}</span>
                                 <div style="float: right">
+                                    <span class="hidden deleting" id="deleteIcon_{{list.Id}}" ng-click=""><i class="ui trash icon"></i></span>
                                     <span class="hidden editing" id="editIcon_{{list.Id}}" ng-click="sirenList.editTitle(list.Id)"><i class="ui edit icon"></i></span>
                                     <div class="ui label">{{list.CountItem}}</div>
                                 </div>
@@ -166,7 +167,7 @@
                                 </div>
                             </a>
                         </div>
-                        <button class="ui blue basic button" style="position: fixed; bottom: 0; width: 16%" id="createListButton">
+                        <button class="ui blue basic button" style="position: fixed; bottom: 0; width: 21%" id="createListButton">
                             <i class="plus icon"></i>
                             Создать список
                         </button>
@@ -175,7 +176,7 @@
             </div>
 
             <!--Центральная разметка отображающая форму создания задачи и вывод всех задач определенного списка-->
-            <div class="thirteen wide column inboxpage" style="margin-left: -15px;">
+            <div class="twelve wide column inboxpage" style="margin-left: -15px;">
 
                 <div class="ui segment" style="opacity: 0.85;">
 

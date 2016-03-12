@@ -16,9 +16,11 @@
         function getAllTask(list) {
             $http.get(itemsUrl + list.Id).success(function (itemsData) {
                 $(".editing").addClass('hidden');
+                $(".deleting").addClass('hidden');
                 $(".ui.secondary.vertical.pointing.menu a").removeClass("active");
                 $("#list_" + list.Id).addClass("active");
                 $("#editIcon_" + list.Id).removeClass("hidden");
+                $("#deleteIcon_" + list.Id).removeClass("hidden");
                 $(".editingblock").addClass('hidden');
                 $scope.allItemsList.items = itemsData;
                 $scope.currentList.list = list;
