@@ -21,16 +21,14 @@ namespace EPAM.Wunderlist.WebUI.Controllers.WebAPI
 
             _itemService = itemService;
         }
-
-        // Получить все item по id листа
+        
         [HttpGet]
         public IEnumerable<TodoItemViewModel> GetAllItems(int id)
         {
             var items = _itemService.GetAllItems(id);
             return EntityConvert<TodoItemModel, TodoItemViewModel>(items);
         }
-
-        // Создание item
+        
         [HttpPost]
         public HttpResponseMessage CreateItem([FromBody]TodoItemViewModel item)
         {
@@ -45,24 +43,22 @@ namespace EPAM.Wunderlist.WebUI.Controllers.WebAPI
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-
-        // Обновление item по id
-        [HttpPost]
+        
+        [HttpPut]
         public HttpResponseMessage UpdateItem(int id, [FromBody]TodoItemViewModel item)
         {
             try
             {
                 var itemToUpdate = EntityConvert<TodoItemViewModel, TodoItemModel>(item);
                 _itemService.Update(itemToUpdate);
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.OK, item);
             }
             catch (Exception)
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-
-        // Удаление item по id
+        
         [HttpDelete]
         public HttpResponseMessage Delete(int id)
         {

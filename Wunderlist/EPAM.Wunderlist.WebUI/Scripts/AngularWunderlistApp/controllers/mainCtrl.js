@@ -1,75 +1,78 @@
 ﻿angular.module("wunderlistApp")
-    .controller("mainCtrl", function ($scope, $http, $resource) {
-
-        $scope.listsResource = $resource("/api/list/");
-        $scope.itemsResource = $resource("/api/item/");
-        $scope.userUrl = "/api/user/";
+    .controller("mainCtrl", function ($scope, $http, userUrl, userProfileUrl, listsUrl) {
         $scope.avatarPath = "#";
         $scope.user = [];
 
         $scope.currenItem = {
-            current: null
+            item: null
         };
 
-        (function () {
+        $scope.currentList = {
+            list: null
+        };
 
-            function bootstrapLoadLists(userId) {
-                $scope.listsResource.query({ userId }, function (listsData) {
-                    $scope.lists = listsData;
-                    $scope.getAllItems(listsData[0].Id);
-                });
-                $.get('/Profile/GetProfile?id=' + userId).then(function (response) {
-                    $scope.avatarPath = "/UserContent/Photos/" + response.Photo;
-                    $("#ava").attr("src", $scope.avatarPath);
-                });
+        $scope.allItemsList = {
+            items: null
+        };
+
+        $scope.allListsUser = {
+            lists: null
+        };
+
+        $scope.sirenItem = {
+
+            loadItems: function (list) {
+                document.getElementById("completed").style.display = "none";
+                $scope.$broadcast("loadItemsEvent", { actualList: list });
+            },
+
+            addNewTask: function (taskName) {
+                $scope.newTaskName = "";
+                $scope.$broadcast("createNewTaskEvent", { taskName: taskName });
+            },
+
+            completeTast: function (completeTast) {
+                $scope.$broadcast("completeTaskEvent", { item: completeTast });
+            },
+
+            incomplete: function (incompleteTask) {
+                $scope.$broadcast("incompleteTaskEvent", { item: incompleteTask });
+            },
+
+            showDetails: function (task) {
+                $scope.$broadcast("showDetailsEvent", { task: task });
+            },
+
+            deleteTask: function (deleteTask) {
+                $scope.$broadcast("deleteTaskEvent", { task: deleteTask });
+            },
+
+        };
+
+        $scope.sirenList = {
+
+            editTitle: function(id) {
+                $scope.$broadcast("editTitleEvent", { taskId: id });
+            },
+
+            changeTitle: function (list) {
+                $scope.$broadcast("changeTitleEvent", { newList: list });
             }
+        };
 
-            $scope.sirenLoadItems = function (id) {
-                $scope.$broadcast("loadItemsEvent", { listId: id });
-            };
-
-            $scope.getCurrentList = function (id) {
-                var count = $scope.lists.length;
-                for (var i = 0; i < count; i++) {
-                    if ($scope.lists[i].Id === id)
-                        $scope.currentList = $scope.lists[i];
-                };
-            };
-
-            $scope.getCurrentItem = function (id) {
-                var count = $scope.lists.length;
-                for (var i = 0; i < count; i++) {
-                    if ($scope.items[i].Id === id)
-                        $scope.currentItem = $scope.items[i];
-                };
-            };
-
-            $scope.getAllItems = function (id) {
-                $scope.itemsResource.query({ id }, function (itemsData) {
-                    $(".editing").addClass('hidden');
-                    $(".ui.secondary.vertical.pointing.menu a").removeClass("active");
-                    $("#list_" + id).addClass("active");
-                    $("#editIcon_" + id).removeClass("hidden");
-                    $(".editingblock").addClass('hidden');
-                    $scope.items = itemsData;
-                    $scope.getCurrentList(id);
-                    $scope.currentListId = id;
-                });
-            }
-
-            $http.get($scope.userUrl).success(function (user) {
+        (function() {
+            $http.get(userUrl).success(function(user) {
                 $scope.user = user;
-                bootstrapLoadLists(user.Id);
+
+                $http.get(listsUrl + user.Id).success(function(listsData) {
+                    $scope.allListsUser.lists = listsData;
+                    $scope.sirenItem.loadItems(listsData[0]);
+
+                    $http.get(userProfileUrl + user.Id).success(function (response) {
+                        $scope.avatarPath = "/UserContent/Photos/" + response.Photo;
+                        $("#ava").attr("src", $scope.avatarPath);
+                    });
+                });
             });
-
-            //function getProfile(id) {
-            //    alert(id);
-            //    $.get('/Profile/GetProfile?id='+ id).then(function(response) {
-            //        $scope.avatarPath = "/UserContent/Photos/" + response.Photo;
-            //        $("#ava").attr("src", $scope.avatarPath);
-            //    });
-            //}
-
-            //getProfile($scope.user.Id);
         })();
     });

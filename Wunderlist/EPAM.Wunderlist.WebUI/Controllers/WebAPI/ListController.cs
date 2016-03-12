@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using EPAM.Wunderlist.Model;
 using EPAM.Wunderlist.Services.TodoListsService;
 using EPAM.Wunderlist.WebUI.Models;
-using Microsoft.AspNet.Identity;
 using static EPAM.Wunderlist.WebUI.Mapper.HelperConvert;
 
 namespace EPAM.Wunderlist.WebUI.Controllers.WebAPI
@@ -23,16 +21,14 @@ namespace EPAM.Wunderlist.WebUI.Controllers.WebAPI
 
             _listService = listService;
         }
-
-        // Получение всех листов
+        
         [HttpGet]
-        public IEnumerable<TodoListViewModel> GetAllLists(int userId)
+        public IEnumerable<TodoListViewModel> GetAllLists(int id)
         {
-            var lists = _listService.GetAllTodoLists(userId);
+            var lists = _listService.GetAllTodoLists(id);
             return EntityConvert<TodoListModel, TodoListViewModel>(lists);
         }
-
-        // Создание нового листа для задач
+        
         [HttpPost]
         public HttpResponseMessage CreateList([FromBody]TodoListViewModel list)
         {
@@ -47,25 +43,23 @@ namespace EPAM.Wunderlist.WebUI.Controllers.WebAPI
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-
-        // Обновление листа по id
+        
         [HttpPut]
-        public HttpResponseMessage UpdateList(int id, string newTitle)
+        public HttpResponseMessage UpdateList(int id, TodoListViewModel newList)
         {
             try
             {
                 var list = _listService.GetById(id);
-                list.Name = newTitle;
+                list.Name = newList.Name;
                 _listService.Update(list);
-                return Request.CreateResponse(HttpStatusCode.OK,list);
+                return Request.CreateResponse(HttpStatusCode.OK, newList);
             }
             catch (Exception)
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
         }
-
-        // Удаление листа по id
+        
         [HttpDelete]
         public HttpResponseMessage Delete(int id)
         {
@@ -77,11 +71,6 @@ namespace EPAM.Wunderlist.WebUI.Controllers.WebAPI
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
-        }
-
-        private int GetUserId()
-        {
-            return User.Identity.GetUserId<int>();
         }
     }
 }

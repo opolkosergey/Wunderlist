@@ -41,19 +41,19 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                             TodoTask = "FIRST Task Work List For User1",
                             Description = "This is work first Task For User1",
                             Status = TodoStatus.Unfinished,
-                            Date = "01/01/2017"
+                            Date = DateTime.Today
                         },
                         new TodoItemModel
                         {
                             TodoTask = "SECOND Task Work List For User1",
                             Status = TodoStatus.Unfinished,
-                            Date = "01/12/2017"
+                            Date = DateTime.Today
                         },
                         new TodoItemModel
                         {
                             TodoTask = "THIRD Task Work List For User1",
                             Status = TodoStatus.Unfinished,
-                            Date = "01/04/2017"
+                            Date = DateTime.Today
                         }
                     }
                 },
@@ -117,7 +117,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                             TodoTask = "FIRST Task Journey List For User2",
                             Description = "This is Journey first Task For User2",
                             Status = TodoStatus.Unfinished,
-                            //Date = DateTime.Today
+                            Date = DateTime.Today
                         }
                     }
                 },
@@ -136,7 +136,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                         {
                             TodoTask = "SECOND Task Weekend List For User2",
                             Status = TodoStatus.Unfinished,
-                            //Date = DateTime.Today
+                            Date = DateTime.Today
                         },
                         new TodoItemModel
                         {
@@ -148,7 +148,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                         {
                             TodoTask = "SECOND COMPETED Task Weekend List For User2",
                             Status = TodoStatus.Сompleted,
-                            //Date = DateTime.Today
+                            Date = DateTime.Today
                         }
                     }
                 }
@@ -161,7 +161,8 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                 TodoLists = user2List,
                 Profile = new UserProfileModel
                 {
-                    Name = "SecondName"
+                    Name = "SecondName",
+                    Photo = "1.jpg"
                 }
             };
 
@@ -185,7 +186,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                             TodoTask = "FIRST Task Journey List For User3",
                             Description = "This is Journey first Task For User3",
                             Status = TodoStatus.Unfinished,
-                            //Date = DateTime.Today
+                            Date = DateTime.Today
                         }
                     }
                 },
@@ -204,7 +205,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                         {
                             TodoTask = "SECOND Task Weekend List For User3",
                             Status = TodoStatus.Unfinished,
-                            //Date = DateTime.Today
+                            Date = DateTime.Today
                         },
                         new TodoItemModel
                         {
@@ -216,7 +217,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                         {
                             TodoTask = "FOURTH Task Weekend List For User3",
                             Status = TodoStatus.Unfinished,
-                            //Date = DateTime.Today
+                            Date = DateTime.Today
                         }
                     }
                 }
@@ -229,7 +230,8 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                 TodoLists = user3List,
                 Profile = new UserProfileModel
                 {
-                    Name = "ThirdName"
+                    Name = "ThirdName",
+                    Photo = "1.jpg"
                 }
             };
 
