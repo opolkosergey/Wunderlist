@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -21,12 +23,23 @@ namespace EPAM.Wunderlist.WebUI.Controllers.WebAPI
 
             _itemService = itemService;
         }
-        
+
         [HttpGet]
-        public IEnumerable<TodoItemViewModel> GetAllItems(int id)
+        public ArrayList GetAllItems(int id, string page, int pageSize = 4, bool isneedPageCount = false)
         {
-            var items = _itemService.GetAllItems(id);
-            return EntityConvert<TodoItemModel, TodoItemViewModel>(items);
+            //var items = _itemService.GetAllItems(id);
+            int pages = (int)Math.Ceiling((double)_itemService.CountOfUncompleted(id) / pageSize); ;
+            var items = _itemService.GetPage(id, page == "maxpage" ? pages : int.Parse(page), pageSize);
+            var entities = EntityConvert<TodoItemModel, TodoItemViewModel>(items);
+            var list = new ArrayList();
+            list.AddRange(entities.ToList());
+            var completedItems = _itemService.GetAllItems(id).Where(i => i.Status == TodoStatus.Сompleted);
+            list.AddRange(EntityConvert<TodoItemModel, TodoItemViewModel>(completedItems).ToList());
+            //list.AddRange(_itemService.GetAllItems(id).Where(i => i.Status == TodoStatus.Сompleted).ToList());
+            if (isneedPageCount)
+                list.Insert(0, pages);
+            
+            return list;
         }
         
         [HttpPost]

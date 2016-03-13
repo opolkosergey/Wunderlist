@@ -5,6 +5,7 @@
 
         $scope.date = null;
         $scope.newDescription = null;
+       
 
         function getDate() {
             if ($scope.currenItem.item.Date != null)
@@ -13,8 +14,10 @@
                 $scope.date = null;
         }
 
-        function getAllTask(list) {
-            $http.get(itemsUrl + list.Id).success(function (itemsData) {
+        function getPage(list, page) {
+            page = page || 1;
+            $http.get('/api/Item?id=' + list.Id + '&page=' + page + '&isneedPageCount=' + 'true')
+                .success(function (itemsData) {
                 $(".editing").addClass('hidden');
                 $(".deleting").addClass('hidden');
                 $(".ui.secondary.vertical.pointing.menu a").removeClass("active");
@@ -22,6 +25,17 @@
                 $("#editIcon_" + list.Id).removeClass("hidden");
                 $("#deleteIcon_" + list.Id).removeClass("hidden");
                 $(".editingblock").addClass('hidden');
+                $scope.buttonsforactive.buttons = null;
+                $scope.allItemsList.items = null;
+                var c = itemsData[0];
+                var arr = new Array();
+                if (c > 1) {
+                    for (var i = 0; i < c; i++) {
+                        arr[i] = { no: i + 1 };
+                    }
+                    $scope.buttonsforactive.buttons = arr;
+                }
+                itemsData.splice(0, 1);
                 $scope.allItemsList.items = itemsData;
                 $scope.currentList.list = list;
             });
@@ -40,8 +54,9 @@
                 }
 
                 $http.post(itemsUrl, item).success(function (newItem) {
-                    $scope.allItemsList.items.push(newItem);
+                    //$scope.allItemsList.items.push(newItem);
                     $scope.currentList.list.CountItem++;
+                    getPage($scope.currentList.list, "maxpage");
                 });
             }
         };
@@ -50,7 +65,8 @@
             if (completeTast != null) {
                 completeTast.Status = "2";
                 $http.put(itemsUrl + completeTast.Id, completeTast).success(function (completedTast) {
-                    alert(completedTast.TodoTask + " завершенная задача!");
+                    //alert(completedTast.TodoTask + " завершенная задача!");
+                    getPage($scope.currentList.list, 1);
                 });
             };
         }
@@ -60,8 +76,9 @@
                 completeTast.Status = "1";
 
                 $http.put(itemsUrl + completeTast.Id, completeTast).success(function (completedTast) {
-                    document.getElementById("completed").style.display = "none";
-                    alert(completedTast.TodoTask + " актуальная задача!");
+                    //document.getElementById("completed").style.display = "none";
+                    //alert(completedTast.TodoTask + " актуальная задача!");
+                    getPage($scope.currentList.list, "maxpage");
                 });
             };
         }
@@ -71,8 +88,9 @@
 
                 if (confirm("Do you want to remove" + task.TodoTask)) {
                     $http.delete(itemsUrl + task.Id).success(function() {
-                        $scope.allItemsList.items.splice($scope.allItemsList.items.indexOf(task), 1);
+                        //$scope.allItemsList.items.splice($scope.allItemsList.items.indexOf(task), 1);
                         $scope.currentList.list.CountItem--;
+                        getPage($scope.currentList.list, "maxpage");
                     });
                 }
             }
@@ -107,6 +125,8 @@
             }
         }
 
+       
+
         $scope.changeName = function () {
 
             if ($scope.currenItem.item.Name != null || $scope.currenItem.item.Name != "undefined") {
@@ -116,9 +136,8 @@
                 });
             }
         }
-
         $scope.$on("loadItemsEvent", function (event, args) {
-            getAllTask(args.actualList);
+            getPage(args.actualList);   
         });
 
         $scope.$on("createNewTaskEvent", function (event, args) {

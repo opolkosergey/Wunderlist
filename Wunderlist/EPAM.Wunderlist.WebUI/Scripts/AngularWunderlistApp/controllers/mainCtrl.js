@@ -3,6 +3,10 @@
         $scope.avatarPath = "#";
         $scope.user = [];
 
+        $scope.buttonsforactive = {
+            buttons: null
+        }
+
         $scope.currenItem = {
             item: null
         };
@@ -18,6 +22,26 @@
         $scope.allListsUser = {
             lists: null
         };
+
+        $scope.getNewPage = function(page) {
+            $http.get('/api/Item?id=' + $scope.currentList.list.Id + '&page=' + page).success(function(itemsData) {
+                $('.ui.pagination.menu a').removeClass('active');
+                $scope.allItemsList.items = itemsData;
+                $('#button_' + page).addClass('active');
+            });
+        };
+
+        $scope.getUncompletedTasks = function() {
+            //alert($scope.currentList.list.Id);
+            var completed = document.getElementById("completed");
+            if (completed.style.display === "none") {
+                completed.style.display = "inherit";
+            } else {
+                completed.style.display = "none";
+            }
+            //$http.get('/api/Item/GetCompleted/id=' + id).success(function(itemsData) {});
+        }
+        
 
         $scope.sirenItem = {
 
@@ -45,11 +69,11 @@
 
             deleteTask: function (deleteTask) {
                 $scope.$broadcast("deleteTaskEvent", { task: deleteTask });
-            },
-
+            }
         };
 
         $scope.sirenList = {
+           
 
             editTitle: function(id) {
                 $scope.$broadcast("editTitleEvent", { taskId: id });

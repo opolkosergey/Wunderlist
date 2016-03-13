@@ -11,7 +11,7 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Repositories
     public abstract class BaseRepository<TEntity> : IRepository<TEntity> 
         where TEntity : class, IEntityModel
     {
-        private readonly IDbSet<TEntity> _dbSet;
+        protected readonly IDbSet<TEntity> _dbSet;
 
         protected BaseRepository(DbContext context)
         {
@@ -26,6 +26,11 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Repositories
             _dbSet.Add(entity);
         }
 
+        public virtual int Count(Expression<Func<TEntity, bool>> expression)
+        {
+            return _dbSet.Where(expression).Count();
+        }
+
         public virtual IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate)
         {
             return _dbSet.Where(predicate);
@@ -35,7 +40,12 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Repositories
         {
             return _dbSet;
         }
-               
+
+        public virtual IQueryable<TodoItemModel> GetPage(int id, int page, int pageSize)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual TEntity GetById(int id)
         {
             return _dbSet.FirstOrDefault(p => p.Id == id);

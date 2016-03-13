@@ -5,12 +5,7 @@
 //});
 
 function showComplete() {
-    var completed = document.getElementById("completed");
-    if (completed.style.display === "none") {
-        completed.style.display = "inherit";
-    } else {
-        completed.style.display = "none";
-    }
+    
 };
 
 $(document).ready(function () {

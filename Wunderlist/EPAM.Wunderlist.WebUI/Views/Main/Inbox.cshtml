@@ -211,10 +211,17 @@
                                 <i class="trash icon" style="float: right" ng-click="sirenItem.deleteTask(item)"></i>
                             </div>
                         </div>
-                    </div><br />
+                    </div><br/>
+                    <div class="ui pagination menu" ng-repeat="button in buttonsforactive.buttons">
+                        <a class="item" ng-click="getNewPage(button.no)" id="button_{{button.no}}">
+                            {{button.no}}
+                        </a>
+                    </div>
+                    <br/>
+                    <br />
 
                     <div style="">
-                        <button class="ui green basic button" ng-disabled="(allItemsList.items | filter : { Status : '2'}).length == 0" onclick="showComplete()">Показать завершенные задачи</button>
+                        <button class="ui green basic button" @*ng-disabled="allItemsList.items | filter : { Status : '2'}"*@ ng-click="getUncompletedTasks()">Показать завершенные задачи</button>
                     </div><br />
 
                     <div class="" style="display: none" id="completed">

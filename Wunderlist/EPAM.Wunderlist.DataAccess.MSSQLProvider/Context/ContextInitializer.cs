@@ -28,6 +28,24 @@ namespace EPAM.Wunderlist.DataAccess.MSSQLProvider.Context
                             TodoTask = "SECOND Task Default List For User1",
                             Status = TodoStatus.Unfinished,
                             Date = null
+                        },
+                        new TodoItemModel
+                        {
+                            TodoTask = "THIRD Task Default List For User1",
+                            Status = TodoStatus.Unfinished,
+                            Date = null
+                        },
+                        new TodoItemModel
+                        {
+                            TodoTask = "FOURTH Task Default List For User1",
+                            Status = TodoStatus.Unfinished,
+                            Date = null
+                        },
+                        new TodoItemModel
+                        {
+                            TodoTask = "FIFTH Task Default List For User1",
+                            Status = TodoStatus.Unfinished,
+                            Date = null
                         }
                     }
                 },
