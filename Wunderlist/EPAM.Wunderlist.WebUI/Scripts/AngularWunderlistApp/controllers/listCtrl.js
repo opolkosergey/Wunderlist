@@ -32,11 +32,24 @@
             });
         }
 
+        function deleteList(list) {
+            if (confirm("Do you want to remove list")) {
+                $http.delete(listsUrl + list.Id).success(function () {
+                    $scope.allListsUser.lists.splice($scope.allListsUser.lists.indexOf(list), 1);
+                    $scope.sirenItem.loadItems($scope.allListsUser.lists[0]);
+                });
+            }
+        }
+
         $scope.$on("editTitleEvent", function (event, args) {
             editTitle(args.taskId);
         });
 
         $scope.$on("changeTitleEvent", function (event, args) {
             changeTitle(args.newList);
+        });
+
+        $scope.$on("deleteListEvent", function (event, args) {
+            deleteList(args.listId);
         });
     });

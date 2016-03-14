@@ -1,5 +1,5 @@
 ﻿angular.module("wunderlistApp")
-    .controller("mainCtrl", function ($scope, $http, userUrl, userProfileUrl, listsUrl) {
+    .controller("mainCtrl", function($scope, $http, userUrl, userProfileUrl, listsUrl) {
         $scope.avatarPath = "#";
         $scope.user = [];
 
@@ -41,46 +41,47 @@
             }
             //$http.get('/api/Item/GetCompleted/id=' + id).success(function(itemsData) {});
         }
-        
+
 
         $scope.sirenItem = {
-
-            loadItems: function (list) {
+            loadItems: function(list) {
                 document.getElementById("completed").style.display = "none";
                 $scope.$broadcast("loadItemsEvent", { actualList: list });
             },
 
-            addNewTask: function (taskName) {
+            addNewTask: function(taskName) {
                 $scope.newTaskName = "";
                 $scope.$broadcast("createNewTaskEvent", { taskName: taskName });
             },
 
-            completeTast: function (completeTast) {
+            completeTast: function(completeTast) {
                 $scope.$broadcast("completeTaskEvent", { item: completeTast });
             },
 
-            incomplete: function (incompleteTask) {
+            incomplete: function(incompleteTask) {
                 $scope.$broadcast("incompleteTaskEvent", { item: incompleteTask });
             },
 
-            showDetails: function (task) {
+            showDetails: function(task) {
                 $scope.$broadcast("showDetailsEvent", { task: task });
             },
 
-            deleteTask: function (deleteTask) {
+            deleteTask: function(deleteTask) {
                 $scope.$broadcast("deleteTaskEvent", { task: deleteTask });
             }
         };
 
         $scope.sirenList = {
-           
-
             editTitle: function(id) {
                 $scope.$broadcast("editTitleEvent", { taskId: id });
             },
 
-            changeTitle: function (list) {
+            changeTitle: function(list) {
                 $scope.$broadcast("changeTitleEvent", { newList: list });
+            },
+
+            deleteList: function(id) {
+                $scope.$broadcast("deleteListEvent", { listId: id });
             }
         };
 

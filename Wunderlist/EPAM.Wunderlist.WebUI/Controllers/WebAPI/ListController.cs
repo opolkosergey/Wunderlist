@@ -65,6 +65,7 @@ namespace EPAM.Wunderlist.WebUI.Controllers.WebAPI
         {
             try
             {
+                _listService.Remove(id);
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception)

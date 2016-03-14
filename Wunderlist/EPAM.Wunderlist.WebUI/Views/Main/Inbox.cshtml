@@ -152,7 +152,7 @@
                             <a class="item" id="list_{{list.Id}}">
                                 <span ng-click="sirenItem.loadItems(list)" ng-cloak id="listTitle_{{list.Id}}">{{list.Name}}</span>
                                 <div style="float: right">
-                                    <span class="hidden deleting" id="deleteIcon_{{list.Id}}" ng-click=""><i class="ui trash icon"></i></span>
+                                    <span class="hidden deleting" id="deleteIcon_{{list.Id}}" ng-click="sirenList.deleteList(list)"><i class="ui trash icon"></i></span>
                                     <span class="hidden editing" id="editIcon_{{list.Id}}" ng-click="sirenList.editTitle(list.Id)"><i class="ui edit icon"></i></span>
                                     <div class="ui label">{{list.CountItem}}</div>
                                 </div>
